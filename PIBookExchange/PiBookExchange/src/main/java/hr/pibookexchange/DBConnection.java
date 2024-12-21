@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBConnection {
     // Connection details for SQL Server
-    private static final String URL = "jdbc:sqlserver://Brunin_lapatop\\BICEPSEXPRESS;databaseName=BookExchangePlatformDB";
+    private static final String URL = "jdbc:sqlserver://DESKTOP-H0UGAVT\\SQLEXPRESS99;databaseName=PIBookExchange;encrypt=false";
     private static final String USER = "sa";          // Replace with your SQL Server username
     private static final String PASSWORD = "SQL";     // Replace with your SQL Server password
 
