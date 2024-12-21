@@ -6,17 +6,17 @@
         <artifactId>PIBookExchange</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>PiBookExchange</artifactId>
+    <artifactId>Dao</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>Dao</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>8.4.1.jre14</version>
         </dependency>
     </dependencies>
     <properties>
-        <maven.compiler.release>23</maven.compiler.release>
-        <exec.mainClass>hr.pibookexchange.PiBookExchange</exec.mainClass>
+        <maven.compiler.source>20</maven.compiler.source>
+        <maven.compiler.target>20</maven.compiler.target>
     </properties>
 </project>
