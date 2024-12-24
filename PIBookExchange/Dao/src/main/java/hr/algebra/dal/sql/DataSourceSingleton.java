@@ -53,6 +53,11 @@ public final class DataSourceSingleton {
         dataSource.setDatabaseName(PROPERTIES.getProperty(DATABASE_NAME));
         dataSource.setUser(PROPERTIES.getProperty(USER));
         dataSource.setPassword(PROPERTIES.getProperty(PASSWORD));
+        
+        dataSource.setEncrypt(true); // Osigurajte da je veza šifrirana
+        dataSource.setTrustServerCertificate(false); // Ne vjerujte automatski serveru
+        dataSource.setLoginTimeout(30); // Postavite timeout za povezivanje
+    
         return dataSource;
     }
 }

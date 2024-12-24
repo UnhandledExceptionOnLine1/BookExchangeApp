@@ -6,7 +6,7 @@
         <artifactId>PIBookExchange</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>PiBookExchange</artifactId>
+    <artifactId>BookExchange</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>

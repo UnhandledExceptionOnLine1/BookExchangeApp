@@ -6,9 +6,20 @@ import java.sql.SQLException;
 
 public class DBConnection {
     // Connection details for SQL Server
-    private static final String URL = "jdbc:sqlserver://DESKTOP-H0UGAVT\\SQLEXPRESS99;databaseName=PIBookExchange;encrypt=false";
-    private static final String USER = "sa";          // Replace with your SQL Server username
-    private static final String PASSWORD = "SQL";     // Replace with your SQL Server password
+    // private static final String URL = "jdbc:sqlserver://Brunin_lapatop\\BICEPSEXPRESS";
+    // private static final String USER = "sa";          // Replace with your SQL Server username
+    // private static final String PASSWORD = "SQL";     // Replace with your SQL Server password
+    
+    
+    // USING AZURE DATABASE
+    private static final String jdbcURL = "jdbc:sqlserver://bookexchange.database.windows.net:1433;"
+                                        + "database=bookexchangeDB;"
+                                        + "user=pi_admin;"
+                                        + "password=Algebra1!;"
+                                        + "encrypt=true;"
+                                        + "trustServerCertificate=false;"
+                                        + "loginTimeout=30;";
+
 
     public static Connection getConnection() throws SQLException {
         try {
@@ -18,7 +29,7 @@ public class DBConnection {
             e.printStackTrace();
             throw new SQLException("SQL Server JDBC Driver not found.", e);
         }
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        return DriverManager.getConnection(jdbcURL);
     }
 
     public static void main(String[] args) {

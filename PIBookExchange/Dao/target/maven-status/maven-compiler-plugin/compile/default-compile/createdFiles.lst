@@ -3,4 +3,3 @@ hr\algebra\model\User.class
 hr\algebra\dal\Repository.class
 hr\algebra\dal\RepositoryFactory.class
 hr\algebra\dal\sql\DataSourceSingleton.class
-hr\algebra\model\Article.class
