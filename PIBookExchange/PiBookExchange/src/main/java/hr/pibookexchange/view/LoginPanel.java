@@ -25,10 +25,8 @@ public class LoginPanel extends javax.swing.JPanel {
      */
     public LoginPanel() {
         initComponents();
-        txtUsername.setText("");
-        txtPassword.setText("");
-        lblUsernameError.setVisible(false);
-        lblPassswordError.setVisible(false);
+        cleanForm();
+        hideErrorLabels();
     }
 
     /**
@@ -49,6 +47,7 @@ public class LoginPanel extends javax.swing.JPanel {
         lblPassswordError = new javax.swing.JLabel();
         lblUsernameError = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        lblUserRegistration = new javax.swing.JLabel();
 
         lbUsername.setText("Username");
 
@@ -72,6 +71,9 @@ public class LoginPanel extends javax.swing.JPanel {
         jLabel1.setText("User Login");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        lblUserRegistration.setText("BOOK EXCHANGE PLATFORM");
+        lblUserRegistration.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,8 +81,8 @@ public class LoginPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbPassword)
-                    .addComponent(lbUsername))
+                    .addComponent(lbUsername)
+                    .addComponent(lbPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
@@ -91,7 +93,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     .addComponent(lblUsernameError))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
+                .addContainerGap(101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnLogin)
@@ -100,19 +102,24 @@ public class LoginPanel extends javax.swing.JPanel {
                         .addGap(88, 88, 88))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(143, 143, 143))))
+                        .addGap(145, 145, 145))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblUserRegistration)
+                        .addGap(95, 95, 95))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(10, 10, 10)
+                .addComponent(lblUserRegistration)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbUsername)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUsernameError))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbPassword)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,38 +135,38 @@ public class LoginPanel extends javax.swing.JPanel {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         lblUsernameError.setVisible(false);
         lblPassswordError.setVisible(false);
-        
+
         String username = txtUsername.getText();
         String password = new String(txtPassword.getPassword());
-        
+
         boolean valid = true;
-        
-        if(username.isEmpty() || username.length() < 3){
+
+        if (username.isEmpty() || username.length() < 3) {
             lblUsernameError.setVisible(true);
             JOptionPane.showMessageDialog(this, "Korisničko ime mora sadržavati najmanje 3 znaka.", "Greška", JOptionPane.ERROR_MESSAGE);
             valid = false;
         }
-        if (password.isEmpty() || password.length() < 5){
+        if (password.isEmpty() || password.length() < 5) {
             lblPassswordError.setVisible(true);
             JOptionPane.showMessageDialog(this, "Lozinka mora sadržavati najmanje 5 znakova.", "Greška", JOptionPane.ERROR_MESSAGE);
             valid = false;
         }
-        if(!valid){
+        if (!valid) {
             JOptionPane.showMessageDialog(this, "Molim popunite sva polja", "Greška", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         try {
             Repository repo = RepositoryFactory.getRepository(); //returns sql repository        
             Optional<User> user = repo.loginUser(username, password);
             if (user.isPresent()) {
                 JOptionPane.showMessageDialog(this, "Prijava uspješna!", "Prijava", JOptionPane.INFORMATION_MESSAGE);
-            } else {    
-                JOptionPane.showMessageDialog(this, "Pogrešno korisničko ime ili lozinka.", "Greška", JOptionPane.ERROR_MESSAGE);                
+            } else {
+                JOptionPane.showMessageDialog(this, "Pogrešno korisničko ime ili lozinka.", "Greška", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
@@ -170,8 +177,20 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbUsername;
     private javax.swing.JLabel lblPassswordError;
+    private javax.swing.JLabel lblUserRegistration;
     private javax.swing.JLabel lblUsernameError;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    private void cleanForm() {
+        txtUsername.setText("");
+        txtPassword.setText("");
+
+    }
+
+    private void hideErrorLabels() {
+        lblUsernameError.setVisible(false);
+        lblPassswordError.setVisible(false);
+    }
 }

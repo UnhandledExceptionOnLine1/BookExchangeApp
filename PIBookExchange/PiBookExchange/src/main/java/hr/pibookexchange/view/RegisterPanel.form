@@ -16,13 +16,266 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace pref="60" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="lbAddress" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tfAddress" min="-2" pref="175" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbAddressError" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="lbPassword" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="tfPassword" min="-2" pref="175" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lbPasswordError" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lbName" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="tfName" min="-2" pref="175" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lbNameError" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lbSurname" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="tfSurname" min="-2" pref="175" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lbSurnameError" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lbTelephone" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tfTelephone" min="-2" pref="175" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbTelephoneError" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lbEmail" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btnLogin" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnRegister" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="tfEmail" min="-2" pref="175" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbEmailError" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lbUsername" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tfUsername" min="-2" pref="175" max="-2" attributes="0"/>
+                          <Component id="lblUserRegistration" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbUsernameError" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="90" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblUserRegistration1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblUserRegistration" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+              <Component id="lblUserRegistration1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbUsernameError" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbPasswordError" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbNameError" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbSurname" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfSurname" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbSurnameError" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbAddressError" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbTelephone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfTelephone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbTelephoneError" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbEmailError" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRegister" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblUserRegistration">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BOOK EXCHANGE PLATFORM"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbUsername">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Username"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfUsername">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbUsernameError">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="X"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbPassword">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Password"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfPassword">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbPasswordError">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="X"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfName">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbNameError">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="X"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbSurname">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Surname"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfSurname">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbSurnameError">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="X"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbAddress">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Address"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfAddress">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbAddressError">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="X"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbTelephone">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Telephone"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfTelephone">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbTelephoneError">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="X"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbEmail">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Email"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfEmail">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbEmailError">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="X"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLogin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Login"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnRegister">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Register"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblUserRegistration1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="User Registration"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+      </Properties>
+    </Component>
+  </SubComponents>
 </Form>
