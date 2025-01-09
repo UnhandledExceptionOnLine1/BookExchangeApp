@@ -9,6 +9,11 @@ import java.io.InputStream;
 
 public class DropboxUpload {
 
+    private static final String APP_KEY = "lw23awqj6m0sjbh";
+    private static final String APP_SECRET = "9x0k29iygomefkq";
+    
+   DbxRequestConfig config = DbxRequestConfig.newBuilder("BookExchangeApp").build();
+    
     private static final String ACCESS_TOKEN = "";
 
     public static void uploadFile(String localFilePath, String dropboxFilePath) throws Exception {
