@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 package hr.pibookexchange;
+
+import hr.algebra.dal.sql.SqlRepository;
+import hr.algebra.model.Ad;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -11,7 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
@@ -19,49 +22,15 @@ import java.sql.SQLException;
  */
 public class AddAdForm extends javax.swing.JFrame {
 
-private String selectedImagePath = ""; // Čuva putanju slike
-    
-    
-    
+    private String selectedImagePath = ""; // Čuva putanju slike
+
     /**
      * Creates new form AddAdForm
      */
     public AddAdForm() {
         initComponents();
-        loadCategories();
-        loadPaymentTypes();
-    }
-
-    private void loadCategories() {
-        try (Connection conn = DBConnection.getConnection()) {
-            String sql = "SELECT Naziv FROM Kategorija";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
-
-            cbCategory.removeAllItems();
-            while (rs.next()) {
-                cbCategory.addItem(rs.getString("Naziv"));
-            }
-        } catch (SQLException e) {
-  
-            JOptionPane.showMessageDialog(this, "Error loading categories: " + e.getMessage());
-        }
-    }
-
-    private void loadPaymentTypes() {
-        try (Connection conn = DBConnection.getConnection()) {
-            String sql = "SELECT Vrsta FROM Naplata";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
-
-            cbPayment.removeAllItems();
-            while (rs.next()) {
-                cbPayment.addItem(rs.getString("Vrsta"));
-            }
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(this, "Error loading payment types: " + e.getMessage());
-        }
+        populateCategoryComboBox(); // Popunjavanje ComboBox-a prilikom inicijalizacije
+        populatePaymentComboBox(); // Popunjavanje ComboBox-a prilikom inicijalizacije
     }
 
     /**
@@ -227,11 +196,11 @@ private String selectedImagePath = ""; // Čuva putanju slike
         if (result == JFileChooser.APPROVE_OPTION) {
             selectedImagePath = fileChooser.getSelectedFile().getAbsolutePath();
             jLabel5.setText("Odabrana slika: " + selectedImagePath);
-              System.out.println("Selected Image Path: " + selectedImagePath); // Debug log
+            System.out.println("Selected Image Path: " + selectedImagePath); // Debug log
         } else {
             JOptionPane.showMessageDialog(this, "Nije odabrana slika.");
         }
-        
+
     }//GEN-LAST:event_btnUploadImageActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -240,50 +209,43 @@ private String selectedImagePath = ""; // Čuva putanju slike
         String paymentType = cbPayment.getSelectedItem().toString();
         String description = taDescription.getText();
         String imagePath = selectedImagePath;
-        String price = tfPrice.getText();
+        String priceText = tfPrice.getText(); // Dohvaćanje teksta iz TextFielda
+        double price;
+        try {
+            price = Double.parseDouble(priceText); // Parsiranje teksta u double
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid number for the price.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return; // Prekinite izvršavanje ako unos nije validan
+        }
         int korisnikID = 1; // Assuming a default user ID for now
 
-         // Debugging the image path
-    System.out.println("Raw Image Path Before SQL: " + selectedImagePath);
-    System.out.println("Image Path Sent to Database: " + imagePath);
-
-        
-        
         if (adName.isEmpty() || category.isEmpty() || paymentType.isEmpty() || description.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill out all fields before submitting.");
             return;
         }
 
-        try (Connection conn = DBConnection.getConnection()) {
-            // Fetch KategorijaID and NaplataID based on selected names
-            int kategorijaID = getCategoryID(conn, category);
-            int naplataID = getPaymentTypeID(conn, paymentType);
+        try {
+            SqlRepository repo = new SqlRepository();
+            int categoryId = repo.getCategoryIdByName(category);
+            int paymentId = repo.getPaymentIdByName(paymentType);
 
-            String sql = "INSERT INTO Oglas (Naziv, KategorijaID, NaplataID, Slika, Opis, VrijemeObjave, KorisnikID, Cijena) "
-                    + "VALUES (?, ?, ?, ?, ?, GETDATE(), ?, ?)";
+            repo.createAd(new Ad(
+                    adName,
+                    categoryId,
+                    paymentId,
+                    imagePath,
+                    description,
+                    price,
+                    korisnikID));
 
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, adName);
-            pstmt.setInt(2, kategorijaID);
-            pstmt.setInt(3, naplataID);
-            pstmt.setString(4, imagePath);
-            pstmt.setString(5, description);
-            pstmt.setInt(6, korisnikID);
-            pstmt.setString(7, price);
-
-            System.out.println("Image Path Sent to Database: " + imagePath); // Debug log
-            
-            int rowsInserted = pstmt.executeUpdate();
-            if (rowsInserted > 0) {
-                JOptionPane.showMessageDialog(this, "Ad successfully added!");
-                clearForm();
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error inserting data into the database: " + e.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error finding category: " + ex.getMessage());
+            ex.printStackTrace();
+            return;
         }
+
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -310,8 +272,6 @@ private String selectedImagePath = ""; // Čuva putanju slike
             java.util.logging.Logger.getLogger(AddAdForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -340,41 +300,48 @@ private String selectedImagePath = ""; // Čuva putanju slike
     private javax.swing.JTextField tfPrice;
     // End of variables declaration//GEN-END:variables
 
-    private int getCategoryID(Connection conn, String categoryName)  throws SQLException {
-    String sql = "SELECT IDKategorija FROM Kategorija WHERE Naziv = ?";
-    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        pstmt.setString(1, categoryName);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            return rs.getInt("IDKategorija");
-        } else {
-            throw new SQLException("Category not found: " + categoryName);
-        }
-    }
-    }
-
-    private int getPaymentTypeID(Connection conn, String paymentTypeName) throws SQLException {
-    String sql = "SELECT IDNaplata FROM Naplata WHERE Vrsta = ?";
-    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        pstmt.setString(1, paymentTypeName);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            return rs.getInt("IDNaplata");
-        } else {
-            throw new SQLException("Payment type not found: " + paymentTypeName);
-        }
-    }
-    }
-
     private void clearForm() {
-    tfAdName1.setText("");
-    cbCategory.setSelectedIndex(0);
-    cbPayment.setSelectedIndex(0);
-    taDescription.setText("");
-    jLabel5.setText("Odabrana slika:");
-    selectedImagePath = "";
-    System.out.println("Image Path Cleared in clearForm");
-    tfPrice.setText("");
+        tfAdName1.setText("");
+        cbCategory.setSelectedIndex(0);
+        cbPayment.setSelectedIndex(0);
+        taDescription.setText("");
+        jLabel5.setText("Odabrana slika:");
+        selectedImagePath = "";
+        System.out.println("Image Path Cleared in clearForm");
+        tfPrice.setText("");
     }
+
+    private void populateCategoryComboBox() {
+        try {
+            SqlRepository repo = new SqlRepository();
+            List<String> categoryNames = repo.getAllCategoryNames(); // Dohvaćanje naziva kategorija
+
+            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+            for (String categoryName : categoryNames) {
+                model.addElement(categoryName); // Dodavanje svakog naziva u model
+            }
+
+            cbCategory.setModel(model); // Postavljanje modela na ComboBox
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error loading category names: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }
+
+    private void populatePaymentComboBox() {
+        try {
+            SqlRepository repo = new SqlRepository();
+            List<String> paymentNames = repo.getAllPaymentNames(); // Dohvaćanje naziva kategorija
+
+            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+            for (String paymentName : paymentNames) {
+                model.addElement(paymentName); // Dodavanje svakog naziva u model
+            }
+
+            cbPayment.setModel(model); // Postavljanje modela na ComboBox
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error loading payment types: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }    }
 
 }
