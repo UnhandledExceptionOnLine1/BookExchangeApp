@@ -6,6 +6,7 @@ package hr.pibookexchange;
 
 import hr.algebra.dal.sql.SqlRepository;
 import hr.algebra.model.Ad;
+import hr.algebra.uploads.DropboxUpload;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -200,7 +201,6 @@ public class AddAdForm extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Nije odabrana slika.");
         }
-
     }//GEN-LAST:event_btnUploadImageActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -224,6 +224,22 @@ public class AddAdForm extends javax.swing.JFrame {
             return;
         }
 
+        // Upload image to Dropbox (only if an image is selected)
+        if (!selectedImagePath.isEmpty()) {
+            try {
+                String dropboxPath = "/" + new File(selectedImagePath).getName(); // File path in Dropbox
+                DropboxUpload.uploadFile(selectedImagePath, dropboxPath);
+                JOptionPane.showMessageDialog(this, "Slika je uspješno prenesena na Dropbox!");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Došlo je do pogreške prilikom prijenosa slike na Dropbox.", "Greška", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Nije odabrana slika. Molimo odaberite sliku prije nego što nastavite.");
+            return;
+        }
+
         try {
             SqlRepository repo = new SqlRepository();
             int categoryId = repo.getCategoryIdByName(category);
@@ -237,6 +253,9 @@ public class AddAdForm extends javax.swing.JFrame {
                     description,
                     price,
                     korisnikID));
+            
+            JOptionPane.showMessageDialog(this, "Oglas je uspješno spremljen!");
+            clearForm(); // Clear the form after successful submission
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error finding category: " + ex.getMessage());
@@ -342,6 +361,7 @@ public class AddAdForm extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error loading payment types: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
-        }    }
+        }
+    }
 
 }
