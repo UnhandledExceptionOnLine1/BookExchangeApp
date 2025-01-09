@@ -19,5 +19,5 @@ public interface Repository {
     void deleteUser(int id) throws Exception;
     Optional<User> getUser(int id) throws Exception;
     List<User> selectAllUsers() throws Exception;
-
+    Optional<User> loginUser(String username, String password) throws Exception;
 }

@@ -27,11 +27,12 @@ public class SqlRepository implements Repository {
     private static final String EMAIL = "Email";
     private static final String MSG = "message";
 
-    private static final String CREATE_USER = "{ CALL createUser (?,?,?,?,?,?,?) }";
-    private static final String UPDATE_USER = "{ CALL updateUser (?,?,?,?,?,?,?,?) }";
-    private static final String DELETE_USER = "{ CALL deleteUser (?) }";
-    private static final String GET_USER = "{ CALL getUser (?) }";
-    private static final String GET_USERS = "{ CALL getAllUsers}";
+    private static final String CREATE_USER = "{ CALL CreateUser (?,?,?,?,?,?,?) }";
+    private static final String UPDATE_USER = "{ CALL UpdateUser (?,?,?,?,?,?,?,?) }";
+    private static final String DELETE_USER = "{ CALL DeleteUser (?) }";
+    private static final String GET_USER = "{ CALL GetUser (?) }";
+    private static final String GET_USERS = "{ CALL GetAllUsers }";
+    private static final String LOGIN_USER = "{ CALL LoginUser(?,?) }";
 
     @Override
     public int createUser(User user) throws Exception {
@@ -129,5 +130,32 @@ public class SqlRepository implements Repository {
             }       
         }
         return users;
+    }
+
+    @Override
+    public Optional<User> loginUser(String username, String password) throws Exception{
+        DataSource dataSource = DataSourceSingleton.getInstance();
+        try (Connection con = dataSource.getConnection();
+                CallableStatement stmt = con.prepareCall((LOGIN_USER))){
+            
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            
+            try (ResultSet rs = stmt.executeQuery()){
+                if(rs.next()){
+                    return Optional.of(new User(
+                            rs.getInt(ID_USER), 
+                            rs.getString(USER_NAME), 
+                            rs.getString(PASSWORD), 
+                            rs.getString(FIRST_NAME), 
+                            rs.getString(LAST_NAME),
+                            rs.getString(ADDRESS),
+                            rs.getString(TELEPHONE),
+                            rs.getString(EMAIL)
+                    ));
+                }
+            }
+        }
+        return Optional.empty();
     }
 }

@@ -41,14 +41,7 @@ public class RepositoryFactory {
     private RepositoryFactory() {
     }
     
-
     public static Repository getRepository() {
-        
-       
         return repository;
     }
-    
-    
-    
-    
 }
