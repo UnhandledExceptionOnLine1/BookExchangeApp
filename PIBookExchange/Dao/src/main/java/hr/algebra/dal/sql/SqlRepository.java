@@ -8,7 +8,6 @@ import hr.algebra.dal.Repository;
 import hr.algebra.model.Ad;
 import hr.algebra.model.AdDetails;
 import hr.algebra.model.User;
-import java.nio.file.Paths;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -61,11 +60,13 @@ public class SqlRepository implements Repository {
     private static final String GET_ADS = "{ CALL GetAllUsers }";
     private static final String GET_ALL_CATEGORIES = "{ CALL GetAllCategoryNames }";
     private static final String GET_ALL_PAYMENTS = "{ CALL GetAllPaymentNames }";
-    // AD_PROCEDURES
+
+        // AD_PROCEDURES
     private static final String AD_CATEGORY_NAME = "KategorijaNaziv"; // Naziv kategorije
     private static final String AD_PAYMENT_NAME = "VrstaNaplate";    // Naziv vrste naplate
     private static final String AD_USER_NAME = "KorisnikIme";        // Ime korisnika
 
+    
     @Override
     public int createUser(User user) throws Exception {
         DataSource dataSource = DataSourceSingleton.getInstance();
@@ -194,8 +195,7 @@ public class SqlRepository implements Repository {
             stmt.setString(AD_NAME, ad.getName());
             stmt.setInt(AD_CATEGORY, ad.getCategoryId());
             stmt.setInt(AD_PAYMENT, ad.getPaymentTypeId());
-            String fileName = Paths.get(ad.getImagePath()).getFileName().toString();
-            stmt.setString(AD_PICTURE_PATH, fileName);
+            stmt.setString(AD_PICTURE_PATH, ad.getImagePath());
             stmt.setString(AD_DESC, ad.getDescription());
             stmt.setDouble(AD_PRICE, ad.getPrice());
             stmt.setInt(AD_USER, ad.getUserId());
@@ -232,7 +232,7 @@ public class SqlRepository implements Repository {
         }
     }
 
- @Override
+   @Override
 public Optional<AdDetails> getAd(int id) throws Exception {
     DataSource dataSource = DataSourceSingleton.getInstance();
     try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_AD)) {

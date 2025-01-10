@@ -30,8 +30,4 @@ public interface Repository {
     List<Ad> getAllAds() throws Exception;
     int getCategoryIdByName(String categoryName) throws Exception;
     int getPaymentIdByName(String paymentName) throws Exception;
-    
-
-
-  
 }
