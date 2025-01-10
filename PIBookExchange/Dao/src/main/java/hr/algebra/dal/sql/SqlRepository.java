@@ -4,7 +4,8 @@
  */
 package hr.algebra.dal.sql;
 
-import hr.algebra.dal.Repository;
+import hr.algebra.dal.AdCategoryInterface;
+import hr.algebra.dal.AdPaymentInterface;
 import hr.algebra.model.Ad;
 import hr.algebra.model.AdDetails;
 import hr.algebra.model.User;
@@ -19,8 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.sql.DataSource;
+import hr.algebra.dal.AdRepositoryInterface;
+import hr.algebra.dal.UserRepositoryInterface;
 
-public class SqlRepository implements Repository {
+public class SqlRepository implements UserRepositoryInterface, AdRepositoryInterface, AdCategoryInterface, AdPaymentInterface {
 
     // USER_ADMINISTRATION_CONSTANTS
     private static final String ID_USER = "IDKorisnik";
@@ -61,12 +64,11 @@ public class SqlRepository implements Repository {
     private static final String GET_ALL_CATEGORIES = "{ CALL GetAllCategoryNames }";
     private static final String GET_ALL_PAYMENTS = "{ CALL GetAllPaymentNames }";
 
-        // AD_PROCEDURES
+    // AD_PROCEDURES
     private static final String AD_CATEGORY_NAME = "KategorijaNaziv"; // Naziv kategorije
     private static final String AD_PAYMENT_NAME = "VrstaNaplate";    // Naziv vrste naplate
     private static final String AD_USER_NAME = "KorisnikIme";        // Ime korisnika
 
-    
     @Override
     public int createUser(User user) throws Exception {
         DataSource dataSource = DataSourceSingleton.getInstance();
@@ -232,29 +234,29 @@ public class SqlRepository implements Repository {
         }
     }
 
-   @Override
-public Optional<AdDetails> getAd(int id) throws Exception {
-    DataSource dataSource = DataSourceSingleton.getInstance();
-    try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_AD)) {
-        stmt.setInt(1, id); // Postavite ID oglasa kao parametar
-        try (ResultSet rs = stmt.executeQuery()) {
-            if (rs.next()) {
-                // Kreirajte i vratite AdDetails objekt s nazivima
-                return Optional.of(new AdDetails(
-                        rs.getInt(ID_AD),                 // ID oglasa
-                        rs.getString(AD_NAME),            // Naziv oglasa
-                        rs.getString(AD_CATEGORY_NAME),   // Naziv kategorije
-                        rs.getString(AD_PAYMENT_NAME),    // Naziv vrste naplate
-                        rs.getString(AD_PICTURE_PATH),    // Putanja slike
-                        rs.getString(AD_DESC),            // Opis oglasa
-                        rs.getDouble(AD_PRICE),           // Cijena
-                        rs.getString(AD_USER_NAME)        // Ime korisnika
-                ));
+    @Override
+    public Optional<AdDetails> getAd(int id) throws Exception {
+        DataSource dataSource = DataSourceSingleton.getInstance();
+        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_AD)) {
+            stmt.setInt(1, id); // Postavite ID oglasa kao parametar
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Kreirajte i vratite AdDetails objekt s nazivima
+                    return Optional.of(new AdDetails(
+                            rs.getInt(ID_AD), // ID oglasa
+                            rs.getString(AD_NAME), // Naziv oglasa
+                            rs.getString(AD_CATEGORY_NAME), // Naziv kategorije
+                            rs.getString(AD_PAYMENT_NAME), // Naziv vrste naplate
+                            rs.getString(AD_PICTURE_PATH), // Putanja slike
+                            rs.getString(AD_DESC), // Opis oglasa
+                            rs.getDouble(AD_PRICE), // Cijena
+                            rs.getString(AD_USER_NAME) // Ime korisnika
+                    ));
+                }
             }
         }
+        return Optional.empty(); // Ako oglas nije pronađen
     }
-    return Optional.empty(); // Ako oglas nije pronađen
-}
 
     @Override
     public List<Ad> getAllAds() throws Exception {

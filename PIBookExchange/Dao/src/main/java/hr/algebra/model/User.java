@@ -9,7 +9,7 @@ package hr.algebra.model;
  * @author bruno
  */
 public final class User {
-    
+
     private int id;
     private String userName;
     private String password;
@@ -33,7 +33,7 @@ public final class User {
     }
 
     public User(int id, String userName, String password, String firstName, String lastName, String address, String telephone, String email) {
-        this (userName, password, firstName, lastName, address, telephone, email);
+        this(userName, password, firstName, lastName, address, telephone, email);
         setId(id);
     }
 
@@ -103,8 +103,7 @@ public final class User {
 
     @Override
     public String toString() {
-        return id + " - " + userName;
+        return UserStringify.getString(this);   // S
     }
-    
-    
+
 }

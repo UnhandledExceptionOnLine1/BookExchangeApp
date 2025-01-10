@@ -4,7 +4,6 @@
  */
 package hr.pibookexchange.view;
 
-import hr.algebra.dal.Repository;
 import hr.algebra.dal.RepositoryFactory;
 import hr.algebra.model.User;
 import java.util.Arrays;
@@ -13,6 +12,7 @@ import java.util.Optional;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import hr.algebra.dal.UserRepositoryInterface;
 
 /**
  *
@@ -289,7 +289,7 @@ public class RegisterPanel extends javax.swing.JPanel {
         }
 
         try {
-            Repository repo = RepositoryFactory.getRepository();
+            UserRepositoryInterface repo = RepositoryFactory.getRepository();
             repo.createUser(new User(
                     username,
                     password,

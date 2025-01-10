@@ -4,7 +4,6 @@
  */
 package hr.pibookexchange.view;
 
-import hr.algebra.dal.Repository;
 import hr.algebra.dal.RepositoryFactory;
 import hr.algebra.dal.sql.SqlRepository;
 import hr.algebra.model.User;
@@ -13,6 +12,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import hr.algebra.dal.UserRepositoryInterface;
 
 /**
  *
@@ -169,7 +169,7 @@ public class LoginPanel extends javax.swing.JPanel {
         }
 
         try {
-            Repository repo = RepositoryFactory.getRepository(); //returns sql repository        
+            UserRepositoryInterface repo = RepositoryFactory.getRepository(); //returns sql repository        
             Optional<User> user = repo.loginUser(username, password);
             if (user.isPresent()) {
                 JOptionPane.showMessageDialog(this, "Prijava uspješna!", "Prijava", JOptionPane.INFORMATION_MESSAGE);

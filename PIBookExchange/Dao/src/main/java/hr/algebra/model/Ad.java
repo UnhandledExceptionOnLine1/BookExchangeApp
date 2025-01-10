@@ -102,15 +102,6 @@ public final class Ad {
 
     @Override
     public String toString() {
-        return "Ad{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", categoryId=" + categoryId +
-                ", paymentTypeId=" + paymentTypeId +
-                ", imagePath='" + imagePath + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", userId=" + userId +
-                '}';
+        return AdStringify.getString(this); // S
     }
 }

@@ -18,13 +18,13 @@ public class RepositoryFactory {
     private static final String CLASS_NAME = "CLASS_NAME";
     
     private static final Properties PROPERTIES = new Properties();
-    private static Repository repository;
+    private static UserRepositoryInterface repository;
 
     static {
         try (InputStream is = RepositoryFactory.class.getResourceAsStream(PATH)){
             PROPERTIES.load(is);
             
-            repository = (Repository)
+            repository = (UserRepositoryInterface)
                     Class.forName(PROPERTIES.getProperty(CLASS_NAME))
                     .getDeclaredConstructor()
                     .newInstance();
@@ -41,7 +41,7 @@ public class RepositoryFactory {
     private RepositoryFactory() {
     }
     
-    public static Repository getRepository() {
+    public static UserRepositoryInterface getRepository() {
         return repository;
     }
 }
