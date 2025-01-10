@@ -20,13 +20,21 @@ import javax.swing.JOptionPane;
  */
 public class LoginPanel extends javax.swing.JPanel {
 
+    private MainFrame parentFrame;
+
     /**
      * Creates new form LoginPanelForm
      */
-    public LoginPanel() {
+    public LoginPanel(MainFrame parentFrame) {
+        this.parentFrame = parentFrame;
         initComponents();
         cleanForm();
         hideErrorLabels();
+    }
+    
+    // mora imati default konstruktor zbog inicijalizacije forme!
+    public LoginPanel() {
+        this(null); // Pozivanje prilagođenog konstruktora s null
     }
 
     /**
@@ -54,6 +62,11 @@ public class LoginPanel extends javax.swing.JPanel {
         lbPassword.setText("Password");
 
         btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +181,10 @@ public class LoginPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        parentFrame.showPanel("RegisterPanel");
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

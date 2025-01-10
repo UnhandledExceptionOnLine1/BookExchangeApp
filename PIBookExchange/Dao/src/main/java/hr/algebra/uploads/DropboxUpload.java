@@ -9,12 +9,7 @@ import java.io.InputStream;
 
 public class DropboxUpload {
 
-    private static final String APP_KEY = "lw23awqj6m0sjbh";
-    private static final String APP_SECRET = "9x0k29iygomefkq";
-    
-   DbxRequestConfig config = DbxRequestConfig.newBuilder("BookExchangeApp").build();
-    
-    private static final String ACCESS_TOKEN = "";
+    private static final String ACCESS_TOKEN = "sl.CENWY4rg6bHqk0I52yC6RPNJdZViEsYs79B2t07Z6v4HRKiXJfRlyFze1fM35LPx7h72534GMqEzI4BJb5VgAiDc-uAIDyDdAGAGW7ZDXFWfeTBrEE_xV4B6i3nSxYRwN8DgI23g5yyxIvF4NPGyakA";
 
     public static void uploadFile(String localFilePath, String dropboxFilePath) throws Exception {
         DbxRequestConfig config = DbxRequestConfig.newBuilder("BookExchangeApp").build();
@@ -27,6 +22,3 @@ public class DropboxUpload {
         }
     }
 }
-
-
-//sl.CENy4i92MUXILcw9uX31SOPlwe2ni3iXWohNYgBrT4nIpAigi9fclShaZ-weG4HyfH77eXr95G9_E-QJeWScUGyGrcA1b0h1iXud8eCplehpuywtAKUKZHK-b_Iv7LYXoR-BgF4HauQQ

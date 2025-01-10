@@ -63,17 +63,17 @@ public class SqlRepository implements Repository {
     @Override
     public int createUser(User user) throws Exception {
         DataSource dataSource = DataSourceSingleton.getInstance();
-        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(CREATE_USER)) {
-            stmt.setString(USER_NAME, user.getUserName());
-            stmt.setString(PASSWORD, user.getPassword());
-            stmt.setString(FIRST_NAME, user.getFirstName());
-            stmt.setString(LAST_NAME, user.getLastName());
-            stmt.setString(ADDRESS, user.getAddress());
-            stmt.setString(TELEPHONE, user.getTelephone());
-            stmt.setString(EMAIL, user.getEmail());
-            stmt.registerOutParameter(ID_USER, Types.INTEGER);
+        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall("{ CALL CreateUser (?,?,?,?,?,?,?,?) }")) {
+            stmt.setString(1, user.getUserName());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getFirstName());
+            stmt.setString(4, user.getLastName());
+            stmt.setString(5, user.getAddress());
+            stmt.setString(6, user.getTelephone());
+            stmt.setString(7, user.getEmail());
+            stmt.registerOutParameter(8, java.sql.Types.INTEGER); // Registracija izlaznog parametra
             stmt.executeUpdate();
-            return stmt.getInt(ID_USER);
+            return stmt.getInt(8); // Vraća ID korisnika
         }
     }
 
@@ -315,7 +315,7 @@ public class SqlRepository implements Repository {
         return categoryNames;
     }
 
-        public List<String> getAllPaymentNames() throws Exception {
+    public List<String> getAllPaymentNames() throws Exception {
         List<String> paymentsNames = new ArrayList<>();
         DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); Statement stmt
