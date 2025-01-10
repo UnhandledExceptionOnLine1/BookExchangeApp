@@ -6,3 +6,4 @@ hr\algebra\dal\sql\DataSourceSingleton.class
 hr\algebra\model\AdDetails.class
 hr\algebra\model\Ad.class
 hr\algebra\uploads\DropboxUpload.class
+hr\algebra\uploads\DropboxFetch.class

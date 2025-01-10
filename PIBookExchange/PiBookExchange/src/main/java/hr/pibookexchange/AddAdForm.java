@@ -224,22 +224,27 @@ public class AddAdForm extends javax.swing.JFrame {
             return;
         }
 
-        // Upload image to Dropbox (only if an image is selected)
-        if (!selectedImagePath.isEmpty()) {
-            try {
-                String dropboxPath = "/" + new File(selectedImagePath).getName(); // File path in Dropbox
-                DropboxUpload.uploadFile(selectedImagePath, dropboxPath);
-                JOptionPane.showMessageDialog(this, "Slika je uspješno prenesena na Dropbox!");
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Došlo je do pogreške prilikom prijenosa slike na Dropbox.", "Greška", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Nije odabrana slika. Molimo odaberite sliku prije nego što nastavite.");
+         // Upload image to Dropbox (only if an image is selected)
+    String imageName = ""; // Ovdje ćemo spremiti samo ime slike
+    if (!selectedImagePath.isEmpty()) {
+        try {
+            // Izreži ime datoteke iz pune putanje
+            imageName = new File(selectedImagePath).getName(); // Dobivamo npr. "programiranje.jpg"
+
+            // Pošalji sliku na Dropbox
+            String dropboxPath = "/" + imageName; // Putanja na Dropboxu
+            DropboxUpload.uploadFile(selectedImagePath, dropboxPath);
+
+            JOptionPane.showMessageDialog(this, "Slika je uspješno prenesena na Dropbox!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Došlo je do pogreške prilikom prijenosa slike na Dropbox.", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+    } else {
+        JOptionPane.showMessageDialog(this, "Nije odabrana slika. Molimo odaberite sliku prije nego što nastavite.");
+        return;
+    }
         try {
             SqlRepository repo = new SqlRepository();
             int categoryId = repo.getCategoryIdByName(category);
@@ -249,7 +254,7 @@ public class AddAdForm extends javax.swing.JFrame {
                     adName,
                     categoryId,
                     paymentId,
-                    imagePath,
+                    imageName,
                     description,
                     price,
                     korisnikID));
