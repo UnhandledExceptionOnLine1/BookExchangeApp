@@ -5,6 +5,7 @@
 package hr.pibookexchange.view;
 
 import hr.algebra.dal.RepositoryFactory;
+import hr.algebra.dal.sql.SqlRepository;
 import hr.algebra.model.AdDetails;
 import hr.algebra.uploads.DropboxFetch;
 import java.util.Optional;
@@ -20,13 +21,13 @@ public class AdDetailsForm extends javax.swing.JFrame {
     public AdDetailsForm(int adId) {
         initComponents();
         loadAdDetails(adId); // Method to fetch and populate details
-        
     }
 
     private void loadAdDetails(int adId) {
         try {
             // Fetch the ad details using the repository
-            Optional<AdDetails> optionalAd = RepositoryFactory.getRepository().getAd(adId);
+             SqlRepository repo = new SqlRepository(); //???????
+            Optional<AdDetails> optionalAd = repo.getAd(adId);
             if (optionalAd.isPresent()) {
                 AdDetails ad = optionalAd.get();
 
