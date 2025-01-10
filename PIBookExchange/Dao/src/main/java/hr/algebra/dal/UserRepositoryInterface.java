@@ -14,7 +14,7 @@ import java.util.Optional;
  *
  * @author Bruno
  */
-public interface UserRepositoryInterface {
+public interface UserRepositoryInterface extends Repository {
 
     int createUser(User user) throws Exception;
 

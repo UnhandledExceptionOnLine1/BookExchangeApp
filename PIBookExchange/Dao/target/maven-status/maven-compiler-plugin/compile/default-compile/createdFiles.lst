@@ -1,5 +1,6 @@
 hr\algebra\dal\AdPaymentInterface.class
 hr\algebra\dal\UserRepositoryInterface.class
+hr\algebra\dal\Repository.class
 hr\algebra\dal\RepositoryFactory.class
 hr\algebra\dal\sql\DataSourceSingleton.class
 hr\algebra\model\AdDetails.class

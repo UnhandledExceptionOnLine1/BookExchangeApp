@@ -8,8 +8,6 @@ package hr.algebra.dal;
  *
  * @author bruno
  */
-public interface AdCategoryInterface extends Repository {
-
-    int getCategoryIdByName(String categoryName) throws Exception;
-
+public interface Repository {
+    
 }

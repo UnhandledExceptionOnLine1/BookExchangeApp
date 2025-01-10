@@ -13,7 +13,7 @@ import java.util.Optional;
  *
  * @author bruno
  */
-public interface AdRepositoryInterface {
+public interface AdRepositoryInterface extends Repository {
 
     void createAd(Ad ad) throws Exception;
 

@@ -168,9 +168,8 @@ public class LoginPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Molim popunite sva polja", "Greška", JOptionPane.ERROR_MESSAGE);
         }
 
-        try {
-            UserRepositoryInterface repo = RepositoryFactory.getRepository(); //returns sql repository        
-            Optional<User> user = repo.loginUser(username, password);
+        try {      
+            Optional<User> user = ((UserRepositoryInterface)RepositoryFactory.getRepository()).loginUser(username, password);
             if (user.isPresent()) {
                 JOptionPane.showMessageDialog(this, "Prijava uspješna!", "Prijava", JOptionPane.INFORMATION_MESSAGE);
             } else {

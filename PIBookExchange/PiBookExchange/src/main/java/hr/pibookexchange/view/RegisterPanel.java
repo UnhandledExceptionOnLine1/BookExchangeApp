@@ -289,8 +289,7 @@ public class RegisterPanel extends javax.swing.JPanel {
         }
 
         try {
-            UserRepositoryInterface repo = RepositoryFactory.getRepository();
-            repo.createUser(new User(
+            ((UserRepositoryInterface)RepositoryFactory.getRepository()).createUser(new User(
                     username,
                     password,
                     name,

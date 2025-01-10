@@ -5,6 +5,7 @@
 package hr.algebra.dal;
 
 import hr.algebra.dal.sql.DataSourceSingleton;
+import hr.algebra.dal.sql.SqlRepository;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -16,32 +17,31 @@ public class RepositoryFactory {
 
     private static final String PATH = "/config/repository.properties";
     private static final String CLASS_NAME = "CLASS_NAME";
-    
+
     private static final Properties PROPERTIES = new Properties();
-    private static UserRepositoryInterface repository;
+    private static Repository repository;
 
     static {
-        try (InputStream is = RepositoryFactory.class.getResourceAsStream(PATH)){
+        try (InputStream is = RepositoryFactory.class.getResourceAsStream(PATH)) {
             PROPERTIES.load(is);
-            
-            repository = (UserRepositoryInterface)
-                    Class.forName(PROPERTIES.getProperty(CLASS_NAME))
+
+            repository = (Repository) Class.forName(PROPERTIES.getProperty(CLASS_NAME))
                     .getDeclaredConstructor()
                     .newInstance();
-                    
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     public static void main(String[] args) {
         System.out.println(repository);
     }
 
     private RepositoryFactory() {
     }
-    
-    public static UserRepositoryInterface getRepository() {
+
+    public static Repository getRepository() {
         return repository;
     }
 }

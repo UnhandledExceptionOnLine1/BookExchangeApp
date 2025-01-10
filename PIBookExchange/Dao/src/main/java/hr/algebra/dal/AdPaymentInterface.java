@@ -8,7 +8,7 @@ package hr.algebra.dal;
  *
  * @author bruno
  */
-public interface AdPaymentInterface {
+public interface AdPaymentInterface extends Repository{
 
     int getPaymentIdByName(String paymentName) throws Exception;
 

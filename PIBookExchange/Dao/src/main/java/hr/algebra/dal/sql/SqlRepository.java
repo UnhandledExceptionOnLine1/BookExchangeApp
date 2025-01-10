@@ -21,9 +21,10 @@ import java.util.List;
 import java.util.Optional;
 import javax.sql.DataSource;
 import hr.algebra.dal.AdRepositoryInterface;
+import hr.algebra.dal.Repository;
 import hr.algebra.dal.UserRepositoryInterface;
 
-public class SqlRepository implements UserRepositoryInterface, AdRepositoryInterface, AdCategoryInterface, AdPaymentInterface {
+public class SqlRepository implements Repository, UserRepositoryInterface, AdRepositoryInterface, AdCategoryInterface, AdPaymentInterface {
 
     // USER_ADMINISTRATION_CONSTANTS
     private static final String ID_USER = "IDKorisnik";
