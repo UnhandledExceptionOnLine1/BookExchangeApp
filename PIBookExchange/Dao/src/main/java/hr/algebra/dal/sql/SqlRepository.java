@@ -6,7 +6,9 @@ package hr.algebra.dal.sql;
 
 import hr.algebra.dal.Repository;
 import hr.algebra.model.Ad;
+import hr.algebra.model.AdDetails;
 import hr.algebra.model.User;
+import java.nio.file.Paths;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -55,25 +57,29 @@ public class SqlRepository implements Repository {
     private static final String CREATE_AD = "{ CALL CreateAd (?,?,?,?,?,?,?) }";
     private static final String UPDATE_AD = "{ CALL UpdateAd (?,?,?,?,?,?,?,?,?) }";
     private static final String DELETE_AD = "{ CALL DeleteAd (?) }";
-    private static final String GET_AD = "{ CALL GetUser (?) }";
+    private static final String GET_AD = "{ CALL GetAd (?) }";
     private static final String GET_ADS = "{ CALL GetAllUsers }";
     private static final String GET_ALL_CATEGORIES = "{ CALL GetAllCategoryNames }";
     private static final String GET_ALL_PAYMENTS = "{ CALL GetAllPaymentNames }";
+    // AD_PROCEDURES
+    private static final String AD_CATEGORY_NAME = "KategorijaNaziv"; // Naziv kategorije
+    private static final String AD_PAYMENT_NAME = "VrstaNaplate";    // Naziv vrste naplate
+    private static final String AD_USER_NAME = "KorisnikIme";        // Ime korisnika
 
     @Override
     public int createUser(User user) throws Exception {
         DataSource dataSource = DataSourceSingleton.getInstance();
-        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(CREATE_USER)) {
-            stmt.setString(USER_NAME, user.getUserName());
-            stmt.setString(PASSWORD, user.getPassword());
-            stmt.setString(FIRST_NAME, user.getFirstName());
-            stmt.setString(LAST_NAME, user.getLastName());
-            stmt.setString(ADDRESS, user.getAddress());
-            stmt.setString(TELEPHONE, user.getTelephone());
-            stmt.setString(EMAIL, user.getEmail());
-            stmt.registerOutParameter(ID_USER, Types.INTEGER);
+        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall("{ CALL CreateUser (?,?,?,?,?,?,?,?) }")) {
+            stmt.setString(1, user.getUserName());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getFirstName());
+            stmt.setString(4, user.getLastName());
+            stmt.setString(5, user.getAddress());
+            stmt.setString(6, user.getTelephone());
+            stmt.setString(7, user.getEmail());
+            stmt.registerOutParameter(8, java.sql.Types.INTEGER); // Registracija izlaznog parametra
             stmt.executeUpdate();
-            return stmt.getInt(ID_USER);
+            return stmt.getInt(8); // Vraća ID korisnika
         }
     }
 
@@ -188,7 +194,8 @@ public class SqlRepository implements Repository {
             stmt.setString(AD_NAME, ad.getName());
             stmt.setInt(AD_CATEGORY, ad.getCategoryId());
             stmt.setInt(AD_PAYMENT, ad.getPaymentTypeId());
-            stmt.setString(AD_PICTURE_PATH, ad.getImagePath());
+            String fileName = Paths.get(ad.getImagePath()).getFileName().toString();
+            stmt.setString(AD_PICTURE_PATH, fileName);
             stmt.setString(AD_DESC, ad.getDescription());
             stmt.setDouble(AD_PRICE, ad.getPrice());
             stmt.setInt(AD_USER, ad.getUserId());
@@ -225,28 +232,29 @@ public class SqlRepository implements Repository {
         }
     }
 
-    @Override
-    public Optional<Ad> getAd(int id) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
-        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_AD)) {
-            stmt.setInt(ID_AD, id);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    return Optional.of(new Ad(
-                            rs.getInt(ID_AD),
-                            rs.getString(AD_NAME),
-                            rs.getInt(AD_CATEGORY),
-                            rs.getInt(AD_PAYMENT),
-                            rs.getString(AD_PICTURE_PATH),
-                            rs.getString(AD_DESC),
-                            rs.getDouble(AD_PRICE),
-                            rs.getInt(AD_USER)
-                    ));
-                }
+ @Override
+public Optional<AdDetails> getAd(int id) throws Exception {
+    DataSource dataSource = DataSourceSingleton.getInstance();
+    try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_AD)) {
+        stmt.setInt(1, id); // Postavite ID oglasa kao parametar
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                // Kreirajte i vratite AdDetails objekt s nazivima
+                return Optional.of(new AdDetails(
+                        rs.getInt(ID_AD),                 // ID oglasa
+                        rs.getString(AD_NAME),            // Naziv oglasa
+                        rs.getString(AD_CATEGORY_NAME),   // Naziv kategorije
+                        rs.getString(AD_PAYMENT_NAME),    // Naziv vrste naplate
+                        rs.getString(AD_PICTURE_PATH),    // Putanja slike
+                        rs.getString(AD_DESC),            // Opis oglasa
+                        rs.getDouble(AD_PRICE),           // Cijena
+                        rs.getString(AD_USER_NAME)        // Ime korisnika
+                ));
             }
         }
-        return Optional.empty();
     }
+    return Optional.empty(); // Ako oglas nije pronađen
+}
 
     @Override
     public List<Ad> getAllAds() throws Exception {
@@ -315,7 +323,7 @@ public class SqlRepository implements Repository {
         return categoryNames;
     }
 
-        public List<String> getAllPaymentNames() throws Exception {
+    public List<String> getAllPaymentNames() throws Exception {
         List<String> paymentsNames = new ArrayList<>();
         DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); Statement stmt

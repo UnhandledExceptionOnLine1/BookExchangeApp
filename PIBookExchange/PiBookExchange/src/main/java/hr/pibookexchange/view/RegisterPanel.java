@@ -4,9 +4,14 @@
  */
 package hr.pibookexchange.view;
 
+import hr.algebra.dal.Repository;
+import hr.algebra.dal.RepositoryFactory;
+import hr.algebra.model.User;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -17,16 +22,23 @@ public class RegisterPanel extends javax.swing.JPanel {
 
     private List<JTextField> textFields;
     private List<JLabel> errorLabels;
+    private MainFrame parentFrame;
 
     /**
      * Creates new form RegisterPanel
      */
-    public RegisterPanel() {
+    public RegisterPanel(MainFrame parentFrame) {
+        this.parentFrame = parentFrame;
         initComponents();
         initTextFields();
         initErrorLabels();
         cleanTextFields();
         hideErrorLabels();
+    }
+
+    // mora imati default konstruktor zbog inicijalizacije forme!
+    public RegisterPanel() {
+        this(null); // Pozivanje prilagođenog konstruktora s null
     }
 
     /**
@@ -63,6 +75,10 @@ public class RegisterPanel extends javax.swing.JPanel {
         btnLogin = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         lblUserRegistration1 = new javax.swing.JLabel();
+
+        setMaximumSize(new java.awt.Dimension(400, 320));
+        setMinimumSize(new java.awt.Dimension(400, 320));
+        setPreferredSize(new java.awt.Dimension(400, 320));
 
         lblUserRegistration.setText("BOOK EXCHANGE PLATFORM");
         lblUserRegistration.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -103,8 +119,18 @@ public class RegisterPanel extends javax.swing.JPanel {
         lbEmailError.setText("X");
 
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
         lblUserRegistration1.setText("User Registration");
         lblUserRegistration1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -114,7 +140,7 @@ public class RegisterPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbAddress)
@@ -166,7 +192,7 @@ public class RegisterPanel extends javax.swing.JPanel {
                             .addComponent(lblUserRegistration))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbUsernameError)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblUserRegistration1)
@@ -218,9 +244,71 @@ public class RegisterPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(btnRegister))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+
+        hideErrorLabels();
+        boolean valid = true;
+        // Provjera ispunjenosti svih tekstualnih polja
+        for (int i = 0; i < textFields.size(); i++) {
+            JTextField textField = textFields.get(i);
+            JLabel errorLabel = errorLabels.get(i);
+            if (textField.getText().isEmpty()) {
+                errorLabel.setVisible(true);
+                valid = false;
+            }
+        }
+
+        if (!valid) {
+            JOptionPane.showMessageDialog(this, "Molim popunite sva polja.", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String username = tfUsername.getText();
+        String password = tfPassword.getText();
+        String name = tfName.getText();
+        String surname = tfSurname.getText();
+        String address = tfAddress.getText();
+        String telephone = tfTelephone.getText();
+        String email = tfEmail.getText();
+
+        if (username.isEmpty() || username.length() < 3) {
+            lbUsernameError.setVisible(true);
+            JOptionPane.showMessageDialog(this, "Korisničko ime mora sadržavati najmanje 3 znaka.", "Greška", JOptionPane.ERROR_MESSAGE);
+            valid = false;
+        }
+        if (password.isEmpty() || password.length() < 5) {
+            lbPasswordError.setVisible(true);
+            JOptionPane.showMessageDialog(this, "Lozinka mora sadržavati najmanje 5 znakova.", "Greška", JOptionPane.ERROR_MESSAGE);
+            valid = false;
+        }
+        if (!valid) {
+            JOptionPane.showMessageDialog(this, "Molim popunite sva polja", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
+
+        try {
+            Repository repo = RepositoryFactory.getRepository();
+            repo.createUser(new User(
+                    username,
+                    password,
+                    name,
+                    surname,
+                    address,
+                    telephone,
+                    email));
+            JOptionPane.showMessageDialog(this, "Korisnik je uspješno registriran!", "Uspjeh", JOptionPane.INFORMATION_MESSAGE);
+            cleanTextFields();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Dogodila se greška prilikom registracije. Pokušajte ponovo.", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        parentFrame.showPanel("LoginPanel");
+    }//GEN-LAST:event_btnLoginActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
