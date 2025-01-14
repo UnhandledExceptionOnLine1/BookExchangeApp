@@ -6,7 +6,6 @@ package hr.pibookexchange.view;
 
 import hr.algebra.dal.AdRepositoryInterface;
 import hr.algebra.dal.RepositoryFactory;
-import hr.algebra.dal.sql.SqlRepository;
 import hr.algebra.model.AdDetails;
 import hr.algebra.uploads.DropboxFetch;
 import java.util.Optional;
@@ -282,7 +281,7 @@ public class AdDetailsForm extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AdDetailsForm(18).setVisible(true); // Pass a valid adId (e.g., 1)
+            new AdDetailsForm(21).setVisible(true); // Pass a valid adId (e.g., 1)
         });
     }
 

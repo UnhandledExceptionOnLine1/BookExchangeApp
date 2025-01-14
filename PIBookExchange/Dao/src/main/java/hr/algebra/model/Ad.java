@@ -14,11 +14,11 @@ public final class Ad {
     private double price;
     private int userId;
 
-    // Default constructor
+ 
     public Ad() {
     }
 
-    // Constructor without ID (for new ads before saving to DB)
+   
     public Ad(String name, int categoryId, int paymentTypeId, String imagePath, String description, double price, int userId) {
         setName(name);
         setCategoryId(categoryId);
@@ -29,13 +29,13 @@ public final class Ad {
         setUserId(userId);
     }
 
-    // Constructor with ID (for existing ads from DB)
+ 
     public Ad(int id, String name, int categoryId, int paymentTypeId, String imagePath, String description, double price, int userId) {
         this(name, categoryId, paymentTypeId, imagePath, description, price, userId);
         setId(id);
     }
 
-    // Getters and setters
+  
     public int getId() {
         return id;
     }

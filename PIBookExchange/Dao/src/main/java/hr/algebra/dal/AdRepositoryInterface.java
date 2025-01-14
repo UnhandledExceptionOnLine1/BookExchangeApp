@@ -9,10 +9,7 @@ import hr.algebra.model.AdDetails;
 import java.util.List;
 import java.util.Optional;
 
-/**
- *
- * @author bruno
- */
+
 public interface AdRepositoryInterface extends Repository {
 
     void createAd(Ad ad) throws Exception;

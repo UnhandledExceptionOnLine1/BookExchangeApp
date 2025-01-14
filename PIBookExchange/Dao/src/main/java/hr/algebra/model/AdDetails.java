@@ -2,14 +2,14 @@ package hr.algebra.model;
 
 public final class AdDetails {
 
-    private int id;
-    private String name;
-    private String categoryName; // Naziv kategorije
-    private String paymentTypeName; // Naziv vrste naplate
-    private String imagePath;
-    private String description;
-    private double price;
-    private String userName; // Ime korisnika
+    private final int id;
+    private final String name;
+    private final String categoryName; // Naziv kategorije
+    private final String paymentTypeName; // Naziv vrste naplate
+    private final String imagePath;
+    private final String description;
+    private final double price;
+    private final String userName; // Ime korisnika
 
     public AdDetails(int id, String name, String categoryName, String paymentTypeName, String imagePath, String description, double price, String userName) {
         this.id = id;

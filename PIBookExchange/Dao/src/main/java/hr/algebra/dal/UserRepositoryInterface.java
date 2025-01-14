@@ -4,8 +4,7 @@
  */
 package hr.algebra.dal;
 
-import hr.algebra.model.Ad;
-import hr.algebra.model.AdDetails;
+
 import hr.algebra.model.User;
 import java.util.List;
 import java.util.Optional;

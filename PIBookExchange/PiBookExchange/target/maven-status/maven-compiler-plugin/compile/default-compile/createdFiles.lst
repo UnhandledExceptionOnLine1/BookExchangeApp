@@ -1,4 +1,5 @@
 hr\pibookexchange\PiBookExchange.class
+hr\pibookexchange\view\HomePage.class
 hr\pibookexchange\view\LoginPanel.class
 hr\pibookexchange\view\AdDetailsForm$4.class
 hr\pibookexchange\view\RegisterPanel.class
@@ -7,8 +8,10 @@ hr\pibookexchange\view\RegisterPanel$1.class
 hr\pibookexchange\view\LoginPanel$1.class
 hr\pibookexchange\view\AdDetailsForm.class
 hr\pibookexchange\AddAdForm.class
+hr\pibookexchange\view\HomePage$2.class
 hr\pibookexchange\AddAdForm$3.class
 hr\pibookexchange\AddAdForm$2.class
+hr\pibookexchange\view\HomePage$1.class
 hr\pibookexchange\view\AdDetailsForm$3.class
 hr\pibookexchange\view\RegisterPanel$2.class
 hr\pibookexchange\AddAdForm$1.class

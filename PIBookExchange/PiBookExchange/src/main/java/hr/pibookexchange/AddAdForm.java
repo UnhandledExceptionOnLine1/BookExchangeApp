@@ -8,13 +8,7 @@ import hr.algebra.dal.sql.SqlRepository;
 import hr.algebra.model.Ad;
 import hr.algebra.uploads.DropboxUpload;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**

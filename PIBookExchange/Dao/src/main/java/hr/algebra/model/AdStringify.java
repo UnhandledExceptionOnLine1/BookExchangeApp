@@ -4,10 +4,7 @@
  */
 package hr.algebra.model;
 
-/**
- *
- * @author bruno
- */
+
 public class AdStringify {
     
     public static String getString(Ad ad){
