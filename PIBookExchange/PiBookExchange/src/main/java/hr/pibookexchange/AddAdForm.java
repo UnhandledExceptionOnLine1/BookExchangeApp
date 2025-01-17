@@ -4,11 +4,17 @@
  */
 package hr.pibookexchange;
 
+import hr.algebra.dal.Repository;
+import hr.algebra.dal.RepositoryFactory;
+import hr.algebra.dal.UserRepositoryInterface;
 import hr.algebra.dal.sql.SqlRepository;
 import hr.algebra.model.Ad;
+import hr.algebra.model.User;
+import hr.algebra.observer.NewAdNotifier;
 import hr.algebra.uploads.DropboxUpload;
 import javax.swing.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +25,10 @@ public class AddAdForm extends javax.swing.JFrame {
 
     private String selectedImagePath = ""; // Čuva putanju slike
 
+    //Observer pattern Bruno (Tin ne diraj ovo)
+    private NewAdNotifier notifyer;
+    private List<User> admins;
+
     /**
      * Creates new form AddAdForm
      */
@@ -26,6 +36,24 @@ public class AddAdForm extends javax.swing.JFrame {
         initComponents();
         populateCategoryComboBox(); // Popunjavanje ComboBox-a prilikom inicijalizacije
         populatePaymentComboBox(); // Popunjavanje ComboBox-a prilikom inicijalizacije
+
+        notifyer = new NewAdNotifier();
+        admins = new ArrayList<>();
+
+        try {   // punjenje liste admina
+            Repository repo = RepositoryFactory.getRepository();
+            admins = ((UserRepositoryInterface) repo).selectAllUsers();
+            for (User user : admins) {
+                if (user.isIsAdmin()) {
+                    notifyer.add(user);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error loading users: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -218,42 +246,45 @@ public class AddAdForm extends javax.swing.JFrame {
             return;
         }
 
-         // Upload image to Dropbox (only if an image is selected)
-    String imageName = ""; // Ovdje ćemo spremiti samo ime slike
-    if (!selectedImagePath.isEmpty()) {
-        try {
-            // Izreži ime datoteke iz pune putanje
-            imageName = new File(selectedImagePath).getName(); // Dobivamo npr. "programiranje.jpg"
+        // Upload image to Dropbox (only if an image is selected)
+        String imageName = ""; // Ovdje ćemo spremiti samo ime slike
+        if (!selectedImagePath.isEmpty()) {
+            try {
+                // Izreži ime datoteke iz pune putanje
+                imageName = new File(selectedImagePath).getName(); // Dobivamo npr. "programiranje.jpg"
 
-            // Pošalji sliku na Dropbox
-            String dropboxPath = "/" + imageName; // Putanja na Dropboxu
-            DropboxUpload.uploadFile(selectedImagePath, dropboxPath);
+                // Pošalji sliku na Dropbox
+                String dropboxPath = "/" + imageName; // Putanja na Dropboxu
+                //DropboxUpload.uploadFile(selectedImagePath, dropboxPath);
 
-            JOptionPane.showMessageDialog(this, "Slika je uspješno prenesena na Dropbox!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Došlo je do pogreške prilikom prijenosa slike na Dropbox.", "Greška", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Slika je uspješno prenesena na Dropbox!");
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Došlo je do pogreške prilikom prijenosa slike na Dropbox.", "Greška", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Nije odabrana slika. Molimo odaberite sliku prije nego što nastavite.");
             return;
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "Nije odabrana slika. Molimo odaberite sliku prije nego što nastavite.");
-        return;
-    }
         try {
             SqlRepository repo = new SqlRepository();
             int categoryId = repo.getCategoryIdByName(category);
             int paymentId = repo.getPaymentIdByName(paymentType);
 
-            repo.createAd(new Ad(
+            Ad ad = new Ad(
                     adName,
                     categoryId,
                     paymentId,
                     imageName,
                     description,
                     price,
-                    korisnikID));
+                    korisnikID);
+
+            int x = repo.createAd(ad);
             
             JOptionPane.showMessageDialog(this, "Oglas je uspješno spremljen!");
+            notifyer.notify("Dodan je novi oglas. Oglas ID: " + x);
             clearForm(); // Clear the form after successful submission
 
         } catch (Exception ex) {

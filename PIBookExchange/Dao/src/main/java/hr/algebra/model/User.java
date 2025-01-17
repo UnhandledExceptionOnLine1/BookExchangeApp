@@ -4,11 +4,13 @@
  */
 package hr.algebra.model;
 
+import hr.algebra.observer.Subscriber;
+
 /**
  *
  * @author bruno
  */
-public final class User {
+public final class User implements Subscriber {
 
     private int id;
     private String userName;
@@ -18,11 +20,12 @@ public final class User {
     private String address;
     private String telephone;
     private String email;
+    private boolean isAdmin;
 
     public User() {
     }
 
-    public User(String userName, String password, String firstName, String lastName, String address, String telephone, String email) {
+    public User(String userName, String password, String firstName, String lastName, String address, String telephone, String email, boolean isAdmin) {
         setUserName(userName);
         setPassword(password);
         setFirstName(firstName);
@@ -30,10 +33,11 @@ public final class User {
         setAddress(address);
         setTelephone(telephone);
         setEmail(email);
+        setIsAdmin(isAdmin);
     }
 
-    public User(int id, String userName, String password, String firstName, String lastName, String address, String telephone, String email) {
-        this(userName, password, firstName, lastName, address, telephone, email);
+    public User(int id, String userName, String password, String firstName, String lastName, String address, String telephone, String email, boolean isAdmin) {
+        this(userName, password, firstName, lastName, address, telephone, email, isAdmin);
         setId(id);
     }
 
@@ -101,9 +105,24 @@ public final class User {
         return email;
     }
 
+    public boolean isIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
     @Override
     public String toString() {
         return UserStringify.getString(this);   // S
+    }
+
+    @Override
+    public void alert(String message) {
+        if (isAdmin) {
+            System.out.println("Hej " + userName + "! " + message);
+        }
     }
 
 }

@@ -36,6 +36,7 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     private static final String TELEPHONE = "Telefon";
     private static final String EMAIL = "Email";
     private static final String MSG = "message";
+    private static final String ID_ROLA = "IDRola";
 
     // USER_ADMINISTRATION_PROCEDURES
     private static final String CREATE_USER = "{ CALL CreateUser (?,?,?,?,?,?,?) }";
@@ -57,7 +58,7 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     private static final String AD_PRICE = "Cijena";
 
     // AD_PROCEDURES
-    private static final String CREATE_AD = "{ CALL CreateAd (?,?,?,?,?,?,?) }";
+    private static final String CREATE_AD = "{ CALL CreateAd (?,?,?,?,?,?,?,?) }";
     private static final String UPDATE_AD = "{ CALL UpdateAd (?,?,?,?,?,?,?,?,?) }";
     private static final String DELETE_AD = "{ CALL DeleteAd (?) }";
     private static final String GET_AD = "{ CALL GetAd (?) }";
@@ -122,6 +123,7 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
+                    boolean isAdmin = rs.getInt("IDRola") == 1; // provjera li je administrator
                     return Optional.of(new User(
                             rs.getInt(ID_USER),
                             rs.getString(USER_NAME),
@@ -130,7 +132,8 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
                             rs.getString(LAST_NAME),
                             rs.getString(ADDRESS),
                             rs.getString(TELEPHONE),
-                            rs.getString(EMAIL)
+                            rs.getString(EMAIL),
+                            isAdmin
                     ));
                 }
             }
@@ -147,7 +150,8 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    users.add(new User(
+                    boolean isAdmin = (rs.getInt(ID_ROLA) == 1); // provjera li je administrator
+                    User u = new User(
                             rs.getInt(ID_USER),
                             rs.getString(USER_NAME),
                             rs.getString(PASSWORD),
@@ -155,8 +159,10 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
                             rs.getString(LAST_NAME),
                             rs.getString(ADDRESS),
                             rs.getString(TELEPHONE),
-                            rs.getString(EMAIL)
-                    ));
+                            rs.getString(EMAIL),
+                            isAdmin
+                    );
+                    users.add(u);
                 }
             }
         }
@@ -173,6 +179,7 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
+                    boolean isAdmin = rs.getInt("IDRola") == 1; // provjera li je administrator
                     return Optional.of(new User(
                             rs.getInt(ID_USER),
                             rs.getString(USER_NAME),
@@ -181,7 +188,8 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
                             rs.getString(LAST_NAME),
                             rs.getString(ADDRESS),
                             rs.getString(TELEPHONE),
-                            rs.getString(EMAIL)
+                            rs.getString(EMAIL),
+                            isAdmin
                     ));
                 }
             }
@@ -192,7 +200,7 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     ///////////////////////////////////////
     // AD PROCEDURE CALLING
     @Override
-    public void createAd(Ad ad) throws Exception {
+    public int createAd(Ad ad) throws Exception {
         DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(CREATE_AD)) {
             stmt.setString(AD_NAME, ad.getName());
@@ -202,11 +210,11 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
             stmt.setString(AD_DESC, ad.getDescription());
             stmt.setDouble(AD_PRICE, ad.getPrice());
             stmt.setInt(AD_USER, ad.getUserId());
-            //stmt.registerOutParameter(ID_AD, Types.INTEGER); // Postavljanje izlaznog parametra
+            stmt.registerOutParameter(8, java.sql.Types.INTEGER); // Postavljanje izlaznog parametra
             stmt.executeUpdate();
-            //return stmt.getInt(ID_AD);  // Vraćanje generiranog ID-a oglasa
+            return stmt.getInt(8);  // Vraćanje generiranog ID-a oglasa
         }
-    }
+    } 
 
     @Override
     public void updateAd(int id, Ad ad) throws Exception {

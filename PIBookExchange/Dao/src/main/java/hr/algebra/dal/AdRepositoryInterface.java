@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface AdRepositoryInterface extends Repository {
 
-    void createAd(Ad ad) throws Exception;
+    int createAd(Ad ad) throws Exception;
 
     void updateAd(int id, Ad ad) throws Exception;
 

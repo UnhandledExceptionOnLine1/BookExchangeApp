@@ -296,7 +296,8 @@ public class RegisterPanel extends javax.swing.JPanel {
                     surname,
                     address,
                     telephone,
-                    email));
+                    email,
+                    false)); //postavljanje IDRola na Korisnik (boolean isAdmin = false)
             JOptionPane.showMessageDialog(this, "Korisnik je uspješno registriran!", "Uspjeh", JOptionPane.INFORMATION_MESSAGE);
             cleanTextFields();
         } catch (Exception e) {
