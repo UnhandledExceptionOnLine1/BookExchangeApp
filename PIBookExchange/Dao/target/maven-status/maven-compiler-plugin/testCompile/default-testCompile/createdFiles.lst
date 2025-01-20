@@ -1,0 +1,6 @@
+hr\algebra\strategy_pattern\ContactServiceTest.class
+hr\algebra\model\UserStringifyTest.class
+hr\algebra\strategy_pattern\ContactServiceTest$DummyStrategy.class
+hr\algebra\strategy_pattern\EmailContactStrTest.class
+hr\algebra\strategy_pattern\MessageContactStrTest.class
+hr\algebra\strategy_pattern\SmsContactStrTest.class

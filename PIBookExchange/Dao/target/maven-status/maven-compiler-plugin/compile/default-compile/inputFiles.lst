@@ -18,5 +18,10 @@ D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main
 D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\model\UserStringify.java
 D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\observer\NewAdNotifier.java
 D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\observer\Subscriber.java
+D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\strategy_pattern\ContactService.java
+D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\strategy_pattern\ContactUserStrategy.java
+D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\strategy_pattern\EmailContactStr.java
+D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\strategy_pattern\MessageContactStr.java
+D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\strategy_pattern\SmsContactStr.java
 D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\uploads\DropboxFetch.java
 D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\uploads\DropboxUpload.java
