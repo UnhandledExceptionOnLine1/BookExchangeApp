@@ -10,6 +10,6 @@ package hr.algebra.observer;
  */
 public interface Subscriber { //OBSERVER
     
-    void alert(String message);
+    String alert(String message);
     
 }

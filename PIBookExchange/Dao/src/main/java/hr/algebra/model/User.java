@@ -105,7 +105,7 @@ public final class User implements Subscriber {
         return email;
     }
 
-    public boolean isIsAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 
@@ -119,9 +119,11 @@ public final class User implements Subscriber {
     }
 
     @Override
-    public void alert(String message) {
+    public String alert(String message) {
         if (isAdmin) {
-            System.out.println("Hej " + userName + "! " + message);
+            return "Hej " + userName + "! " + message;
+        } else {
+            throw new IllegalStateException("Non-admin users cannot receive alerts.");
         }
     }
 

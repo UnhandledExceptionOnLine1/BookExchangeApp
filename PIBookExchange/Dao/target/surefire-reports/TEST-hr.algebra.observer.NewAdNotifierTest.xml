@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="hr.algebra.model.UserStringifyTest" time="0.051" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="hr.algebra.observer.NewAdNotifierTest" time="0.34" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -59,7 +59,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="thisShouldReturnEmptyString" classname="hr.algebra.model.UserStringifyTest" time="0.031"/>
-  <testcase name="thisShouldReturnNullNameParameters" classname="hr.algebra.model.UserStringifyTest" time="0.001"/>
-  <testcase name="thisShouldReturnFirstAndLastName" classname="hr.algebra.model.UserStringifyTest" time="0.001"/>
+  <testcase name="thisShouldRemoveSubscriber" classname="hr.algebra.observer.NewAdNotifierTest" time="0.31"/>
+  <testcase name="thisShouldAddSubscriber" classname="hr.algebra.observer.NewAdNotifierTest" time="0.001"/>
+  <testcase name="thisShouldNotifySubscriber" classname="hr.algebra.observer.NewAdNotifierTest" time="0.017"/>
 </testsuite>
