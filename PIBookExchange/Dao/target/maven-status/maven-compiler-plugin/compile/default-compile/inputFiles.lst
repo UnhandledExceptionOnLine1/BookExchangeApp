@@ -19,6 +19,10 @@ C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\h
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\model\UserStringify.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\observer\NewAdNotifier.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\observer\Subscriber.java
+C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\sorting\strategy\AdSorter.java
+C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\sorting\strategy\DateSortingStrategy.java
+C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\sorting\strategy\PriceSortingStrategy.java
+C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\sorting\strategy\SortingStrategy.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\strategy_pattern\ContactService.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\strategy_pattern\ContactUserStrategy.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\main\java\hr\algebra\strategy_pattern\EmailContactStr.java
