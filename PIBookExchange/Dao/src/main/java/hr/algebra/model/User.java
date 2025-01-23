@@ -112,6 +112,29 @@ public final class User implements Subscriber {
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
+    
+        @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        return this.id == other.id;
+    }
+
 
     @Override
     public String toString() {

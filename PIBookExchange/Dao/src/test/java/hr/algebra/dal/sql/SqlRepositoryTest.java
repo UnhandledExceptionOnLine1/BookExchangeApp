@@ -7,7 +7,10 @@ package hr.algebra.dal.sql;
 import hr.algebra.model.User;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
 import javax.sql.DataSource;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -213,6 +216,245 @@ public class SqlRepositoryTest {
         assertEquals("Invalid user ID", exception.getMessage());
         verify(mockStatement).setInt(1, invalidUserId); // Ensure the invalid ID was passed
         verify(mockStatement).executeUpdate(); // Ensure the procedure was executed
+    }
+
+    @Test
+    void testGetUserWithValidId() throws Exception {
+        // Arrange
+        int validUserId = 1; // Valid user ID
+        User expectedUser = new User(
+                validUserId,
+                "testUser",
+                "password123",
+                "FirstName",
+                "LastName",
+                "123 Fake Street",
+                "123456789",
+                "test@example.com",
+                false // Not an admin
+        );
+
+        // Mock dependencies
+        DataSource mockDataSource = Mockito.mock(DataSource.class);
+        Connection mockConnection = Mockito.mock(Connection.class);
+        CallableStatement mockStatement = Mockito.mock(CallableStatement.class);
+        ResultSet mockResultSet = Mockito.mock(ResultSet.class);
+
+        // Mock behavior
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+        when(mockConnection.prepareCall("{ CALL GetUser (?) }")).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+
+        // Simulate ResultSet data for a valid user
+        when(mockResultSet.next()).thenReturn(true); // Simulate that a user was found
+        when(mockResultSet.getInt("IDKorisnik")).thenReturn(expectedUser.getId());
+        when(mockResultSet.getString("KorisnickoIme")).thenReturn(expectedUser.getUserName());
+        when(mockResultSet.getString("Lozinka")).thenReturn(expectedUser.getPassword());
+        when(mockResultSet.getString("Ime")).thenReturn(expectedUser.getFirstName());
+        when(mockResultSet.getString("Prezime")).thenReturn(expectedUser.getLastName());
+        when(mockResultSet.getString("Adresa")).thenReturn(expectedUser.getAddress());
+        when(mockResultSet.getString("Telefon")).thenReturn(expectedUser.getTelephone());
+        when(mockResultSet.getString("Email")).thenReturn(expectedUser.getEmail());
+        when(mockResultSet.getInt("IDRola")).thenReturn(2); // Not an admin (IDRola != 1)
+
+        SqlRepository repository = new SqlRepository(mockDataSource);
+
+        // Act
+        Optional<User> result = repository.getUser(validUserId);
+
+        // Assert
+        assertTrue(result.isPresent());
+        assertEquals(expectedUser, result.get()); // Validate the retrieved user matches the expected user
+        verify(mockStatement).setInt("IDKorisnik", validUserId); // Verify correct ID was passed
+        verify(mockStatement).executeQuery(); // Verify query execution
+    }
+
+    @Test
+    void testGetUserWithInvalidIdReturnsEmpty() throws Exception {
+        // Arrange
+        int invalidUserId = -1; // Invalid user ID
+
+        // Mock dependencies
+        DataSource mockDataSource = Mockito.mock(DataSource.class);
+        Connection mockConnection = Mockito.mock(Connection.class);
+        CallableStatement mockStatement = Mockito.mock(CallableStatement.class);
+        ResultSet mockResultSet = Mockito.mock(ResultSet.class);
+
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+        when(mockConnection.prepareCall("{ CALL GetUser (?) }")).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+
+        // Simulate ResultSet returning no rows
+        when(mockResultSet.next()).thenReturn(false);
+
+        SqlRepository repository = new SqlRepository(mockDataSource);
+
+        // Act
+        Optional<User> result = repository.getUser(invalidUserId);
+
+        // Assert
+        assertFalse(result.isPresent()); // Ensure result is empty
+        verify(mockStatement).setInt("IDKorisnik", invalidUserId); // Verify the correct ID was set
+        verify(mockStatement).executeQuery(); // Ensure the query was executed
+    }
+
+    @Test
+    void testSelectAllUsers() throws Exception {
+        // Arrange
+        List<User> expectedUsers = List.of(
+                new User(1, "user1", "password1", "FirstName1", "LastName1", "Address1", "123456789", "user1@example.com", false),
+                new User(2, "user2", "password2", "FirstName2", "LastName2", "Address2", "987654321", "user2@example.com", true)
+        );
+
+        DataSource mockDataSource = Mockito.mock(DataSource.class);
+        Connection mockConnection = Mockito.mock(Connection.class);
+        CallableStatement mockStatement = Mockito.mock(CallableStatement.class);
+        ResultSet mockResultSet = Mockito.mock(ResultSet.class);
+
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+        when(mockConnection.prepareCall("{ CALL GetAllUsers }")).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+
+        // Mock ResultSet behavior for each user
+        when(mockResultSet.next())
+                .thenReturn(true) // First user
+                .thenReturn(true) // Second user
+                .thenReturn(false); // End of result set
+
+        // Mock data for the first user
+        when(mockResultSet.getInt("IDKorisnik")).thenReturn(1, 2);
+        when(mockResultSet.getString("KorisnickoIme")).thenReturn("user1", "user2");
+        when(mockResultSet.getString("Lozinka")).thenReturn("password1", "password2");
+        when(mockResultSet.getString("Ime")).thenReturn("FirstName1", "FirstName2");
+        when(mockResultSet.getString("Prezime")).thenReturn("LastName1", "LastName2");
+        when(mockResultSet.getString("Adresa")).thenReturn("Address1", "Address2");
+        when(mockResultSet.getString("Telefon")).thenReturn("123456789", "987654321");
+        when(mockResultSet.getString("Email")).thenReturn("user1@example.com", "user2@example.com");
+        when(mockResultSet.getInt("IDRola")).thenReturn(2, 1); // Second user is an admin
+
+        SqlRepository repository = new SqlRepository(mockDataSource);
+
+        // Act
+        List<User> actualUsers = repository.selectAllUsers();
+
+        // Assert
+        assertEquals(expectedUsers.size(), actualUsers.size());
+        assertEquals(expectedUsers, actualUsers); // Ensure the user lists match
+        verify(mockStatement).executeQuery();
+    }
+
+    @Test
+    void testSelectAllUsersReturnsNoUsers() throws Exception {
+        // Arrange
+        DataSource mockDataSource = Mockito.mock(DataSource.class);
+        Connection mockConnection = Mockito.mock(Connection.class);
+        CallableStatement mockStatement = Mockito.mock(CallableStatement.class);
+        ResultSet mockResultSet = Mockito.mock(ResultSet.class);
+
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+        when(mockConnection.prepareCall("{ CALL GetAllUsers }")).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+
+        // Simulate an empty ResultSet
+        when(mockResultSet.next()).thenReturn(false); // No rows
+
+        SqlRepository repository = new SqlRepository(mockDataSource);
+
+        // Act
+        List<User> actualUsers = repository.selectAllUsers();
+
+        // Assert
+        assertTrue(actualUsers.isEmpty()); // Ensure the result list is empty
+        verify(mockStatement).executeQuery(); // Verify the query execution
+    }
+
+    @Test
+    void testLoginUserWithValidCredentials() throws Exception {
+        // Arrange
+        String username = "validUser";
+        String password = "validPassword";
+        User expectedUser = new User(
+                1,
+                username,
+                password,
+                "FirstName",
+                "LastName",
+                "123 Street",
+                "123456789",
+                "valid@example.com",
+                true // Admin user
+        );
+
+        // Mock dependencies
+        DataSource mockDataSource = Mockito.mock(DataSource.class);
+        Connection mockConnection = Mockito.mock(Connection.class);
+        CallableStatement mockStatement = Mockito.mock(CallableStatement.class);
+        ResultSet mockResultSet = Mockito.mock(ResultSet.class);
+
+        // Mock the DataSource to return a mock Connection
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+
+        // Mock the Connection to return a mock CallableStatement
+        when(mockConnection.prepareCall("{ CALL LoginUser(?,?) }")).thenReturn(mockStatement);
+
+        // Mock the CallableStatement to return a mock ResultSet
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+
+        // Simulate ResultSet for a valid user
+        when(mockResultSet.next()).thenReturn(true); // Simulate user found
+        when(mockResultSet.getInt("IDKorisnik")).thenReturn(1);
+        when(mockResultSet.getString("KorisnickoIme")).thenReturn(username);
+        when(mockResultSet.getString("Lozinka")).thenReturn(password);
+        when(mockResultSet.getString("Ime")).thenReturn("FirstName");
+        when(mockResultSet.getString("Prezime")).thenReturn("LastName");
+        when(mockResultSet.getString("Adresa")).thenReturn("123 Street");
+        when(mockResultSet.getString("Telefon")).thenReturn("123456789");
+        when(mockResultSet.getString("Email")).thenReturn("valid@example.com");
+        when(mockResultSet.getInt("IDRola")).thenReturn(1); // Admin role
+
+        SqlRepository repository = new SqlRepository(mockDataSource);
+
+        // Act
+        Optional<User> actualUser = repository.loginUser(username, password);
+
+        // Assert
+        assertTrue(actualUser.isPresent());
+        assertEquals(expectedUser, actualUser.get());
+        verify(mockStatement).setString(1, username);
+        verify(mockStatement).setString(2, password);
+        verify(mockStatement).executeQuery();
+    }
+
+    @Test
+    void testLoginUserWithInvalidCredentials() throws Exception {
+        // Arrange
+        String username = "invalidUser";
+        String password = "wrongPassword";
+
+        // Mock objects
+        DataSource mockDataSource = Mockito.mock(DataSource.class);
+        Connection mockConnection = Mockito.mock(Connection.class);
+        CallableStatement mockStatement = Mockito.mock(CallableStatement.class);
+        ResultSet mockResultSet = Mockito.mock(ResultSet.class);
+
+        // Mock behaviors
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+        when(mockConnection.prepareCall("{ CALL LoginUser(?,?) }")).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+
+        // Simulate an empty ResultSet (no user found)
+        when(mockResultSet.next()).thenReturn(false);
+
+        SqlRepository repository = new SqlRepository(mockDataSource);
+
+        // Act
+        Optional<User> actualUser = repository.loginUser(username, password);
+
+        // Assert
+        assertFalse(actualUser.isPresent()); // Ensure no user is returned
+        verify(mockStatement).setString(1, username); // Verify username is set correctly
+        verify(mockStatement).setString(2, password); // Verify password is set correctly
+        verify(mockStatement).executeQuery(); // Ensure the query was executed
     }
 
 }

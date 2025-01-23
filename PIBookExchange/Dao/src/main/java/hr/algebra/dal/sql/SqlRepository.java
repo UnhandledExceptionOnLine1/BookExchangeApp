@@ -289,7 +289,7 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
         }
         return allAdsBasicList;
     }
-    
+
     @Override
 
     public int getCategoryIdByName(String categoryName) throws Exception {
