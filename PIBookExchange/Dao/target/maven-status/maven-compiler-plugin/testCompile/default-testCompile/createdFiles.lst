@@ -5,4 +5,5 @@ hr\algebra\model\UserTest.class
 hr\algebra\strategy_pattern\SmsContactStrTest.class
 hr\algebra\strategy_pattern\ContactServiceTest.class
 hr\algebra\model\UserStringifyTest.class
+hr\algebra\dal\sql\SqlRepositoryTest.class
 hr\algebra\strategy_pattern\EmailContactStrTest.class

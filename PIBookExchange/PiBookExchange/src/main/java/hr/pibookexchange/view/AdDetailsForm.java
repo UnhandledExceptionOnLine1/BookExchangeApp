@@ -8,6 +8,7 @@ import hr.algebra.dal.AdRepositoryInterface;
 import hr.algebra.dal.RepositoryFactory;
 import hr.algebra.model.AdDetails;
 import hr.algebra.uploads.DropboxFetch;
+import java.awt.Image;
 import java.util.Optional;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -21,13 +22,19 @@ public class AdDetailsForm extends javax.swing.JFrame {
     public AdDetailsForm(int adId) {
         initComponents();
         loadAdDetails(adId); // Method to fetch and populate details
-        
+
+    }
+
+    private ImageIcon scaleImageIcon(ImageIcon icon, int width, int height) {
+        Image img = icon.getImage();
+        Image newImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(newImg);
     }
 
     private void loadAdDetails(int adId) {
         try {
             // Fetch the ad details using the repository
-            Optional<AdDetails> optionalAd = ((AdRepositoryInterface)RepositoryFactory.getRepository()).getAd(adId);
+            Optional<AdDetails> optionalAd = ((AdRepositoryInterface) RepositoryFactory.getRepository()).getAd(adId);
             if (optionalAd.isPresent()) {
                 AdDetails ad = optionalAd.get();
 
@@ -43,7 +50,8 @@ public class AdDetailsForm extends javax.swing.JFrame {
                 if (ad.getImagePath() != null && !ad.getImagePath().isEmpty()) {
                     DropboxFetch dropboxFetch = new DropboxFetch();
                     ImageIcon imageIcon = dropboxFetch.fetchImage("/" + ad.getImagePath());
-                    lblPicture.setIcon(imageIcon);
+                    ImageIcon scaledIcon=scaleImageIcon(imageIcon, lblPicture.getWidth(), lblPicture.getHeight());
+                    lblPicture.setIcon(scaledIcon);
                 } else {
                     lblPicture.setText("Nema slike");
                 }
@@ -93,7 +101,7 @@ public class AdDetailsForm extends javax.swing.JFrame {
 
         tfPayment.setEditable(false);
         tfPayment.setText(" ");
-        tfPayment.setBorder(null);
+        tfPayment.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));
         tfPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfPaymentActionPerformed(evt);
@@ -102,13 +110,13 @@ public class AdDetailsForm extends javax.swing.JFrame {
 
         tfUser.setEditable(false);
         tfUser.setText(" ");
-        tfUser.setBorder(null);
+        tfUser.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));
 
         jLabel2.setText("Vrsta Naplate:");
 
         jLabel5.setText("Naziv:");
 
-        btnBack.setText("Nazad");
+        btnBack.setText("Zatvori");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -116,8 +124,9 @@ public class AdDetailsForm extends javax.swing.JFrame {
         });
 
         tfName.setEditable(false);
+        tfName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfName.setText(" ");
-        tfName.setBorder(null);
+        tfName.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));
         tfName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btnBuy.setText("Kupi");
@@ -138,29 +147,30 @@ public class AdDetailsForm extends javax.swing.JFrame {
 
         tfPrice.setEditable(false);
         tfPrice.setText(" ");
-        tfPrice.setBorder(null);
+        tfPrice.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));
 
         taDescription.setEditable(false);
         taDescription.setColumns(20);
         taDescription.setRows(5);
+        taDescription.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));
 
         tfCategory.setEditable(false);
+        tfCategory.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         tfCategory.setText(" ");
-        tfCategory.setBorder(null);
+        tfCategory.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));
+        tfCategory.setMargin(new java.awt.Insets(10, 6, 2, 6));
 
-        lblPicture.setMaximumSize(new java.awt.Dimension(732, 495));
-        lblPicture.setMinimumSize(new java.awt.Dimension(732, 495));
-        lblPicture.setPreferredSize(new java.awt.Dimension(732, 495));
+        lblPicture.setMaximumSize(new java.awt.Dimension(500, 342));
+        lblPicture.setMinimumSize(new java.awt.Dimension(500, 342));
+        lblPicture.setName(""); // NOI18N
+        lblPicture.setPreferredSize(new java.awt.Dimension(500, 342));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(lblPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,9 +181,9 @@ public class AdDetailsForm extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                    .addComponent(tfName))
+                                    .addComponent(tfName, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                    .addComponent(tfCategory)
+                                    .addComponent(tfPrice))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -184,15 +194,20 @@ public class AdDetailsForm extends javax.swing.JFrame {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(tfPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnFavourite, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnBack))
-                                .addComponent(taDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(76, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnFavourite, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBack))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(taDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(65, 65, 65)
+                            .addComponent(lblPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,15 +235,15 @@ public class AdDetailsForm extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(lblPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(taDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addComponent(lblPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(taDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFavourite, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack))
-                .addGap(37, 37, 37))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -236,7 +251,8 @@ public class AdDetailsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        //new HomePage.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnBuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyActionPerformed

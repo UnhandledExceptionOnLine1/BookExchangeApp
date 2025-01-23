@@ -2,6 +2,7 @@ hr\algebra\model\ocp\FruitPriceDiffCalculator.class
 hr\algebra\dal\UserRepositoryInterface.class
 hr\algebra\dal\Repository.class
 hr\algebra\uploads\DropboxUpload.class
+hr\algebra\model\AllAdsBasic.class
 hr\algebra\dal\AdRepositoryInterface.class
 hr\algebra\model\ocp\Fruit.class
 hr\algebra\strategy_pattern\ContactService.class

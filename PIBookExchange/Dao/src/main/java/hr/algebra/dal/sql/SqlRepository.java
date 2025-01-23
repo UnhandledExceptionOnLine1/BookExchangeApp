@@ -23,6 +23,7 @@ import javax.sql.DataSource;
 import hr.algebra.dal.AdRepositoryInterface;
 import hr.algebra.dal.Repository;
 import hr.algebra.dal.UserRepositoryInterface;
+import hr.algebra.model.AllAdsBasic;
 
 public class SqlRepository implements Repository, UserRepositoryInterface, AdRepositoryInterface, AdCategoryInterface, AdPaymentInterface {
 
@@ -62,7 +63,8 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     private static final String UPDATE_AD = "{ CALL UpdateAd (?,?,?,?,?,?,?,?,?) }";
     private static final String DELETE_AD = "{ CALL DeleteAd (?) }";
     private static final String GET_AD = "{ CALL GetAd (?) }";
-    private static final String GET_ADS = "{ CALL GetAllUsers }";
+    private static final String GET_ADS = "{ CALL GetAllAds }";
+    private static final String GET_ADS_BASIC = "{ CALL GetAllAdsBasic }";
     private static final String GET_ALL_CATEGORIES = "{ CALL GetAllCategoryNames }";
     private static final String GET_ALL_PAYMENTS = "{ CALL GetAllPaymentNames }";
 
@@ -214,7 +216,7 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
             stmt.executeUpdate();
             return stmt.getInt(8);  // Vraćanje generiranog ID-a oglasa
         }
-    } 
+    }
 
     @Override
     public void updateAd(int id, Ad ad) throws Exception {
@@ -268,26 +270,22 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     }
 
     @Override
-    public List<Ad> getAllAds() throws Exception {
-        List<Ad> ads = new ArrayList<>();
+    public List<AllAdsBasic> getAllAdsBasic() throws Exception {
+        List<AllAdsBasic> allAdsBasicList = new ArrayList<>();
         DataSource dataSource = DataSourceSingleton.getInstance();
-        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_ADS)) {
+        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_ADS_BASIC)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    ads.add(new Ad(
-                            rs.getInt(ID_AD),
-                            rs.getString(AD_NAME),
-                            rs.getInt(AD_CATEGORY),
-                            rs.getInt(AD_PAYMENT),
-                            rs.getString(AD_PICTURE_PATH),
-                            rs.getString(AD_DESC),
-                            rs.getDouble(AD_PRICE),
-                            rs.getInt(AD_USER)
+                    allAdsBasicList.add(new AllAdsBasic(
+                            rs.getInt(ID_AD), // ID oglasa
+                            rs.getString(AD_NAME), // Naziv
+                            rs.getDouble(AD_PRICE), // Cijena
+                            rs.getTimestamp(AD_TIME).toLocalDateTime() // Vrijeme objave
                     ));
                 }
             }
         }
-        return ads;
+        return allAdsBasicList;
     }
 
     @Override

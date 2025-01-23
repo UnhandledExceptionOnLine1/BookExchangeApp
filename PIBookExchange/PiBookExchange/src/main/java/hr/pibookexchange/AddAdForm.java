@@ -44,7 +44,7 @@ public class AddAdForm extends javax.swing.JFrame {
             Repository repo = RepositoryFactory.getRepository();
             admins = ((UserRepositoryInterface) repo).selectAllUsers();
             for (User user : admins) {
-                if (user.isIsAdmin()) {
+                if (user.getIsAdmin()) {
                     notifyer.add(user);
                 }
             }
@@ -255,7 +255,7 @@ public class AddAdForm extends javax.swing.JFrame {
 
                 // Pošalji sliku na Dropbox
                 String dropboxPath = "/" + imageName; // Putanja na Dropboxu
-                //DropboxUpload.uploadFile(selectedImagePath, dropboxPath);
+                DropboxUpload.uploadFile(selectedImagePath, dropboxPath);
 
                 JOptionPane.showMessageDialog(this, "Slika je uspješno prenesena na Dropbox!");
             } catch (Exception e) {

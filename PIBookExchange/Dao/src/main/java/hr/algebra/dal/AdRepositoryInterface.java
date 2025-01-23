@@ -6,6 +6,7 @@ package hr.algebra.dal;
 
 import hr.algebra.model.Ad;
 import hr.algebra.model.AdDetails;
+import hr.algebra.model.AllAdsBasic;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,5 +21,6 @@ public interface AdRepositoryInterface extends Repository {
 
     Optional<AdDetails> getAd(int id) throws Exception;
 
-    List<Ad> getAllAds() throws Exception;
+    List<AllAdsBasic> getAllAdsBasic() throws Exception;
+
 }
