@@ -1,12 +1,13 @@
 hr\algebra\model\ocp\FruitPriceDiffCalculator.class
 hr\algebra\dal\UserRepositoryInterface.class
+hr\algebra\uploads\StorageService.class
 hr\algebra\dal\Repository.class
-hr\algebra\uploads\DropboxUpload.class
 hr\algebra\model\AllAdsBasic.class
 hr\algebra\dal\AdRepositoryInterface.class
 hr\algebra\model\ocp\Fruit.class
 hr\algebra\strategy_pattern\ContactService.class
 hr\algebra\strategy_pattern\ContactUserStrategy.class
+hr\algebra\uploads\DropboxStorageAdapter.class
 hr\algebra\model\ocp\Banana.class
 hr\algebra\model\ocp\Apple.class
 hr\algebra\model\Ad.class

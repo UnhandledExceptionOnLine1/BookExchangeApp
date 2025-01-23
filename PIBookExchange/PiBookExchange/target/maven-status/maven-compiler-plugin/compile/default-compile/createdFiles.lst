@@ -1,6 +1,7 @@
 hr\pibookexchange\PiBookExchange.class
 hr\pibookexchange\view\HomePage.class
 hr\pibookexchange\view\LoginPanel.class
+hr\pibookexchange\AddAdForm$4.class
 hr\pibookexchange\view\AdDetailsForm$4.class
 hr\pibookexchange\view\RegisterPanel.class
 hr\pibookexchange\view\LoginPanel$2.class

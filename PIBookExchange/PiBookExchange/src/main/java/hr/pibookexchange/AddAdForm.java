@@ -11,11 +11,12 @@ import hr.algebra.dal.sql.SqlRepository;
 import hr.algebra.model.Ad;
 import hr.algebra.model.User;
 import hr.algebra.observer.NewAdNotifier;
-import hr.algebra.uploads.DropboxUpload;
+import hr.algebra.uploads.DropboxStorageAdapter;
 import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import hr.algebra.uploads.StorageService;
 
 /**
  *
@@ -24,6 +25,7 @@ import java.util.List;
 public class AddAdForm extends javax.swing.JFrame {
 
     private String selectedImagePath = ""; // Čuva putanju slike
+    private final StorageService storageService;
 
     //Observer pattern Bruno (Tin ne diraj ovo)
     private NewAdNotifier notifyer;
@@ -34,6 +36,7 @@ public class AddAdForm extends javax.swing.JFrame {
      */
     public AddAdForm() {
         initComponents();
+        storageService = new DropboxStorageAdapter();
         populateCategoryComboBox(); // Popunjavanje ComboBox-a prilikom inicijalizacije
         populatePaymentComboBox(); // Popunjavanje ComboBox-a prilikom inicijalizacije
 
@@ -108,6 +111,11 @@ public class AddAdForm extends javax.swing.JFrame {
         });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Odabrana slika:");
 
@@ -253,9 +261,10 @@ public class AddAdForm extends javax.swing.JFrame {
                 // Izreži ime datoteke iz pune putanje
                 imageName = new File(selectedImagePath).getName(); // Dobivamo npr. "programiranje.jpg"
 
-                // Pošalji sliku na Dropbox
-                String dropboxPath = "/" + imageName; // Putanja na Dropboxu
-                DropboxUpload.uploadFile(selectedImagePath, dropboxPath);
+                // Pošalji sliku na Dropbox ---ADAPTER
+                String remotePath = "/" + imageName; // Putanja na Dropboxu
+                storageService.uploadFile(selectedImagePath, remotePath);
+                
 
                 JOptionPane.showMessageDialog(this, "Slika je uspješno prenesena na Dropbox!");
             } catch (Exception e) {
@@ -294,6 +303,10 @@ public class AddAdForm extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
