@@ -104,6 +104,7 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     @Override
     public void updateUser(int id, User user) throws Exception {
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(UPDATE_USER)) {
+            stmt.setInt(ID_USER, id);
             stmt.setString(USER_NAME, user.getUserName());
             stmt.setString(PASSWORD, user.getPassword());
             stmt.setString(FIRST_NAME, user.getFirstName());

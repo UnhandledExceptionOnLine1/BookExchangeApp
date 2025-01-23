@@ -1,0 +1,5 @@
+# Created at 2025-01-23T12:16:24.556
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

@@ -22,6 +22,18 @@ import static org.mockito.Mockito.when;
  */
 public class SqlRepositoryTest {
 
+    // USER_ADMINISTRATION_CONSTANTS
+    private static final String ID_USER = "IDKorisnik";
+    private static final String USER_NAME = "KorisnickoIme";
+    private static final String PASSWORD = "Lozinka";
+    private static final String FIRST_NAME = "Ime";
+    private static final String LAST_NAME = "Prezime";
+    private static final String ADDRESS = "Adresa";
+    private static final String TELEPHONE = "Telefon";
+    private static final String EMAIL = "Email";
+    private static final String MSG = "message";
+    private static final String ID_ROLA = "IDRola";
+
     @Test
     void testCreateUserWithValidParameters() throws Exception {
         // Arrange
@@ -78,7 +90,129 @@ public class SqlRepositoryTest {
         Exception e = assertThrows(SQLException.class, () -> {
             repo.createUser(testUser);
         });
-        
+
         assertEquals("Error in DB call", e.getMessage());
     }
+
+    @Test
+    void testUpdateUserWithValidId() throws Exception {
+
+        int userId = 1;
+        User validUser = new User("updatedUsername", "updatedPassword", "UpdatedFirstName", "UpdatedLastName", "UpdatedAddress", "987654321", "updated@email.com", false);
+
+        String successMessage = "Ažuriranje korisnika uspješno."; // Expected success message
+
+        DataSource mockDataSource = Mockito.mock(DataSource.class);
+        Connection mockConnection = Mockito.mock(Connection.class);
+        CallableStatement mockStatement = Mockito.mock(CallableStatement.class);
+
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+        when(mockConnection.prepareCall("{ CALL UpdateUser (?,?,?,?,?,?,?,?) }")).thenReturn(mockStatement);
+        when(mockStatement.getString("message")).thenReturn(successMessage);
+
+        SqlRepository repository = new SqlRepository(mockDataSource);
+
+        repository.updateUser(userId, validUser);
+
+        verify(mockStatement).setInt("IDKorisnik", userId);
+        verify(mockStatement).setString("KorisnickoIme", validUser.getUserName());
+        verify(mockStatement).setString("Lozinka", validUser.getPassword());
+        verify(mockStatement).setString("Ime", validUser.getFirstName());
+        verify(mockStatement).setString("Prezime", validUser.getLastName());
+        verify(mockStatement).setString("Adresa", validUser.getAddress());
+        verify(mockStatement).setString("Telefon", validUser.getTelephone());
+        verify(mockStatement).setString("Email", validUser.getEmail());
+        verify(mockStatement).executeUpdate();
+        verify(mockStatement).getString("message");
+    }
+
+    @Test
+    void testUpdateUserWithInvalidUserId() throws Exception {
+        // Arrange
+        int invalidUserId = -999; // Invalid user ID
+        User validUser = new User("updatedUsername", "updatedPassword", "UpdatedFirstName", "UpdatedLastName", "UpdatedAddress", "987654321", "updated@email.com", false);
+
+        String errorMessage = "Korisnik s ID-jem ne postoji."; // Expected message from the procedure
+
+        // Mock dependencies
+        DataSource mockDataSource = Mockito.mock(DataSource.class);
+        Connection mockConnection = Mockito.mock(Connection.class);
+        CallableStatement mockStatement = Mockito.mock(CallableStatement.class);
+
+        // Mock behavior
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+        when(mockConnection.prepareCall("{ CALL UpdateUser (?,?,?,?,?,?,?,?) }")).thenReturn(mockStatement);
+        when(mockStatement.getString("message")).thenReturn(errorMessage); // Simulate procedure's error message
+        doThrow(new SQLException("Invalid user ID")).when(mockStatement).executeUpdate(); // Simulate SQL exception
+
+        SqlRepository repository = new SqlRepository(mockDataSource);
+
+        // Act & Assert
+        Exception exception = assertThrows(SQLException.class, () -> {
+            repository.updateUser(invalidUserId, validUser); // Call with invalid ID
+        });
+
+        // Assertions
+        assertEquals("Invalid user ID", exception.getMessage());
+        verify(mockStatement).setInt("IDKorisnik", invalidUserId); // Verify invalid ID was passed
+        verify(mockStatement).executeUpdate();
+    }
+
+    @Test
+    void testDeleteUserWithValidUserId() throws Exception {
+        // Arrange
+        int validUserId = 1; // Valid user ID
+        String successMessage = "Brisanje korisnika uspješno."; // Expected message
+
+        // Mock dependencies
+        DataSource mockDataSource = Mockito.mock(DataSource.class);
+        Connection mockConnection = Mockito.mock(Connection.class);
+        CallableStatement mockStatement = Mockito.mock(CallableStatement.class);
+
+        // Mock behavior
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+        when(mockConnection.prepareCall("{ CALL DeleteUser (?) }")).thenReturn(mockStatement);
+        when(mockStatement.getString("message")).thenReturn(successMessage); // Simulate success message
+
+        SqlRepository repository = new SqlRepository(mockDataSource);
+
+        // Act
+        repository.deleteUser(validUserId);
+
+        // Assert
+        verify(mockStatement).setInt(1, validUserId); // Ensure the correct ID was passed
+        verify(mockStatement).executeUpdate(); // Ensure the procedure was executed
+        verify(mockStatement).getString("message"); // Verify the message retrieval
+    }
+
+    @Test
+    void testDeleteUserWithInvalidUserId() throws Exception {
+        // Arrange
+        int invalidUserId = -1; // Invalid user ID
+        String errorMessage = "Korisnik s ID-jem ne postoji."; // Expected error message
+
+        // Mock dependencies
+        DataSource mockDataSource = Mockito.mock(DataSource.class);
+        Connection mockConnection = Mockito.mock(Connection.class);
+        CallableStatement mockStatement = Mockito.mock(CallableStatement.class);
+
+        // Mock behavior
+        when(mockDataSource.getConnection()).thenReturn(mockConnection);
+        when(mockConnection.prepareCall("{ CALL DeleteUser (?) }")).thenReturn(mockStatement);
+        when(mockStatement.getString("message")).thenReturn(errorMessage); // Simulate error message
+        doThrow(new SQLException("Invalid user ID")).when(mockStatement).executeUpdate(); // Simulate exception for invalid ID
+
+        SqlRepository repository = new SqlRepository(mockDataSource);
+
+        // Act & Assert
+        Exception exception = assertThrows(SQLException.class, () -> {
+            repository.deleteUser(invalidUserId); // Call with invalid ID
+        });
+
+        // Assertions
+        assertEquals("Invalid user ID", exception.getMessage());
+        verify(mockStatement).setInt(1, invalidUserId); // Ensure the invalid ID was passed
+        verify(mockStatement).executeUpdate(); // Ensure the procedure was executed
+    }
+
 }
