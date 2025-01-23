@@ -180,7 +180,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     @Override
     public Optional<User> loginUser(String username, String password) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall((LOGIN_USER))) {
 
             stmt.setString(1, username);
@@ -210,7 +209,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     // AD PROCEDURE CALLING
     @Override
     public int createAd(Ad ad) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(CREATE_AD)) {
             stmt.setString(AD_NAME, ad.getName());
             stmt.setInt(AD_CATEGORY, ad.getCategoryId());
@@ -227,7 +225,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     @Override
     public void updateAd(int id, Ad ad) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(UPDATE_AD)) {
             stmt.setInt(ID_AD, id);
             stmt.setString(AD_NAME, ad.getName());
@@ -245,7 +242,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     @Override
     public void deleteAd(int id) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(DELETE_AD)) {
             stmt.setInt(ID_AD, id);
             stmt.executeUpdate();
@@ -254,7 +250,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     @Override
     public Optional<AdDetails> getAd(int id) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_AD)) {
             stmt.setInt(1, id); // Postavite ID oglasa kao parametar
             try (ResultSet rs = stmt.executeQuery()) {
@@ -279,7 +274,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     @Override
     public List<AllAdsBasic> getAllAdsBasic() throws Exception {
         List<AllAdsBasic> allAdsBasicList = new ArrayList<>();
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_ADS_BASIC)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -313,7 +307,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     @Override
     public int getPaymentIdByName(String paymentName) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); PreparedStatement stmt
                 = con.prepareStatement("SELECT IDNaplata FROM Naplata WHERE Vrsta = ?")) {
             stmt.setString(1, paymentName);
@@ -329,7 +322,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     public List<String> getAllCategoryNames() throws Exception {
         List<String> categoryNames = new ArrayList<>();
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); Statement stmt
                 = con.createStatement(); ResultSet rs = stmt.executeQuery(GET_ALL_CATEGORIES)) {
             while (rs.next()) {
@@ -341,7 +333,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     public List<String> getAllPaymentNames() throws Exception {
         List<String> paymentsNames = new ArrayList<>();
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); Statement stmt
                 = con.createStatement(); ResultSet rs = stmt.executeQuery(GET_ALL_PAYMENTS)) {
             while (rs.next()) {
