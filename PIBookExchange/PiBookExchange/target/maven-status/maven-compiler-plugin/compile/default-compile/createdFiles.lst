@@ -1,5 +1,6 @@
 hr\pibookexchange\view\HomePage$5.class
 hr\pibookexchange\PiBookExchange.class
+hr\pibookexchange\ComboBoxPopulator.class
 hr\pibookexchange\view\RegisterPanel.class
 hr\pibookexchange\view\LoginPanel$2.class
 hr\pibookexchange\view\RegisterPanel$1.class

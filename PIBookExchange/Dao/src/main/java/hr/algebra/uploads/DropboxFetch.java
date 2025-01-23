@@ -12,7 +12,7 @@ import java.io.OutputStream;
 public class DropboxFetch {
 
     private static final String ACCESS_TOKEN = 
-            "sl.CFGmtiRJArrFulP4Z5R0jaPnrxStA37kyxMPUivseKFh4tq3DCW9NDIweHBaUK6RxCMKj8m_oAHj2FDtHu2ZTKfNljzDKhDsvV5eMnAToOUN36yao0azGylISOapTM0LhpfqY1yOlmRSrdW1dgpjYmc";
+            "sl.CFHcBXmeGPi-Bd4ZOrUt1_MKQE8YFAOw4eyYpx4JeIQSS2bDGedbvnKoZtOANUNLFVf2uFUWnTkOgibiKcUhk1SPxHFENtJK3TA3FHU-joE0W2_-qRvSwqgnUHyQERsMdVCbIEHjnq-zHh16r308z9U";
 
     private final DbxClientV2 client;
 

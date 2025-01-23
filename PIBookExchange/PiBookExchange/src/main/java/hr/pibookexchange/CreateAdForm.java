@@ -33,6 +33,7 @@ public class CreateAdForm extends javax.swing.JFrame {
     private NewAdNotifier notifyer;
     private List<User> admins;
     private AdFormMediator mediator;
+    ComboBoxPopulator populator = new ComboBoxPopulator(new SqlRepository());
 
     /**
      * Creates new form AddAdForm
@@ -40,12 +41,12 @@ public class CreateAdForm extends javax.swing.JFrame {
     public CreateAdForm() {
         initComponents();
         storageService = new DropboxStorageAdapter();
-        populateCategoryComboBox(); // Popunjavanje ComboBox-a prilikom inicijalizacije
-        populatePaymentComboBox(); // Popunjavanje ComboBox-a prilikom inicijalizacije
+        populator.populateCategoryComboBox(cbCategory);
+        populator.populatePaymentComboBox(cbPayment);
 
         notifyer = new NewAdNotifier();
         admins = new ArrayList<>();
-        mediator = new AdFormMediator(cbCategory, tfPrice, lblMaxPriceValue);
+        mediator = new AdFormMediator(cbCategory, tfPrice, lblMaxPriceValue, btnSubmit);
 
         try {   // punjenje liste admina
             Repository repo = RepositoryFactory.getRepository();
@@ -421,38 +422,6 @@ public class CreateAdForm extends javax.swing.JFrame {
         tfPrice.setText("");
     }
 
-    private void populateCategoryComboBox() {
-        try {
-            SqlRepository repo = new SqlRepository();
-            List<String> categoryNames = repo.getAllCategoryNames(); // Dohvaćanje naziva kategorija
-
-            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-            for (String categoryName : categoryNames) {
-                model.addElement(categoryName); // Dodavanje svakog naziva u model
-            }
-
-            cbCategory.setModel(model); // Postavljanje modela na ComboBox
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error loading category names: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
-        }
-    }
-
-    private void populatePaymentComboBox() {
-        try {
-            SqlRepository repo = new SqlRepository();
-            List<String> paymentNames = repo.getAllPaymentNames(); // Dohvaćanje naziva kategorija
-
-            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-            for (String paymentName : paymentNames) {
-                model.addElement(paymentName); // Dodavanje svakog naziva u model
-            }
-
-            cbPayment.setModel(model); // Postavljanje modela na ComboBox
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error loading payment types: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
-        }
-    }
+   
 
 }
