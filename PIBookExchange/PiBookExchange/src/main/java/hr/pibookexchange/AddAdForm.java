@@ -97,11 +97,16 @@ public class AddAdForm extends javax.swing.JFrame {
         jLabel4.setText("Opis");
 
         cbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCategory.setBorder(null);
 
         cbPayment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPayment.setBorder(null);
+
+        tfPrice.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true));
 
         taDescription.setColumns(20);
         taDescription.setRows(5);
+        taDescription.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true));
         jScrollPane1.setViewportView(taDescription);
 
         btnSubmit.setText("Submit");
@@ -128,6 +133,8 @@ public class AddAdForm extends javax.swing.JFrame {
         });
 
         jLabel6.setText("Cijena:");
+
+        tfAdName1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true));
 
         jLabel7.setText("€");
 
