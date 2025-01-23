@@ -13,6 +13,7 @@ import java.util.List;
  * @author Tin
  */
 public class DateSortingStrategy implements SortingStrategy {
+
     @Override
     public List<AllAdsBasic> sort(List<AllAdsBasic> ads) {
         ads.sort(Comparator.comparing(AllAdsBasic::getPublishTime).reversed());

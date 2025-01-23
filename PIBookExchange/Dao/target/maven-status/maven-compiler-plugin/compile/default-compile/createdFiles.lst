@@ -12,6 +12,7 @@ hr\algebra\strategy_pattern\ContactUserStrategy.class
 hr\algebra\uploads\DropboxStorageAdapter.class
 hr\algebra\model\ocp\Banana.class
 hr\algebra\sorting\strategy\DateSortingStrategy.class
+hr\algebra\builder\AdBuilder.class
 hr\algebra\model\ocp\Apple.class
 hr\algebra\model\Ad.class
 hr\algebra\dal\AdCategoryInterface.class

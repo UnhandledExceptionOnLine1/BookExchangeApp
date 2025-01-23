@@ -17,6 +17,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import hr.algebra.uploads.StorageService;
+import hr.algebra.builder.AdBuilder;
 
 /**
  *
@@ -239,32 +240,31 @@ public class AddAdForm extends javax.swing.JFrame {
         String paymentType = cbPayment.getSelectedItem().toString();
         String description = taDescription.getText();
         String imagePath = selectedImagePath;
-        String priceText = tfPrice.getText(); // Dohvaćanje teksta iz TextFielda
+        String priceText = tfPrice.getText();
         double price;
         try {
-            price = Double.parseDouble(priceText); // Parsiranje teksta u double
+            price = Double.parseDouble(priceText);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter a valid number for the price.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-            return; // Prekinite izvršavanje ako unos nije validan
+            return;
         }
-        int korisnikID = 1; // Assuming a default user ID for now
+        int korisnikID = 1; //default id za testiranje
 
         if (adName.isEmpty() || category.isEmpty() || paymentType.isEmpty() || description.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill out all fields before submitting.");
             return;
         }
 
-        // Upload image to Dropbox (only if an image is selected)
-        String imageName = ""; // Ovdje ćemo spremiti samo ime slike
+        //UPload na DROPBOX
+        String imageName = ""; // Spremanje imena slike
         if (!selectedImagePath.isEmpty()) {
             try {
-                // Izreži ime datoteke iz pune putanje
+                //Rezanje imena iz putanje
                 imageName = new File(selectedImagePath).getName(); // Dobivamo npr. "programiranje.jpg"
 
                 // Pošalji sliku na Dropbox ---ADAPTER
                 String remotePath = "/" + imageName; // Putanja na Dropboxu
                 storageService.uploadFile(selectedImagePath, remotePath);
-                
 
                 JOptionPane.showMessageDialog(this, "Slika je uspješno prenesena na Dropbox!");
             } catch (Exception e) {
@@ -281,17 +281,16 @@ public class AddAdForm extends javax.swing.JFrame {
             int categoryId = repo.getCategoryIdByName(category);
             int paymentId = repo.getPaymentIdByName(paymentType);
 
-            Ad ad = new Ad(
-                    adName,
-                    categoryId,
-                    paymentId,
-                    imageName,
-                    description,
-                    price,
-                    korisnikID);
+            Ad ad = new AdBuilder(adName, korisnikID)
+                    .categoryId(categoryId)
+                    .paymentTypeId(paymentId)
+                    .imagePath(imageName)
+                    .description(description)
+                    .price(price)
+                    .build();
 
             int x = repo.createAd(ad);
-            
+
             JOptionPane.showMessageDialog(this, "Oglas je uspješno spremljen!");
             notifyer.notify("Dodan je novi oglas. Oglas ID: " + x);
             clearForm(); // Clear the form after successful submission

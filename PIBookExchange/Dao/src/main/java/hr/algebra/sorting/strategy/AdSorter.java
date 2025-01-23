@@ -3,14 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package hr.algebra.sorting.strategy;
+
 import hr.algebra.model.AllAdsBasic;
 import java.util.List;
+
 /**
  *
  * @author Tin
  */
 public class AdSorter {
-     private SortingStrategy sortingStrategy;
+
+    private SortingStrategy sortingStrategy;
 
     // Postavljanje strategije
     public void setSortingStrategy(SortingStrategy sortingStrategy) {
