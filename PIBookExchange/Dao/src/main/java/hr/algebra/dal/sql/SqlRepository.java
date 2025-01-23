@@ -73,9 +73,20 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     private static final String AD_PAYMENT_NAME = "VrstaNaplate";    // Naziv vrste naplate
     private static final String AD_USER_NAME = "KorisnikIme";        // Ime korisnika
 
+    private final DataSource dataSource;
+
+    // Default constructor: uses DataSourceSingleton for the actual application
+    public SqlRepository() {
+        this.dataSource = DataSourceSingleton.getInstance();
+    }
+
+    // Constructor for testing: allows injecting a mock DataSource
+    public SqlRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     @Override
     public int createUser(User user) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall("{ CALL CreateUser (?,?,?,?,?,?,?,?) }")) {
             stmt.setString(1, user.getUserName());
             stmt.setString(2, user.getPassword());
@@ -92,7 +103,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     @Override
     public void updateUser(int id, User user) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(UPDATE_USER)) {
             stmt.setString(USER_NAME, user.getUserName());
             stmt.setString(PASSWORD, user.getPassword());
@@ -109,7 +119,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     @Override
     public void deleteUser(int id) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(DELETE_USER)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -119,7 +128,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     @Override
     public Optional<User> getUser(int id) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_USER)) {
             stmt.setInt(ID_USER, id);
 
@@ -147,7 +155,6 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     public List<User> selectAllUsers() throws Exception {
         List<User> users = new ArrayList<>();
 
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_USERS)) {
 
             try (ResultSet rs = stmt.executeQuery()) {
@@ -287,10 +294,10 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
         }
         return allAdsBasicList;
     }
-
+    
     @Override
+
     public int getCategoryIdByName(String categoryName) throws Exception {
-        DataSource dataSource = DataSourceSingleton.getInstance();
         try (Connection con = dataSource.getConnection(); PreparedStatement stmt
                 = con.prepareStatement("SELECT IDKategorija FROM Kategorija WHERE Naziv = ?")) {
             stmt.setString(1, categoryName);
