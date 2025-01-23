@@ -30,5 +30,6 @@ hr\algebra\dal\sql\SqlRepository.class
 hr\algebra\model\AdStringify.class
 hr\algebra\strategy_pattern\SmsContactStr.class
 hr\algebra\model\User.class
+hr\algebra\mediator\AdFormMediator.class
 hr\algebra\model\UserStringify.class
 hr\algebra\uploads\DropboxFetch.class
