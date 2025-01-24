@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="hr.pibookexchange.view.LoginPanelTest" time="9.015" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="hr.pibookexchange.view.LoginPanelTest" time="9.25" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\Tin\AppData\Local\Temp\surefire12997696346636496981\surefirebooter-20250124183445106_10.jar C:\Users\Tin\AppData\Local\Temp\surefire12997696346636496981 2025-01-24T18-34-39_871-jvmRun1 surefire-20250124183445106_8tmp surefire_1-20250124183445106_9tmp"/>
+    <property name="sun.java.command" value="C:\Users\Tin\AppData\Local\Temp\surefire5876770188245503116\surefirebooter-20250124194155537_12.jar C:\Users\Tin\AppData\Local\Temp\surefire5876770188245503116 2025-01-24T19-41-47_839-jvmRun1 surefire-20250124194155537_10tmp surefire_1-20250124194155537_11tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\PiBookExchange\target\test-classes;C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\PiBookExchange\target\classes;C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\target\Dao-1.0-SNAPSHOT.jar;C:\Users\Tin\.m2\repository\com\microsoft\sqlserver\mssql-jdbc\8.4.1.jre14\mssql-jdbc-8.4.1.jre14.jar;C:\Users\Tin\.m2\repository\com\dropbox\core\dropbox-core-sdk\5.4.0\dropbox-core-sdk-5.4.0.jar;C:\Users\Tin\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.7.9\jackson-core-2.7.9.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk8\1.6.21\kotlin-stdlib-jdk8-1.6.21.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.6.21\kotlin-stdlib-1.6.21.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-common\1.6.21\kotlin-stdlib-common-1.6.21.jar;C:\Users\Tin\.m2\repository\org\jetbrains\annotations\13.0\annotations-13.0.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk7\1.6.21\kotlin-stdlib-jdk7-1.6.21.jar;C:\Users\Tin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\Tin\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Tin\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\Tin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Tin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\Tin\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\Tin\.m2\repository\org\mockito\mockito-core\4.5.1\mockito-core-4.5.1.jar;C:\Users\Tin\.m2\repository\net\bytebuddy\byte-buddy\1.12.9\byte-buddy-1.12.9.jar;C:\Users\Tin\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.9\byte-buddy-agent-1.12.9.jar;C:\Users\Tin\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Tin\AppData\Local\Temp\surefire12997696346636496981\surefirebooter-20250124183445106_10.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Tin\AppData\Local\Temp\surefire5876770188245503116\surefirebooter-20250124194155537_12.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.1+11-39"/>
@@ -60,11 +60,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testLoginValidationPasswordNotProvided" classname="hr.pibookexchange.view.LoginPanelTest" time="4.263"/>
-  <testcase name="testLoginValidationUserNameNotProvided" classname="hr.pibookexchange.view.LoginPanelTest" time="0.808"/>
-  <testcase name="testLoginValidationUserNameTooShort" classname="hr.pibookexchange.view.LoginPanelTest" time="0.994"/>
-  <testcase name="testSuccessfulLogin" classname="hr.pibookexchange.view.LoginPanelTest" time="1.079">
-    <system-err><![CDATA[java.lang.ClassCastException: class hr.algebra.dal.UserRepositoryInterface$MockitoMock$HmKUdUoQ cannot be cast to class hr.algebra.dal.AdRepositoryInterface (hr.algebra.dal.UserRepositoryInterface$MockitoMock$HmKUdUoQ and hr.algebra.dal.AdRepositoryInterface are in unnamed module of loader 'app')
+  <testcase name="testLoginValidationPasswordNotProvided" classname="hr.pibookexchange.view.LoginPanelTest" time="4.305"/>
+  <testcase name="testLoginValidationUserNameNotProvided" classname="hr.pibookexchange.view.LoginPanelTest" time="1.009"/>
+  <testcase name="testLoginValidationUserNameTooShort" classname="hr.pibookexchange.view.LoginPanelTest" time="0.801"/>
+  <testcase name="testSuccessfulLogin" classname="hr.pibookexchange.view.LoginPanelTest" time="1.866">
+    <system-err><![CDATA[java.lang.ClassCastException: class hr.algebra.dal.UserRepositoryInterface$MockitoMock$JWbjzIzP cannot be cast to class hr.algebra.dal.AdRepositoryInterface (hr.algebra.dal.UserRepositoryInterface$MockitoMock$JWbjzIzP and hr.algebra.dal.AdRepositoryInterface are in unnamed module of loader 'app')
 	at hr.pibookexchange.view.HomePage.loadAds(HomePage.java:40)
 	at hr.pibookexchange.view.HomePage.<init>(HomePage.java:34)
 	at hr.pibookexchange.view.LoginPanel.btnLoginActionPerformed(LoginPanel.java:173)
@@ -147,5 +147,5 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></system-err>
   </testcase>
-  <testcase name="testLoginValidationPasswordTooShort" classname="hr.pibookexchange.view.LoginPanelTest" time="1.864"/>
+  <testcase name="testLoginValidationPasswordTooShort" classname="hr.pibookexchange.view.LoginPanelTest" time="1.263"/>
 </testsuite>

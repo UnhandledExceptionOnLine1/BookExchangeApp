@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="hr.algebra.mediator.AdFormMediatorTest" time="2.326" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="hr.algebra.mediator.AdFormMediatorTest" time="1.346" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,9 +15,8 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\Tin\AppData\Local\Temp\surefire5368754764670103184\surefirebooter-20250124190224132_3.jar C:\Users\Tin\AppData\Local\Temp\surefire5368754764670103184 2025-01-24T19-02-24_029-jvmRun1 surefire-20250124190224132_1tmp surefire_0-20250124190224132_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Tin\AppData\Local\Temp\surefire6559672752719285895\surefirebooter-20250124200816969_3.jar C:\Users\Tin\AppData\Local\Temp\surefire6559672752719285895 2025-01-24T20-08-16_843-jvmRun1 surefire-20250124200816969_1tmp surefire_0-20250124200816969_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="hr.algebra.mediator.AdFormMediatorTest"/>
     <property name="surefire.test.class.path" value="C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\target\test-classes;C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\target\classes;C:\Users\Tin\.m2\repository\com\microsoft\sqlserver\mssql-jdbc\8.4.1.jre14\mssql-jdbc-8.4.1.jre14.jar;C:\Users\Tin\.m2\repository\com\dropbox\core\dropbox-core-sdk\5.4.0\dropbox-core-sdk-5.4.0.jar;C:\Users\Tin\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.7.9\jackson-core-2.7.9.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk8\1.6.21\kotlin-stdlib-jdk8-1.6.21.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.6.21\kotlin-stdlib-1.6.21.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-common\1.6.21\kotlin-stdlib-common-1.6.21.jar;C:\Users\Tin\.m2\repository\org\jetbrains\annotations\13.0\annotations-13.0.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk7\1.6.21\kotlin-stdlib-jdk7-1.6.21.jar;C:\Users\Tin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\Tin\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Tin\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\Tin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Tin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\Tin\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\Tin\.m2\repository\org\mockito\mockito-core\4.5.1\mockito-core-4.5.1.jar;C:\Users\Tin\.m2\repository\net\bytebuddy\byte-buddy\1.12.9\byte-buddy-1.12.9.jar;C:\Users\Tin\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.9\byte-buddy-agent-1.12.9.jar;C:\Users\Tin\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Tin"/>
@@ -31,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Tin\AppData\Local\Temp\surefire5368754764670103184\surefirebooter-20250124190224132_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Tin\AppData\Local\Temp\surefire6559672752719285895\surefirebooter-20250124200816969_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.1+11-39"/>
@@ -60,14 +59,14 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="shouldHandleExactBoundaryPriceForBooks" classname="hr.algebra.mediator.AdFormMediatorTest" time="2.235"/>
-  <testcase name="shouldEnableSubmitButtonWhenInputIsNotValidforBooks" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.004"/>
-  <testcase name="shouldEnableSubmitButtonWhenPriceIsValidforOtherMaterials" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.004"/>
-  <testcase name="shouldHandleExactBoundaryPriceForOtherMaterials" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.004"/>
-  <testcase name="shouldEnableSubmitButtonWhenPriceIsValidforBooks" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.006"/>
-  <testcase name="shouldDisplayCorrectMaxPriceForOtherMaterials" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.004"/>
-  <testcase name="shouldDisplayCorrectMaxPriceForBooks" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.004"/>
+  <testcase name="shouldHandleExactBoundaryPriceForBooks" classname="hr.algebra.mediator.AdFormMediatorTest" time="1.318"/>
+  <testcase name="shouldEnableSubmitButtonWhenInputIsNotValidforBooks" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.002"/>
+  <testcase name="shouldEnableSubmitButtonWhenPriceIsValidforOtherMaterials" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.001"/>
+  <testcase name="shouldHandleExactBoundaryPriceForOtherMaterials" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.001"/>
+  <testcase name="shouldEnableSubmitButtonWhenPriceIsValidforBooks" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.004"/>
+  <testcase name="shouldDisplayCorrectMaxPriceForOtherMaterials" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.002"/>
+  <testcase name="shouldDisplayCorrectMaxPriceForBooks" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.002"/>
   <testcase name="shouldDisableSubmitButtonWhenPriceIsInvalidForBooks" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.003"/>
-  <testcase name="shouldEnableSubmitButtonWhenInputIsNotValidforOtherMaterials" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.003"/>
-  <testcase name="shouldDisableSubmitButtonWhenPriceIsInvalidForOtherMaterials" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.003"/>
+  <testcase name="shouldEnableSubmitButtonWhenInputIsNotValidforOtherMaterials" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.002"/>
+  <testcase name="shouldDisableSubmitButtonWhenPriceIsInvalidForOtherMaterials" classname="hr.algebra.mediator.AdFormMediatorTest" time="0.004"/>
 </testsuite>
