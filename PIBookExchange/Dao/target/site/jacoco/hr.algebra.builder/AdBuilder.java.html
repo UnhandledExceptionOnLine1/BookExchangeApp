@@ -18,52 +18,52 @@ public class AdBuilder {
     private double price;
     private int userId;
 
-<span class="nc" id="L21">    public AdBuilder(String name, int userId) { // Obavezni parametri</span>
-<span class="nc" id="L22">        this.name = name;</span>
-<span class="nc" id="L23">        this.userId = userId;</span>
-<span class="nc" id="L24">    }</span>
+<span class="fc" id="L21">    public AdBuilder(String name, int userId) { // Obavezni parametri</span>
+<span class="fc" id="L22">        this.name = name;</span>
+<span class="fc" id="L23">        this.userId = userId;</span>
+<span class="fc" id="L24">    }</span>
 
     public AdBuilder id(int id) {
-<span class="nc" id="L27">        this.id = id;</span>
-<span class="nc" id="L28">        return this;</span>
+<span class="fc" id="L27">        this.id = id;</span>
+<span class="fc" id="L28">        return this;</span>
     }
 
     public AdBuilder categoryId(int categoryId) {
-<span class="nc" id="L32">        this.categoryId = categoryId;</span>
-<span class="nc" id="L33">        return this;</span>
+<span class="fc" id="L32">        this.categoryId = categoryId;</span>
+<span class="fc" id="L33">        return this;</span>
     }
 
     public AdBuilder paymentTypeId(int paymentTypeId) {
-<span class="nc" id="L37">        this.paymentTypeId = paymentTypeId;</span>
-<span class="nc" id="L38">        return this;</span>
+<span class="fc" id="L37">        this.paymentTypeId = paymentTypeId;</span>
+<span class="fc" id="L38">        return this;</span>
     }
 
     public AdBuilder imagePath(String imagePath) {
-<span class="nc" id="L42">        this.imagePath = imagePath;</span>
-<span class="nc" id="L43">        return this;</span>
+<span class="fc" id="L42">        this.imagePath = imagePath;</span>
+<span class="fc" id="L43">        return this;</span>
     }
 
     public AdBuilder description(String description) {
-<span class="nc" id="L47">        this.description = description;</span>
-<span class="nc" id="L48">        return this;</span>
+<span class="fc" id="L47">        this.description = description;</span>
+<span class="fc" id="L48">        return this;</span>
     }
 
     public AdBuilder price(double price) {
-<span class="nc" id="L52">        this.price = price;</span>
-<span class="nc" id="L53">        return this;</span>
+<span class="fc" id="L52">        this.price = price;</span>
+<span class="fc" id="L53">        return this;</span>
     }
 
     public Ad build() {
-<span class="nc" id="L57">        Ad ad = new Ad();</span>
-<span class="nc" id="L58">        ad.setId(this.id);</span>
-<span class="nc" id="L59">        ad.setName(this.name);</span>
-<span class="nc" id="L60">        ad.setCategoryId(this.categoryId);</span>
-<span class="nc" id="L61">        ad.setPaymentTypeId(this.paymentTypeId);</span>
-<span class="nc" id="L62">        ad.setImagePath(this.imagePath);</span>
-<span class="nc" id="L63">        ad.setDescription(this.description);</span>
-<span class="nc" id="L64">        ad.setPrice(this.price);</span>
-<span class="nc" id="L65">        ad.setUserId(this.userId);</span>
-<span class="nc" id="L66">        return ad;</span>
+<span class="fc" id="L57">        Ad ad = new Ad();</span>
+<span class="fc" id="L58">        ad.setId(this.id);</span>
+<span class="fc" id="L59">        ad.setName(this.name);</span>
+<span class="fc" id="L60">        ad.setCategoryId(this.categoryId);</span>
+<span class="fc" id="L61">        ad.setPaymentTypeId(this.paymentTypeId);</span>
+<span class="fc" id="L62">        ad.setImagePath(this.imagePath);</span>
+<span class="fc" id="L63">        ad.setDescription(this.description);</span>
+<span class="fc" id="L64">        ad.setPrice(this.price);</span>
+<span class="fc" id="L65">        ad.setUserId(this.userId);</span>
+<span class="fc" id="L66">        return ad;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

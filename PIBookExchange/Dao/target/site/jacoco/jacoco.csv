@@ -2,7 +2,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 Dao,hr.algebra.uploads,DropboxStorageAdapter,32,0,0,0,8,0,2,0,2,0
 Dao,hr.algebra.uploads,DropboxFetch,61,0,0,0,15,0,3,0,3,0
 Dao,hr.algebra.mediator,AdFormMediator,106,0,16,0,26,0,10,0,2,0
-Dao,hr.algebra.builder,AdBuilder,77,0,0,0,26,0,8,0,8,0
+Dao,hr.algebra.builder,AdBuilder,0,77,0,0,0,26,0,8,0,8
 Dao,hr.algebra.observer,NewAdNotifier,0,40,0,2,0,11,0,6,0,5
 Dao,hr.algebra.dal.sql,SqlRepository,357,351,26,16,83,84,27,11,10,7
 Dao,hr.algebra.dal.sql,DataSourceSingleton,57,0,2,0,19,0,4,0,3,0
@@ -17,7 +17,7 @@ Dao,hr.algebra.strategy_pattern,MessageContactStr,0,10,0,0,0,3,0,2,0,2
 Dao,hr.algebra.model,AdStringify,21,0,0,0,10,0,2,0,2,0
 Dao,hr.algebra.model,AdDetails,69,0,0,0,19,0,10,0,10,0
 Dao,hr.algebra.model,UserStringify,3,6,0,0,1,1,1,1,1,1
-Dao,hr.algebra.model,Ad,99,0,0,0,39,0,20,0,20,0
+Dao,hr.algebra.model,Ad,40,59,0,0,13,26,3,17,3,17
 Dao,hr.algebra.model,User,24,138,4,6,8,49,7,23,3,22
 Dao,hr.algebra.model,AllAdsBasic,70,0,2,0,21,0,11,0,10,0
 Dao,hr.algebra.model.ocp,Pear,18,0,0,0,5,0,3,0,3,0

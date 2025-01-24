@@ -1,6 +1,8 @@
+hr\algebra\mediator\AdFormMediatorTest.class
 hr\algebra\strategy_pattern\ContactServiceTest$DummyStrategy.class
 hr\algebra\observer\NewAdNotifierTest.class
 hr\algebra\strategy_pattern\MessageContactStrTest.class
+hr\algebra\builder\AdBuilderTest.class
 hr\algebra\model\UserTest.class
 hr\algebra\strategy_pattern\SmsContactStrTest.class
 hr\algebra\strategy_pattern\ContactServiceTest.class
