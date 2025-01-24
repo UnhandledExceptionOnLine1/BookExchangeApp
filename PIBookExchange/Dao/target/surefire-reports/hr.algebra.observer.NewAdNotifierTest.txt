@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: hr.algebra.observer.NewAdNotifierTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 s - in hr.algebra.observer.NewAdNotifierTest
+=======
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.054 s - in hr.algebra.observer.NewAdNotifierTest
+>>>>>>> 7524e656a1932c0eba583126eca7bad3be852894

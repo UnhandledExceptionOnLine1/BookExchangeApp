@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: hr.algebra.strategy_pattern.ContactServiceTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s - in hr.algebra.strategy_pattern.ContactServiceTest
+=======
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s - in hr.algebra.strategy_pattern.ContactServiceTest
+>>>>>>> 7524e656a1932c0eba583126eca7bad3be852894

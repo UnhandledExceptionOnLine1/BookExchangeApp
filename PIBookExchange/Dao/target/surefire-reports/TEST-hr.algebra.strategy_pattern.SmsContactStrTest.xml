@@ -14,8 +14,13 @@
     <property name="java.vm.specification.version" value="20"/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
+<<<<<<< HEAD
     <property name="sun.boot.library.path" value="E:\Program Files\Java\jdk-20\bin"/>
     <property name="sun.java.command" value="C:\Users\Tin\AppData\Local\Temp\surefire7274612352734478841\surefirebooter-20250124141635338_3.jar C:\Users\Tin\AppData\Local\Temp\surefire7274612352734478841 2025-01-24T14-16-35_136-jvmRun1 surefire-20250124141635338_1tmp surefire_0-20250124141635338_2tmp"/>
+=======
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
+    <property name="sun.java.command" value="C:\Users\bruno\AppData\Local\Temp\surefire13143237794837241575\surefirebooter-20250124134530909_3.jar C:\Users\bruno\AppData\Local\Temp\surefire13143237794837241575 2025-01-24T13-45-30_798-jvmRun1 surefire-20250124134530909_1tmp surefire_0-20250124134530909_2tmp"/>
+>>>>>>> 7524e656a1932c0eba583126eca7bad3be852894
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\target\test-classes;C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\target\classes;C:\Users\Tin\.m2\repository\com\microsoft\sqlserver\mssql-jdbc\8.4.1.jre14\mssql-jdbc-8.4.1.jre14.jar;C:\Users\Tin\.m2\repository\com\dropbox\core\dropbox-core-sdk\5.4.0\dropbox-core-sdk-5.4.0.jar;C:\Users\Tin\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.7.9\jackson-core-2.7.9.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk8\1.6.21\kotlin-stdlib-jdk8-1.6.21.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.6.21\kotlin-stdlib-1.6.21.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-common\1.6.21\kotlin-stdlib-common-1.6.21.jar;C:\Users\Tin\.m2\repository\org\jetbrains\annotations\13.0\annotations-13.0.jar;C:\Users\Tin\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk7\1.6.21\kotlin-stdlib-jdk7-1.6.21.jar;C:\Users\Tin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\Tin\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\Tin\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Tin\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\Tin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\Tin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Tin\.m2\repository\org\mockito\mockito-core\4.5.1\mockito-core-4.5.1.jar;C:\Users\Tin\.m2\repository\net\bytebuddy\byte-buddy\1.12.9\byte-buddy-1.12.9.jar;C:\Users\Tin\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.9\byte-buddy-agent-1.12.9.jar;C:\Users\Tin\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +35,11 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+<<<<<<< HEAD
     <property name="surefire.real.class.path" value="C:\Users\Tin\AppData\Local\Temp\surefire7274612352734478841\surefirebooter-20250124141635338_3.jar"/>
+=======
+    <property name="surefire.real.class.path" value="C:\Users\bruno\AppData\Local\Temp\surefire13143237794837241575\surefirebooter-20250124134530909_3.jar"/>
+>>>>>>> 7524e656a1932c0eba583126eca7bad3be852894
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="20.0.2+9-78"/>
