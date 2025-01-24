@@ -2,7 +2,6 @@
 
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
-import com.dropbox.core.v2.files.DownloadErrorException;
 
 import javax.swing.ImageIcon;
 import java.io.File;
@@ -11,47 +10,31 @@ import java.io.OutputStream;
 
 public class DropboxFetch {
 
-    private static final String ACCESS_TOKEN = 
-            &quot;sl.CFJiy0A9z0ZjhEfnV9Gzo8rz6x0VzXJ2pKhWJRjr-Dd5JeiFEcFEooIYH-IuHMet34t-hNqDGpJshCYQfzaRNlC-6tksrgwoqf_nSI2M7CQpoGagCc8iv_6j05uVjNPS2c9CXlr4u53gufLAzYj8mPQ&quot;;
-
     private final DbxClientV2 client;
 
-<span class="nc" id="L19">    public DropboxFetch() {</span>
-<span class="nc" id="L20">        DbxRequestConfig config = DbxRequestConfig.newBuilder(&quot;BookExchangeApp&quot;).build();</span>
-<span class="nc" id="L21">        client = new DbxClientV2(config, ACCESS_TOKEN);</span>
-<span class="nc" id="L22">    }</span>
+    // Dodan konstruktor koji omogućuje dependency injection
+<span class="nc" id="L16">    public DropboxFetch(DbxClientV2 client) {</span>
+<span class="nc" id="L17">        this.client = client;</span>
+<span class="nc" id="L18">    }</span>
 
-    /**
-     * Download a file from Dropbox.
-     *
-     * @param dropboxFilePath Path of the file in Dropbox
-     * @return Local path to the downloaded file
-     * @throws Exception
-     */
+    // Defaultni konstruktor koji koristi pristupni token
+    public DropboxFetch() {
+<span class="nc" id="L22">        this(new DbxClientV2(DbxRequestConfig.newBuilder(&quot;BookExchangeApp&quot;).build(),</span>
+                &quot;sl.CFLau2FGDs2F_c2Vq-X90TXzaHj3nIlub99B1lMCXR6Br4S5pLjLssdav6kmBvPv6Z1hYasumENnTrYnomS6dSwJyycWlNoHC2Fm3IXKsRtrr2YfQpySQpey9gx_ypgm5LVkBTATuWkZ4adPbO8p-Xs&quot;));
+<span class="nc" id="L24">    }</span>
+
     public String downloadFile(String dropboxFilePath) throws Exception {
-<span class="nc" id="L32">        String localFilePath = System.getProperty(&quot;java.io.tmpdir&quot;) + File.separator + new File(dropboxFilePath).getName();</span>
-
-<span class="nc" id="L34">        try (OutputStream out = new FileOutputStream(localFilePath)) {</span>
-<span class="nc" id="L35">            client.files().downloadBuilder(dropboxFilePath).download(out);</span>
-<span class="nc" id="L36">            System.out.println(&quot;File downloaded to: &quot; + localFilePath);</span>
-<span class="nc" id="L37">        } catch (DownloadErrorException e) {</span>
-<span class="nc" id="L38">            System.err.println(&quot;Error downloading file: &quot; + e.getMessage());</span>
-<span class="nc" id="L39">            throw e;</span>
-<span class="nc" id="L40">        }</span>
-
-<span class="nc" id="L42">        return localFilePath;</span>
+<span class="nc" id="L27">        String localFilePath = System.getProperty(&quot;java.io.tmpdir&quot;) + File.separator + new File(dropboxFilePath).getName();</span>
+<span class="nc" id="L28">        try (OutputStream out = new FileOutputStream(localFilePath)) {</span>
+<span class="nc" id="L29">            client.files().downloadBuilder(dropboxFilePath).download(out);</span>
+<span class="nc" id="L30">            System.out.println(&quot;File downloaded to: &quot; + localFilePath);</span>
+        }
+<span class="nc" id="L32">        return localFilePath;</span>
     }
 
-    /**
-     * Fetch an image as an ImageIcon for UI use.
-     *
-     * @param dropboxFilePath Path of the image file in Dropbox
-     * @return ImageIcon to use in Swing
-     * @throws Exception
-     */
     public ImageIcon fetchImage(String dropboxFilePath) throws Exception {
-<span class="nc" id="L53">        String localFilePath = downloadFile(dropboxFilePath);</span>
-<span class="nc" id="L54">        return new ImageIcon(localFilePath);</span>
+<span class="nc" id="L36">        String localFilePath = downloadFile(dropboxFilePath);</span>
+<span class="nc" id="L37">        return new ImageIcon(localFilePath);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

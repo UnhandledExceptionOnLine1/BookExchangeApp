@@ -18,43 +18,41 @@ public class AdFormMediator {
     private final JLabel lblMaxPriceValue;
     private final JButton btnSubmit;
 
-<span class="nc" id="L21">    public AdFormMediator(JComboBox&lt;String&gt; cbCategory, JTextField tfPrice, JLabel lblMaxPriceValue, JButton btnSubmit) {</span>
-<span class="nc" id="L22">        this.cbCategory = cbCategory;</span>
-<span class="nc" id="L23">        this.tfPrice = tfPrice;</span>
-<span class="nc" id="L24">        this.lblMaxPriceValue = lblMaxPriceValue;</span>
-<span class="nc" id="L25">        this.btnSubmit = btnSubmit;</span>
-<span class="nc" id="L26">    }</span>
+<span class="fc" id="L21">    public AdFormMediator(JComboBox&lt;String&gt; cbCategory, JTextField tfPrice, JLabel lblMaxPriceValue, JButton btnSubmit) {</span>
+<span class="fc" id="L22">        this.cbCategory = cbCategory;</span>
+<span class="fc" id="L23">        this.tfPrice = tfPrice;</span>
+<span class="fc" id="L24">        this.lblMaxPriceValue = lblMaxPriceValue;</span>
+<span class="fc" id="L25">        this.btnSubmit = btnSubmit;</span>
+<span class="fc" id="L26">    }</span>
 
     public void notify(Component sender, String event) {
-<span class="nc bnc" id="L29" title="All 4 branches missed.">        if (sender == cbCategory &amp;&amp; &quot;selectionChanged&quot;.equals(event)) {</span>
-<span class="nc" id="L30">            String selectedCategory = (String) cbCategory.getSelectedItem();</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (&quot;Knjiga&quot;.equals(selectedCategory)) {</span>
-<span class="nc" id="L32">                lblMaxPriceValue.setText(&quot;500 €&quot;);</span>
-<span class="nc bnc" id="L33" title="All 2 branches missed.">            } else if (&quot;Ostali materijali&quot;.equals(selectedCategory)) {</span>
-<span class="nc" id="L34">                lblMaxPriceValue.setText(&quot;200 €&quot;);</span>
-            } else {
-<span class="nc" id="L36">                lblMaxPriceValue.setText(&quot;N/A&quot;);</span>
+<span class="pc bpc" id="L29" title="1 of 4 branches missed.">        if (sender == cbCategory &amp;&amp; &quot;selectionChanged&quot;.equals(event)) {</span>
+<span class="fc" id="L30">            String selectedCategory = (String) cbCategory.getSelectedItem();</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            if (&quot;Knjiga&quot;.equals(selectedCategory)) {</span>
+<span class="fc" id="L32">                lblMaxPriceValue.setText(&quot;500 €&quot;);</span>
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">            } else if (&quot;Ostali materijali&quot;.equals(selectedCategory)) {</span>
+<span class="fc" id="L34">                lblMaxPriceValue.setText(&quot;200 €&quot;);</span>
             }
         }
 
-<span class="nc bnc" id="L40" title="All 4 branches missed.">        if (sender == tfPrice &amp;&amp; &quot;textChanged&quot;.equals(event)) {</span>
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">        if (sender == tfPrice &amp;&amp; &quot;textChanged&quot;.equals(event)) {</span>
             try {
-<span class="nc" id="L42">                double enteredPrice = Double.parseDouble(tfPrice.getText());</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">                double maxPrice = &quot;Knjiga&quot;.equals((String) cbCategory.getSelectedItem()) ? 500 : 200;</span>
+<span class="fc" id="L40">                double enteredPrice = Double.parseDouble(tfPrice.getText());</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                double maxPrice = &quot;Knjiga&quot;.equals((String) cbCategory.getSelectedItem()) ? 500 : 200;</span>
 
-<span class="nc bnc" id="L45" title="All 2 branches missed.">                if (enteredPrice &gt; maxPrice) {</span>
-<span class="nc" id="L46">                    tfPrice.setBackground(Color.PINK); // Oboji polje crveno ako je cijena prevelika</span>
-<span class="nc" id="L47">                    btnSubmit.setEnabled(false); // Onemogući gumb Submit</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">                if (enteredPrice &gt; maxPrice) {</span>
+<span class="fc" id="L44">                    tfPrice.setBackground(Color.PINK); // Oboji polje crveno ako je cijena prevelika</span>
+<span class="fc" id="L45">                    btnSubmit.setEnabled(false); // Onemogući gumb Submit</span>
                 } else {
-<span class="nc" id="L49">                    tfPrice.setBackground(Color.WHITE); // Vrati na bijelo</span>
-<span class="nc" id="L50">                    btnSubmit.setEnabled(true); // Omogući gumb Submit</span>
+<span class="fc" id="L47">                    tfPrice.setBackground(Color.WHITE); // Vrati na bijelo</span>
+<span class="fc" id="L48">                    btnSubmit.setEnabled(true); // Omogući gumb Submit</span>
                 }
-<span class="nc" id="L52">            } catch (NumberFormatException ex) {</span>
-<span class="nc" id="L53">                tfPrice.setBackground(Color.PINK); // Oboji crveno ako nije validan broj</span>
-<span class="nc" id="L54">                btnSubmit.setEnabled(false); // Onemogući gumb Submit</span>
-<span class="nc" id="L55">            }</span>
+<span class="fc" id="L50">            } catch (NumberFormatException ex) {</span>
+<span class="fc" id="L51">                tfPrice.setBackground(Color.PINK); // Oboji crveno ako nije validan broj</span>
+<span class="fc" id="L52">                btnSubmit.setEnabled(false); // Onemogući gumb Submit</span>
+<span class="fc" id="L53">            }</span>
         }
-<span class="nc" id="L57">    }</span>
+<span class="fc" id="L55">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

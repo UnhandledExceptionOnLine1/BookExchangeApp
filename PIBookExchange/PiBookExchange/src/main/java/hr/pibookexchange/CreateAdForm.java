@@ -32,6 +32,8 @@ public class CreateAdForm extends javax.swing.JFrame {
     //Observer pattern Bruno (Tin ne diraj ovo)
     private NewAdNotifier notifyer;
     private List<User> admins;
+
+    //MEDIATOR
     private AdFormMediator mediator;
     ComboBoxPopulator populator = new ComboBoxPopulator(new SqlRepository());
 
@@ -47,6 +49,7 @@ public class CreateAdForm extends javax.swing.JFrame {
         notifyer = new NewAdNotifier();
         admins = new ArrayList<>();
         mediator = new AdFormMediator(cbCategory, tfPrice, lblMaxPriceValue, btnSubmit);
+        mediator.notify(cbCategory, "selectionChanged");
 
         try {   // punjenje liste admina
             Repository repo = RepositoryFactory.getRepository();
@@ -123,7 +126,14 @@ public class CreateAdForm extends javax.swing.JFrame {
         jLabel4.setText("Opis");
 
         cbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCategory.setSelectedIndex(1);
         cbCategory.setBorder(null);
+        cbCategory.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cbCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCategoryActionPerformed(evt);
+            }
+        });
 
         cbPayment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbPayment.setBorder(null);
@@ -168,7 +178,7 @@ public class CreateAdForm extends javax.swing.JFrame {
         lblMaxPrice.setText("max:");
 
         lblMaxPriceValue.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblMaxPriceValue.setText("N/A");
+        lblMaxPriceValue.setLabelFor(lblMaxPrice);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,17 +259,17 @@ public class CreateAdForm extends javax.swing.JFrame {
                             .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblMaxPrice)
-                        .addComponent(lblMaxPriceValue))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lblMaxPriceValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblMaxPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSubmit)
                     .addComponent(btnCancel))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -354,6 +364,10 @@ public class CreateAdForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
+    private void cbCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCategoryActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -421,7 +435,5 @@ public class CreateAdForm extends javax.swing.JFrame {
         System.out.println("Image Path Cleared in clearForm");
         tfPrice.setText("");
     }
-
-   
 
 }

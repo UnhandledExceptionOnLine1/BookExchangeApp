@@ -25,15 +25,15 @@ public final class DataSourceSingleton {
     private static final String USER = &quot;USER&quot;;
     private static final String PASSWORD = &quot;PASSWORD&quot;;
     
-<span class="nc" id="L28">    private static final Properties PROPERTIES = new Properties();</span>
+<span class="fc" id="L28">    private static final Properties PROPERTIES = new Properties();</span>
     
     static {
-<span class="nc" id="L31">        try (InputStream is = DataSourceSingleton.class.getResourceAsStream(PATH)){</span>
-<span class="nc" id="L32">            PROPERTIES.load(is);</span>
+<span class="fc" id="L31">        try (InputStream is = DataSourceSingleton.class.getResourceAsStream(PATH)){</span>
+<span class="fc" id="L32">            PROPERTIES.load(is);</span>
 <span class="nc" id="L33">        } catch (Exception e) {</span>
 <span class="nc" id="L34">            e.printStackTrace();</span>
-<span class="nc" id="L35">        }</span>
-<span class="nc" id="L36">    }</span>
+<span class="fc" id="L35">        }</span>
+<span class="fc" id="L36">    }</span>
 
     private DataSourceSingleton() {
     }
@@ -41,24 +41,24 @@ public final class DataSourceSingleton {
     private static DataSource instance;
 
     public static DataSource getInstance() {
-<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (instance == null) {</span>
-<span class="nc" id="L45">            instance = createInstance();</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if (instance == null) {</span>
+<span class="fc" id="L45">            instance = createInstance();</span>
         }
-<span class="nc" id="L47">        return instance;</span>
+<span class="fc" id="L47">        return instance;</span>
     }
 
     private static DataSource createInstance() {
-<span class="nc" id="L51">        SQLServerDataSource dataSource = new SQLServerDataSource();</span>
-<span class="nc" id="L52">        dataSource.setServerName(PROPERTIES.getProperty(SERVER_NAME));</span>
-<span class="nc" id="L53">        dataSource.setDatabaseName(PROPERTIES.getProperty(DATABASE_NAME));</span>
-<span class="nc" id="L54">        dataSource.setUser(PROPERTIES.getProperty(USER));</span>
-<span class="nc" id="L55">        dataSource.setPassword(PROPERTIES.getProperty(PASSWORD));</span>
+<span class="fc" id="L51">        SQLServerDataSource dataSource = new SQLServerDataSource();</span>
+<span class="fc" id="L52">        dataSource.setServerName(PROPERTIES.getProperty(SERVER_NAME));</span>
+<span class="fc" id="L53">        dataSource.setDatabaseName(PROPERTIES.getProperty(DATABASE_NAME));</span>
+<span class="fc" id="L54">        dataSource.setUser(PROPERTIES.getProperty(USER));</span>
+<span class="fc" id="L55">        dataSource.setPassword(PROPERTIES.getProperty(PASSWORD));</span>
         
-<span class="nc" id="L57">        dataSource.setEncrypt(true); // Osigurajte da je veza šifrirana</span>
-<span class="nc" id="L58">        dataSource.setTrustServerCertificate(false); // Ne vjerujte automatski serveru</span>
-<span class="nc" id="L59">        dataSource.setLoginTimeout(30); // Postavite timeout za povezivanje</span>
+<span class="fc" id="L57">        dataSource.setEncrypt(true); // Osigurajte da je veza šifrirana</span>
+<span class="fc" id="L58">        dataSource.setTrustServerCertificate(false); // Ne vjerujte automatski serveru</span>
+<span class="fc" id="L59">        dataSource.setLoginTimeout(30); // Postavite timeout za povezivanje</span>
     
-<span class="nc" id="L61">        return dataSource;</span>
+<span class="fc" id="L61">        return dataSource;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

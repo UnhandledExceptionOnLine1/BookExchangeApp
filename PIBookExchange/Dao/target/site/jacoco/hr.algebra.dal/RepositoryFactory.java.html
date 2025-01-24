@@ -16,21 +16,21 @@ public class RepositoryFactory {
     private static final String PATH = &quot;/config/repository.properties&quot;;
     private static final String CLASS_NAME = &quot;CLASS_NAME&quot;;
 
-<span class="nc" id="L19">    private static final Properties PROPERTIES = new Properties();</span>
+<span class="fc" id="L19">    private static final Properties PROPERTIES = new Properties();</span>
     private static Repository repository;
 
     static {
-<span class="nc" id="L23">        try (InputStream is = RepositoryFactory.class.getResourceAsStream(PATH)) {</span>
-<span class="nc" id="L24">            PROPERTIES.load(is);</span>
+<span class="fc" id="L23">        try (InputStream is = RepositoryFactory.class.getResourceAsStream(PATH)) {</span>
+<span class="fc" id="L24">            PROPERTIES.load(is);</span>
 
-<span class="nc" id="L26">            repository = (Repository) Class.forName(PROPERTIES.getProperty(CLASS_NAME))</span>
-<span class="nc" id="L27">                    .getDeclaredConstructor()</span>
-<span class="nc" id="L28">                    .newInstance();</span>
+<span class="fc" id="L26">            repository = (Repository) Class.forName(PROPERTIES.getProperty(CLASS_NAME))</span>
+<span class="fc" id="L27">                    .getDeclaredConstructor()</span>
+<span class="fc" id="L28">                    .newInstance();</span>
 
 <span class="nc" id="L30">        } catch (Exception e) {</span>
 <span class="nc" id="L31">            e.printStackTrace();</span>
-<span class="nc" id="L32">        }</span>
-<span class="nc" id="L33">    }</span>
+<span class="fc" id="L32">        }</span>
+<span class="fc" id="L33">    }</span>
 
     public static void main(String[] args) {
 <span class="nc" id="L36">        System.out.println(repository);</span>
@@ -40,12 +40,12 @@ public class RepositoryFactory {
     }
 
     public static Repository getRepository() {
-<span class="nc" id="L43">        return repository;</span>
+<span class="fc" id="L43">        return repository;</span>
     }
 
     //for testing purpose
     public static void setMockRepository(UserRepositoryInterface mockRepository) {
-<span class="nc" id="L48">        repository = mockRepository;</span>
-<span class="nc" id="L49">    }</span>
+<span class="fc" id="L48">        repository = mockRepository;</span>
+<span class="fc" id="L49">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

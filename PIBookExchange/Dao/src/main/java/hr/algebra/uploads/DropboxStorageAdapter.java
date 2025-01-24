@@ -17,7 +17,7 @@ import java.io.InputStream;
 public class DropboxStorageAdapter implements StorageService {
 
     private static final String ACCESS_TOKEN = 
-            "sl.CFJiy0A9z0ZjhEfnV9Gzo8rz6x0VzXJ2pKhWJRjr-Dd5JeiFEcFEooIYH-IuHMet34t-hNqDGpJshCYQfzaRNlC-6tksrgwoqf_nSI2M7CQpoGagCc8iv_6j05uVjNPS2c9CXlr4u53gufLAzYj8mPQ";
+            "sl.CFLau2FGDs2F_c2Vq-X90TXzaHj3nIlub99B1lMCXR6Br4S5pLjLssdav6kmBvPv6Z1hYasumENnTrYnomS6dSwJyycWlNoHC2Fm3IXKsRtrr2YfQpySQpey9gx_ypgm5LVkBTATuWkZ4adPbO8p-Xs";
 
     @Override
     public void uploadFile(String localPath, String remotePath) throws Exception {

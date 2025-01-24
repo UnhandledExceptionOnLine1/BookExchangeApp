@@ -12,12 +12,12 @@ import java.util.List;
  *
  * @author Tin
  */
-<span class="nc" id="L15">public class PriceSortingStrategy implements SortingStrategy {</span>
+<span class="fc" id="L15">public class PriceSortingStrategy implements SortingStrategy {</span>
 
     @Override
     public List&lt;AllAdsBasic&gt; sort(List&lt;AllAdsBasic&gt; ads) {
-<span class="nc" id="L19">        ads.sort(Comparator.comparingDouble(AllAdsBasic::getPrice)); // Sortiranje uzlazno po cijeni</span>
-<span class="nc" id="L20">        return ads;</span>
+<span class="fc" id="L19">        ads.sort(Comparator.comparingDouble(AllAdsBasic::getPrice)); // Sortiranje uzlazno po cijeni</span>
+<span class="fc" id="L20">        return ads;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

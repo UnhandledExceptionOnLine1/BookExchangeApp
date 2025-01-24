@@ -76,9 +76,9 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     private final DataSource dataSource;
 
     // Default constructor: uses DataSourceSingleton for the actual application
-<span class="nc" id="L79">    public SqlRepository() {</span>
-<span class="nc" id="L80">        this.dataSource = DataSourceSingleton.getInstance();</span>
-<span class="nc" id="L81">    }</span>
+<span class="fc" id="L79">    public SqlRepository() {</span>
+<span class="fc" id="L80">        this.dataSource = DataSourceSingleton.getInstance();</span>
+<span class="fc" id="L81">    }</span>
 
     // Constructor for testing: allows injecting a mock DataSource
 <span class="fc" id="L84">    public SqlRepository(DataSource dataSource) {</span>

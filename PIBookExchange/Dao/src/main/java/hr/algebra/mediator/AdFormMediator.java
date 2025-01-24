@@ -32,8 +32,6 @@ public class AdFormMediator {
                 lblMaxPriceValue.setText("500 €");
             } else if ("Ostali materijali".equals(selectedCategory)) {
                 lblMaxPriceValue.setText("200 €");
-            } else {
-                lblMaxPriceValue.setText("N/A");
             }
         }
 

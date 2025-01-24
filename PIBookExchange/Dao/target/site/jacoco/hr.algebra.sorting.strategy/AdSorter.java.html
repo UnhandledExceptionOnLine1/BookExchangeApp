@@ -11,21 +11,21 @@ import java.util.List;
  *
  * @author Tin
  */
-<span class="nc" id="L14">public class AdSorter {</span>
+<span class="fc" id="L14">public class AdSorter {</span>
 
     private SortingStrategy sortingStrategy;
 
     // Postavljanje strategije
     public void setSortingStrategy(SortingStrategy sortingStrategy) {
-<span class="nc" id="L20">        this.sortingStrategy = sortingStrategy;</span>
-<span class="nc" id="L21">    }</span>
+<span class="fc" id="L20">        this.sortingStrategy = sortingStrategy;</span>
+<span class="fc" id="L21">    }</span>
 
     // Sortiranje oglasa
     public List&lt;AllAdsBasic&gt; sortAds(List&lt;AllAdsBasic&gt; ads) {
-<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (sortingStrategy == null) {</span>
-<span class="nc" id="L26">            throw new IllegalStateException(&quot;Sorting strategy not set&quot;);</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (sortingStrategy == null) {</span>
+<span class="fc" id="L26">            throw new IllegalStateException(&quot;Sorting strategy not set&quot;);</span>
         }
-<span class="nc" id="L28">        return sortingStrategy.sort(ads);</span>
+<span class="fc" id="L28">        return sortingStrategy.sort(ads);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

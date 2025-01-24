@@ -1,10 +1,16 @@
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\builder\AdBuilderTest.java
+C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\dal\RepositoryFactoryTest.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\dal\sql\SqlRepositoryTest.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\mediator\AdFormMediatorTest.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\model\UserStringifyTest.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\model\UserTest.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\observer\NewAdNotifierTest.java
+C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\sorting\strategy\AdSorterTest.java
+C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\sorting\strategy\DateSortingStrategyTest.java
+C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\sorting\strategy\PriceSortingStrategyTest.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\strategy_pattern\ContactServiceTest.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\strategy_pattern\EmailContactStrTest.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\strategy_pattern\MessageContactStrTest.java
 C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\strategy_pattern\SmsContactStrTest.java
+C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\uploads\DropboxFetchTest.java
+C:\Users\Tin\Documents\GitHub\BookExchangeApp\PIBookExchange\Dao\src\test\java\hr\algebra\uploads\DropboxStorageAdapterTest.java
