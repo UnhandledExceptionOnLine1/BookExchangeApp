@@ -15,7 +15,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\bruno\AppData\Local\Temp\surefire12120667469900366266\surefirebooter-20250124134254734_3.jar C:\Users\bruno\AppData\Local\Temp\surefire12120667469900366266 2025-01-24T13-42-54_622-jvmRun1 surefire-20250124134254734_1tmp surefire_0-20250124134254734_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\bruno\AppData\Local\Temp\surefire13143237794837241575\surefirebooter-20250124134530909_3.jar C:\Users\bruno\AppData\Local\Temp\surefire13143237794837241575 2025-01-24T13-45-30_798-jvmRun1 surefire-20250124134530909_1tmp surefire_0-20250124134530909_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\target\test-classes;D:\Algebra\5. semestar\GitHubDesktop\BookExchangeApp\PIBookExchange\Dao\target\classes;C:\Users\bruno\.m2\repository\com\microsoft\sqlserver\mssql-jdbc\8.4.1.jre14\mssql-jdbc-8.4.1.jre14.jar;C:\Users\bruno\.m2\repository\com\dropbox\core\dropbox-core-sdk\5.4.0\dropbox-core-sdk-5.4.0.jar;C:\Users\bruno\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.7.9\jackson-core-2.7.9.jar;C:\Users\bruno\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk8\1.6.21\kotlin-stdlib-jdk8-1.6.21.jar;C:\Users\bruno\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.6.21\kotlin-stdlib-1.6.21.jar;C:\Users\bruno\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-common\1.6.21\kotlin-stdlib-common-1.6.21.jar;C:\Users\bruno\.m2\repository\org\jetbrains\annotations\13.0\annotations-13.0.jar;C:\Users\bruno\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk7\1.6.21\kotlin-stdlib-jdk7-1.6.21.jar;C:\Users\bruno\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\bruno\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\bruno\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\bruno\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\bruno\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\bruno\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\bruno\.m2\repository\org\mockito\mockito-core\4.5.1\mockito-core-4.5.1.jar;C:\Users\bruno\.m2\repository\net\bytebuddy\byte-buddy\1.12.9\byte-buddy-1.12.9.jar;C:\Users\bruno\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.9\byte-buddy-agent-1.12.9.jar;C:\Users\bruno\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\bruno\AppData\Local\Temp\surefire12120667469900366266\surefirebooter-20250124134254734_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\bruno\AppData\Local\Temp\surefire13143237794837241575\surefirebooter-20250124134530909_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.1+11-39"/>
@@ -59,7 +59,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="thisShouldContactUserByEmail" classname="hr.algebra.strategy_pattern.EmailContactStrTest" time="0.002">
+  <testcase name="thisShouldContactUserByEmail" classname="hr.algebra.strategy_pattern.EmailContactStrTest" time="0.003">
     <system-out><![CDATA[Sending Email to  : Welcome 
 ]]></system-out>
   </testcase>
