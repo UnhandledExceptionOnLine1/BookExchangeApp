@@ -282,19 +282,19 @@ public class RegisterPanel extends javax.swing.JPanel {
         if (username.isEmpty() || username.length() < 3) {
             lbUsernameError.setVisible(true);
             JOptionPane.showMessageDialog(this, "Korisničko ime mora sadržavati najmanje 3 znaka.", "Greška", JOptionPane.ERROR_MESSAGE);
-//            valid = false;
+            valid = false;
         }
         if (password.isEmpty() || password.length() < 5) {
             lbPasswordError.setVisible(true);
             JOptionPane.showMessageDialog(this, "Lozinka mora sadržavati najmanje 5 znakova.", "Greška", JOptionPane.ERROR_MESSAGE);
-//            valid = false;
+            valid = false;
         }
 //        if (!valid) {
 //            JOptionPane.showMessageDialog(this, "Molim popunite sva polja", "Greška", JOptionPane.ERROR_MESSAGE);
 //        }
 
         try {
-            ((UserRepositoryInterface)RepositoryFactory.getRepository()).createUser(new User(
+            ((UserRepositoryInterface) RepositoryFactory.getRepository()).createUser(new User(
                     username,
                     password,
                     name,
@@ -303,8 +303,10 @@ public class RegisterPanel extends javax.swing.JPanel {
                     telephone,
                     email,
                     false)); //postavljanje IDRola na Korisnik (boolean isAdmin = false)
-            JOptionPane.showMessageDialog(this, "Korisnik je uspješno registriran!", "Uspjeh", JOptionPane.INFORMATION_MESSAGE);
-            cleanTextFields();
+            if (valid) {
+                JOptionPane.showMessageDialog(this, "Korisnik je uspješno registriran!", "Uspjeh", JOptionPane.INFORMATION_MESSAGE);
+                cleanTextFields();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Dogodila se greška prilikom registracije. Pokušajte ponovo.", "Greška", JOptionPane.ERROR_MESSAGE);
@@ -379,7 +381,7 @@ public class RegisterPanel extends javax.swing.JPanel {
     }
 
     //test getters
-    public javax.swing.JButton getBtnRegister(){
+    public javax.swing.JButton getBtnRegister() {
         return btnRegister;
     }
 
@@ -485,5 +487,5 @@ public class RegisterPanel extends javax.swing.JPanel {
 
     public JTextField getTfUsername() {
         return tfUsername;
-    }    
+    }
 }
