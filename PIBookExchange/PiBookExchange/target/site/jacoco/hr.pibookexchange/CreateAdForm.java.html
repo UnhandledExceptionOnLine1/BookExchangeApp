@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateAdForm.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BookExchange</a> &gt; <a href="index.source.html" class="el_package">hr.pibookexchange</a> &gt; <span class="el_source">CreateAdForm.java</span></div><h1>CreateAdForm.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package hr.pibookexchange;
+
+import hr.algebra.dal.Repository;
+import hr.algebra.dal.RepositoryFactory;
+import hr.algebra.dal.UserRepositoryInterface;
+import hr.algebra.dal.sql.SqlRepository;
+import hr.algebra.model.Ad;
+import hr.algebra.model.User;
+import hr.algebra.observer.NewAdNotifier;
+import hr.algebra.uploads.DropboxStorageAdapter;
+import javax.swing.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import hr.algebra.uploads.StorageService;
+import hr.algebra.builder.AdBuilder;
+import hr.algebra.mediator.AdFormMediator;
+
+/**
+ *
+ * @author Tin
+ */
+public class CreateAdForm extends javax.swing.JFrame {
+
+<span class="nc" id="L29">    private String selectedImagePath = &quot;&quot;; // Čuva putanju slike</span>
+    private final StorageService storageService;
+
+    //Observer pattern Bruno (Tin ne diraj ovo)
+    private NewAdNotifier notifyer;
+    private List&lt;User&gt; admins;
+    private AdFormMediator mediator;
+<span class="nc" id="L36">    ComboBoxPopulator populator = new ComboBoxPopulator(new SqlRepository());</span>
+
+    /**
+     * Creates new form AddAdForm
+     */
+<span class="nc" id="L41">    public CreateAdForm() {</span>
+<span class="nc" id="L42">        initComponents();</span>
+<span class="nc" id="L43">        storageService = new DropboxStorageAdapter();</span>
+<span class="nc" id="L44">        populator.populateCategoryComboBox(cbCategory);</span>
+<span class="nc" id="L45">        populator.populatePaymentComboBox(cbPayment);</span>
+
+<span class="nc" id="L47">        notifyer = new NewAdNotifier();</span>
+<span class="nc" id="L48">        admins = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L49">        mediator = new AdFormMediator(cbCategory, tfPrice, lblMaxPriceValue, btnSubmit);</span>
+
+        try {   // punjenje liste admina
+<span class="nc" id="L52">            Repository repo = RepositoryFactory.getRepository();</span>
+<span class="nc" id="L53">            admins = ((UserRepositoryInterface) repo).selectAllUsers();</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            for (User user : admins) {</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                if (user.getIsAdmin()) {</span>
+<span class="nc" id="L56">                    notifyer.add(user);</span>
+                }
+<span class="nc" id="L58">            }</span>
+<span class="nc" id="L59">        } catch (Exception e) {</span>
+<span class="nc" id="L60">            JOptionPane.showMessageDialog(this,</span>
+<span class="nc" id="L61">                    &quot;Error loading users: &quot; + e.getMessage(),</span>
+                    &quot;Error&quot;,
+                    JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L64">        }</span>
+
+<span class="nc" id="L66">        cbCategory.addActionListener(e -&gt; mediator.notify(cbCategory, &quot;selectionChanged&quot;));</span>
+
+<span class="nc" id="L68">        tfPrice.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {</span>
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+<span class="nc" id="L71">                mediator.notify(tfPrice, &quot;textChanged&quot;);</span>
+<span class="nc" id="L72">            }</span>
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+<span class="nc" id="L76">                mediator.notify(tfPrice, &quot;textChanged&quot;);</span>
+<span class="nc" id="L77">            }</span>
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+<span class="nc" id="L81">                mediator.notify(tfPrice, &quot;textChanged&quot;);</span>
+<span class="nc" id="L82">            }</span>
+        });
+
+<span class="nc" id="L85">    }</span>
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+<span class="nc" id="L96">        jLabel1 = new javax.swing.JLabel();</span>
+<span class="nc" id="L97">        jLabel2 = new javax.swing.JLabel();</span>
+<span class="nc" id="L98">        jLabel3 = new javax.swing.JLabel();</span>
+<span class="nc" id="L99">        jLabel4 = new javax.swing.JLabel();</span>
+<span class="nc" id="L100">        cbCategory = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L101">        cbPayment = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L102">        tfPrice = new javax.swing.JTextField();</span>
+<span class="nc" id="L103">        jScrollPane1 = new javax.swing.JScrollPane();</span>
+<span class="nc" id="L104">        taDescription = new javax.swing.JTextArea();</span>
+<span class="nc" id="L105">        btnSubmit = new javax.swing.JButton();</span>
+<span class="nc" id="L106">        btnCancel = new javax.swing.JButton();</span>
+<span class="nc" id="L107">        jLabel5 = new javax.swing.JLabel();</span>
+<span class="nc" id="L108">        btnUploadImage = new javax.swing.JButton();</span>
+<span class="nc" id="L109">        jLabel6 = new javax.swing.JLabel();</span>
+<span class="nc" id="L110">        tfAdName1 = new javax.swing.JTextField();</span>
+<span class="nc" id="L111">        jLabel7 = new javax.swing.JLabel();</span>
+<span class="nc" id="L112">        lblMaxPrice = new javax.swing.JLabel();</span>
+<span class="nc" id="L113">        lblMaxPriceValue = new javax.swing.JLabel();</span>
+
+<span class="nc" id="L115">        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</span>
+
+<span class="nc" id="L117">        jLabel1.setText(&quot;Naziv:&quot;);</span>
+
+<span class="nc" id="L119">        jLabel2.setText(&quot;Vrsta Naplate&quot;);</span>
+
+<span class="nc" id="L121">        jLabel3.setText(&quot;Kategorija&quot;);</span>
+
+<span class="nc" id="L123">        jLabel4.setText(&quot;Opis&quot;);</span>
+
+<span class="nc" id="L125">        cbCategory.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot;, &quot;Item 4&quot; }));</span>
+<span class="nc" id="L126">        cbCategory.setBorder(null);</span>
+
+<span class="nc" id="L128">        cbPayment.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot;, &quot;Item 4&quot; }));</span>
+<span class="nc" id="L129">        cbPayment.setBorder(null);</span>
+
+<span class="nc" id="L131">        tfPrice.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true));</span>
+
+<span class="nc" id="L133">        taDescription.setColumns(20);</span>
+<span class="nc" id="L134">        taDescription.setRows(5);</span>
+<span class="nc" id="L135">        taDescription.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true));</span>
+<span class="nc" id="L136">        jScrollPane1.setViewportView(taDescription);</span>
+
+<span class="nc" id="L138">        btnSubmit.setText(&quot;Submit&quot;);</span>
+<span class="nc" id="L139">        btnSubmit.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L141">                btnSubmitActionPerformed(evt);</span>
+<span class="nc" id="L142">            }</span>
+        });
+
+<span class="nc" id="L145">        btnCancel.setText(&quot;Cancel&quot;);</span>
+<span class="nc" id="L146">        btnCancel.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L148">                btnCancelActionPerformed(evt);</span>
+<span class="nc" id="L149">            }</span>
+        });
+
+<span class="nc" id="L152">        jLabel5.setText(&quot;Odabrana slika:&quot;);</span>
+
+<span class="nc" id="L154">        btnUploadImage.setText(&quot;Odaberi sliku&quot;);</span>
+<span class="nc" id="L155">        btnUploadImage.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L157">                btnUploadImageActionPerformed(evt);</span>
+<span class="nc" id="L158">            }</span>
+        });
+
+<span class="nc" id="L161">        jLabel6.setText(&quot;Cijena:&quot;);</span>
+
+<span class="nc" id="L163">        tfAdName1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true));</span>
+
+<span class="nc" id="L165">        jLabel7.setText(&quot;€&quot;);</span>
+
+<span class="nc" id="L167">        lblMaxPrice.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 10)); // NOI18N</span>
+<span class="nc" id="L168">        lblMaxPrice.setText(&quot;max:&quot;);</span>
+
+<span class="nc" id="L170">        lblMaxPriceValue.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 10)); // NOI18N</span>
+<span class="nc" id="L171">        lblMaxPriceValue.setText(&quot;N/A&quot;);</span>
+
+<span class="nc" id="L173">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="nc" id="L174">        getContentPane().setLayout(layout);</span>
+<span class="nc" id="L175">        layout.setHorizontalGroup(</span>
+<span class="nc" id="L176">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L177">            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L178">                .addGap(67, 67, 67)</span>
+<span class="nc" id="L179">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L180">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L181">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L182">                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
+<span class="nc" id="L183">                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)</span>
+<span class="nc" id="L184">                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L185">                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L186">                                .addGap(18, 18, 18))</span>
+<span class="nc" id="L187">                            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L188">                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L189">                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L190">                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L191">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))</span>
+<span class="nc" id="L192">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L193">                            .addComponent(cbPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L194">                            .addComponent(cbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L195">                            .addComponent(tfAdName1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L196">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L197">                            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L198">                                .addGap(66, 66, 66)</span>
+<span class="nc" id="L199">                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L200">                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L201">                                    .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L202">                            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L203">                                .addGap(49, 49, 49)</span>
+<span class="nc" id="L204">                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L205">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L206">                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L207">                                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L208">                                        .addComponent(lblMaxPrice)</span>
+<span class="nc" id="L209">                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L210">                                        .addComponent(lblMaxPriceValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</span>
+<span class="nc" id="L211">                                    .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L212">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L213">                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))</span>
+<span class="nc" id="L214">                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L215">                        .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L216">                            .addComponent(btnSubmit)</span>
+<span class="nc" id="L217">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L218">                            .addComponent(btnCancel))</span>
+<span class="nc" id="L219">                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L220">                .addContainerGap(130, Short.MAX_VALUE))</span>
+        );
+<span class="nc" id="L222">        layout.setVerticalGroup(</span>
+<span class="nc" id="L223">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L224">            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L225">                .addGap(27, 27, 27)</span>
+<span class="nc" id="L226">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L227">                    .addComponent(tfAdName1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L228">                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L229">                    .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L230">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L231">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L232">                        .addGap(19, 19, 19)</span>
+<span class="nc" id="L233">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L234">                            .addComponent(cbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L235">                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L236">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L237">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L238">                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L239">                .addGap(27, 27, 27)</span>
+<span class="nc" id="L240">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L241">                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L242">                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L243">                        .addComponent(cbPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L244">                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L245">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L246">                        .addGap(1, 1, 1)</span>
+<span class="nc" id="L247">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L248">                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L249">                            .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))</span>
+<span class="nc" id="L250">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L251">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L252">                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L253">                        .addComponent(lblMaxPrice)</span>
+<span class="nc" id="L254">                        .addComponent(lblMaxPriceValue))</span>
+<span class="nc" id="L255">                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L256">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L257">                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L258">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L259">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L260">                    .addComponent(btnSubmit)</span>
+<span class="nc" id="L261">                    .addComponent(btnCancel))</span>
+<span class="nc" id="L262">                .addContainerGap(24, Short.MAX_VALUE))</span>
+        );
+
+<span class="nc" id="L265">        pack();</span>
+<span class="nc" id="L266">        setLocationRelativeTo(null);</span>
+<span class="nc" id="L267">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    private void btnUploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadImageActionPerformed
+<span class="nc" id="L270">        JFileChooser fileChooser = new JFileChooser();</span>
+<span class="nc" id="L271">        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);</span>
+<span class="nc" id="L272">        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter(&quot;Image files&quot;, &quot;jpg&quot;, &quot;png&quot;, &quot;jpeg&quot;));</span>
+
+<span class="nc" id="L274">        int result = fileChooser.showOpenDialog(this);</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">        if (result == JFileChooser.APPROVE_OPTION) {</span>
+<span class="nc" id="L276">            selectedImagePath = fileChooser.getSelectedFile().getAbsolutePath();</span>
+<span class="nc" id="L277">            jLabel5.setText(&quot;Odabrana slika: &quot; + selectedImagePath);</span>
+<span class="nc" id="L278">            System.out.println(&quot;Selected Image Path: &quot; + selectedImagePath); // Debug log</span>
+        } else {
+<span class="nc" id="L280">            JOptionPane.showMessageDialog(this, &quot;Nije odabrana slika.&quot;);</span>
+        }
+<span class="nc" id="L282">    }//GEN-LAST:event_btnUploadImageActionPerformed</span>
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+<span class="nc" id="L285">        String adName = tfAdName1.getText();</span>
+<span class="nc" id="L286">        String category = cbCategory.getSelectedItem().toString();</span>
+<span class="nc" id="L287">        String paymentType = cbPayment.getSelectedItem().toString();</span>
+<span class="nc" id="L288">        String description = taDescription.getText();</span>
+<span class="nc" id="L289">        String imagePath = selectedImagePath;</span>
+<span class="nc" id="L290">        String priceText = tfPrice.getText();</span>
+        double price;
+        try {
+<span class="nc" id="L293">            price = Double.parseDouble(priceText);</span>
+<span class="nc" id="L294">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L295">            JOptionPane.showMessageDialog(this, &quot;Please enter a valid number for the price.&quot;, &quot;Invalid Input&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L296">            return;</span>
+<span class="nc" id="L297">        }</span>
+<span class="nc" id="L298">        int korisnikID = 1; //default id za testiranje</span>
+
+<span class="nc bnc" id="L300" title="All 8 branches missed.">        if (adName.isEmpty() || category.isEmpty() || paymentType.isEmpty() || description.isEmpty()) {</span>
+<span class="nc" id="L301">            JOptionPane.showMessageDialog(this, &quot;Please fill out all fields before submitting.&quot;);</span>
+<span class="nc" id="L302">            return;</span>
+        }
+
+        //UPload na DROPBOX
+<span class="nc" id="L306">        String imageName = &quot;&quot;; // Spremanje imena slike</span>
+<span class="nc bnc" id="L307" title="All 2 branches missed.">        if (!selectedImagePath.isEmpty()) {</span>
+            try {
+                //Rezanje imena iz putanje
+<span class="nc" id="L310">                imageName = new File(selectedImagePath).getName(); // Dobivamo npr. &quot;programiranje.jpg&quot;</span>
+
+                // Pošalji sliku na Dropbox ---ADAPTER
+<span class="nc" id="L313">                String remotePath = &quot;/&quot; + imageName; // Putanja na Dropboxu</span>
+<span class="nc" id="L314">                storageService.uploadFile(selectedImagePath, remotePath);</span>
+
+<span class="nc" id="L316">                JOptionPane.showMessageDialog(this, &quot;Slika je uspješno prenesena na Dropbox!&quot;);</span>
+<span class="nc" id="L317">            } catch (Exception e) {</span>
+<span class="nc" id="L318">                e.printStackTrace();</span>
+<span class="nc" id="L319">                JOptionPane.showMessageDialog(this, &quot;Došlo je do pogreške prilikom prijenosa slike na Dropbox.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L320">                return;</span>
+<span class="nc" id="L321">            }</span>
+        } else {
+<span class="nc" id="L323">            JOptionPane.showMessageDialog(this, &quot;Nije odabrana slika. Molimo odaberite sliku prije nego što nastavite.&quot;);</span>
+<span class="nc" id="L324">            return;</span>
+        }
+        try {
+<span class="nc" id="L327">            SqlRepository repo = new SqlRepository();</span>
+<span class="nc" id="L328">            int categoryId = repo.getCategoryIdByName(category);</span>
+<span class="nc" id="L329">            int paymentId = repo.getPaymentIdByName(paymentType);</span>
+
+<span class="nc" id="L331">            Ad ad = new AdBuilder(adName, korisnikID)</span>
+<span class="nc" id="L332">                    .categoryId(categoryId)</span>
+<span class="nc" id="L333">                    .paymentTypeId(paymentId)</span>
+<span class="nc" id="L334">                    .imagePath(imageName)</span>
+<span class="nc" id="L335">                    .description(description)</span>
+<span class="nc" id="L336">                    .price(price)</span>
+<span class="nc" id="L337">                    .build();</span>
+
+<span class="nc" id="L339">            int x = repo.createAd(ad);</span>
+
+<span class="nc" id="L341">            JOptionPane.showMessageDialog(this, &quot;Oglas je uspješno spremljen!&quot;);</span>
+<span class="nc" id="L342">            notifyer.notify(&quot;Dodan je novi oglas. Oglas ID: &quot; + x);</span>
+<span class="nc" id="L343">            clearForm(); // Clear the form after successful submission</span>
+
+<span class="nc" id="L345">        } catch (Exception ex) {</span>
+<span class="nc" id="L346">            JOptionPane.showMessageDialog(this, &quot;Error finding category: &quot; + ex.getMessage());</span>
+<span class="nc" id="L347">            ex.printStackTrace();</span>
+<span class="nc" id="L348">            return;</span>
+<span class="nc" id="L349">        }</span>
+
+<span class="nc" id="L351">    }//GEN-LAST:event_btnSubmitActionPerformed</span>
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+<span class="nc" id="L354">        this.dispose();</span>
+<span class="nc" id="L355">    }//GEN-LAST:event_btnCancelActionPerformed</span>
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+<span class="nc bnc" id="L367" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="nc bnc" id="L368" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="nc" id="L369">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L370">                    break;</span>
+                }
+            }
+<span class="nc" id="L373">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L374">            java.util.logging.Logger.getLogger(CreateAdForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L375">        } catch (InstantiationException ex) {</span>
+<span class="nc" id="L376">            java.util.logging.Logger.getLogger(CreateAdForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L377">        } catch (IllegalAccessException ex) {</span>
+<span class="nc" id="L378">            java.util.logging.Logger.getLogger(CreateAdForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L379">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
+<span class="nc" id="L380">            java.util.logging.Logger.getLogger(CreateAdForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L381">        }</span>
+        //&lt;/editor-fold&gt;
+        //&lt;/editor-fold&gt;
+
+        /* Create and display the form */
+<span class="nc" id="L386">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+            public void run() {
+<span class="nc" id="L388">                new CreateAdForm().setVisible(true);</span>
+<span class="nc" id="L389">            }</span>
+        });
+<span class="nc" id="L391">    }</span>
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton btnUploadImage;
+    private javax.swing.JComboBox&lt;String&gt; cbCategory;
+    private javax.swing.JComboBox&lt;String&gt; cbPayment;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMaxPrice;
+    private javax.swing.JLabel lblMaxPriceValue;
+    private javax.swing.JTextArea taDescription;
+    private javax.swing.JTextField tfAdName1;
+    private javax.swing.JTextField tfPrice;
+    // End of variables declaration//GEN-END:variables
+
+    private void clearForm() {
+<span class="nc" id="L415">        tfAdName1.setText(&quot;&quot;);</span>
+<span class="nc" id="L416">        cbCategory.setSelectedIndex(0);</span>
+<span class="nc" id="L417">        cbPayment.setSelectedIndex(0);</span>
+<span class="nc" id="L418">        taDescription.setText(&quot;&quot;);</span>
+<span class="nc" id="L419">        jLabel5.setText(&quot;Odabrana slika:&quot;);</span>
+<span class="nc" id="L420">        selectedImagePath = &quot;&quot;;</span>
+<span class="nc" id="L421">        System.out.println(&quot;Image Path Cleared in clearForm&quot;);</span>
+<span class="nc" id="L422">        tfPrice.setText(&quot;&quot;);</span>
+<span class="nc" id="L423">    }</span>
+
+   
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

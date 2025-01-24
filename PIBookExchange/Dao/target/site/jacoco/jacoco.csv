@@ -6,7 +6,7 @@ Dao,hr.algebra.builder,AdBuilder,77,0,0,0,26,0,8,0,8,0
 Dao,hr.algebra.observer,NewAdNotifier,0,40,0,2,0,11,0,6,0,5
 Dao,hr.algebra.dal.sql,SqlRepository,357,351,26,16,83,84,27,11,10,7
 Dao,hr.algebra.dal.sql,DataSourceSingleton,57,0,2,0,19,0,4,0,3,0
-Dao,hr.algebra.dal,RepositoryFactory,34,0,0,0,13,0,3,0,3,0
+Dao,hr.algebra.dal,RepositoryFactory,37,0,0,0,15,0,4,0,4,0
 Dao,hr.algebra.sorting.strategy,AdSorter,20,0,2,0,6,0,4,0,3,0
 Dao,hr.algebra.sorting.strategy,PriceSortingStrategy,9,0,0,0,3,0,2,0,2,0
 Dao,hr.algebra.sorting.strategy,DateSortingStrategy,10,0,0,0,3,0,2,0,2,0

@@ -4,7 +4,6 @@
  */
 package hr.algebra.dal;
 
-
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -42,5 +41,10 @@ public class RepositoryFactory {
 
     public static Repository getRepository() {
         return repository;
+    }
+
+    //for testing purpose
+    public static void setMockRepository(UserRepositoryInterface mockRepository) {
+        repository = mockRepository;
     }
 }

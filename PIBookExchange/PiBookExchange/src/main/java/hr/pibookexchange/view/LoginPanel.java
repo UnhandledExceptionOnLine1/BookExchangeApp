@@ -152,21 +152,20 @@ public class LoginPanel extends javax.swing.JPanel {
         String username = txtUsername.getText();
         String password = new String(txtPassword.getPassword());
 
-        boolean valid = true;
-
+//        boolean valid = true;
         if (username.isEmpty() || username.length() < 3) {
             lblUsernameError.setVisible(true);
             JOptionPane.showMessageDialog(this, "Korisničko ime mora sadržavati najmanje 3 znaka.", "Greška", JOptionPane.ERROR_MESSAGE);
-            valid = false;
+//            valid = false;
         }
         if (password.isEmpty() || password.length() < 5) {
             lblPassswordError.setVisible(true);
             JOptionPane.showMessageDialog(this, "Lozinka mora sadržavati najmanje 5 znakova.", "Greška", JOptionPane.ERROR_MESSAGE);
-            valid = false;
+//            valid = false;
         }
-        if (!valid) {
-            JOptionPane.showMessageDialog(this, "Molim popunite sva polja", "Greška", JOptionPane.ERROR_MESSAGE);
-        }
+//        if (!valid) {
+//            JOptionPane.showMessageDialog(this, "Molim popunite sva polja", "Greška", JOptionPane.ERROR_MESSAGE);
+//        }
 
         try {
             Optional<User> user = ((UserRepositoryInterface) RepositoryFactory.getRepository()).loginUser(username, password);
@@ -174,7 +173,7 @@ public class LoginPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Prijava uspješna!", "Prijava", JOptionPane.INFORMATION_MESSAGE);
                 HomePage homePage = new HomePage();
                 homePage.setVisible(true);
-                if(parentFrame!=null){
+                if (parentFrame != null) {
                     parentFrame.dispose();
                 }
             } else {
@@ -214,4 +213,31 @@ public class LoginPanel extends javax.swing.JPanel {
         lblUsernameError.setVisible(false);
         lblPassswordError.setVisible(false);
     }
+
+    // below getter methods are needed for tests
+    public javax.swing.JTextField getTxtUsername() {
+        return txtUsername;
+    }
+
+    public javax.swing.JPasswordField getTxtPassword() {
+        return txtPassword;
+    }
+
+    public javax.swing.JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    public javax.swing.JLabel getLblUsernameError() {
+        return lblUsernameError;
+    }
+
+    public javax.swing.JLabel getLblPassswordError() {
+        return lblPassswordError;
+    }
+
+    public MainFrame getParentFrame() {
+        return parentFrame;
+    }
+
+    // end of getter methods for tests
 }

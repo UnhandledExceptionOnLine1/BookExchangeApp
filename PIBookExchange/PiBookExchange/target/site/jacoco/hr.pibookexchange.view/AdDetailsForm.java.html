@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdDetailsForm.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BookExchange</a> &gt; <a href="index.source.html" class="el_package">hr.pibookexchange.view</a> &gt; <span class="el_source">AdDetailsForm.java</span></div><h1>AdDetailsForm.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package hr.pibookexchange.view;
+
+import hr.algebra.dal.AdRepositoryInterface;
+import hr.algebra.dal.RepositoryFactory;
+import hr.algebra.model.AdDetails;
+import hr.algebra.uploads.DropboxFetch;
+import java.awt.Image;
+import java.util.Optional;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Tin
+ */
+public class AdDetailsForm extends javax.swing.JFrame {
+
+<span class="nc" id="L22">    public AdDetailsForm(int adId) {</span>
+<span class="nc" id="L23">        initComponents();</span>
+<span class="nc" id="L24">        loadAdDetails(adId); // Method to fetch and populate details</span>
+
+<span class="nc" id="L26">    }</span>
+
+    private ImageIcon scaleImageIcon(ImageIcon icon, int width, int height) {
+<span class="nc" id="L29">        Image img = icon.getImage();</span>
+<span class="nc" id="L30">        Image newImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);</span>
+<span class="nc" id="L31">        return new ImageIcon(newImg);</span>
+    }
+
+    private void loadAdDetails(int adId) {
+        try {
+            // Fetch the ad details using the repository
+<span class="nc" id="L37">            Optional&lt;AdDetails&gt; optionalAd = ((AdRepositoryInterface) RepositoryFactory.getRepository()).getAd(adId);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            if (optionalAd.isPresent()) {</span>
+<span class="nc" id="L39">                AdDetails ad = optionalAd.get();</span>
+
+                // Populate form fields
+<span class="nc" id="L42">                tfName.setText(ad.getName());</span>
+<span class="nc" id="L43">                tfCategory.setText(ad.getCategoryName());</span>
+<span class="nc" id="L44">                tfPayment.setText(ad.getPaymentTypeName());</span>
+<span class="nc" id="L45">                tfPrice.setText(String.valueOf(ad.getPrice()));</span>
+<span class="nc" id="L46">                tfUser.setText(ad.getUserName());</span>
+<span class="nc" id="L47">                taDescription.setText(ad.getDescription());</span>
+
+                // Fetch and set the image
+<span class="nc bnc" id="L50" title="All 4 branches missed.">                if (ad.getImagePath() != null &amp;&amp; !ad.getImagePath().isEmpty()) {</span>
+<span class="nc" id="L51">                    DropboxFetch dropboxFetch = new DropboxFetch();</span>
+<span class="nc" id="L52">                    ImageIcon imageIcon = dropboxFetch.fetchImage(&quot;/&quot; + ad.getImagePath());</span>
+<span class="nc" id="L53">                    ImageIcon scaledIcon=scaleImageIcon(imageIcon, lblPicture.getWidth(), lblPicture.getHeight());</span>
+<span class="nc" id="L54">                    lblPicture.setIcon(scaledIcon);</span>
+<span class="nc" id="L55">                } else {</span>
+<span class="nc" id="L56">                    lblPicture.setText(&quot;Nema slike&quot;);</span>
+                }
+<span class="nc" id="L58">            } else {</span>
+<span class="nc" id="L59">                JOptionPane.showMessageDialog(this, &quot;Oglas nije pronađen.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
+            }
+<span class="nc" id="L61">        } catch (Exception e) {</span>
+<span class="nc" id="L62">            e.printStackTrace();</span>
+<span class="nc" id="L63">            JOptionPane.showMessageDialog(this, &quot;Došlo je do greške prilikom dohvaćanja oglasa.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L64">        }</span>
+<span class="nc" id="L65">    }</span>
+
+    /**
+     * Creates new form AdDetailsForm
+     */
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+<span class="nc" id="L79">        jLabel3 = new javax.swing.JLabel();</span>
+<span class="nc" id="L80">        jLabel7 = new javax.swing.JLabel();</span>
+<span class="nc" id="L81">        tfPayment = new javax.swing.JTextField();</span>
+<span class="nc" id="L82">        tfUser = new javax.swing.JTextField();</span>
+<span class="nc" id="L83">        jLabel2 = new javax.swing.JLabel();</span>
+<span class="nc" id="L84">        jLabel5 = new javax.swing.JLabel();</span>
+<span class="nc" id="L85">        btnBack = new javax.swing.JButton();</span>
+<span class="nc" id="L86">        tfName = new javax.swing.JTextField();</span>
+<span class="nc" id="L87">        btnBuy = new javax.swing.JButton();</span>
+<span class="nc" id="L88">        jLabel6 = new javax.swing.JLabel();</span>
+<span class="nc" id="L89">        btnFavourite = new javax.swing.JButton();</span>
+<span class="nc" id="L90">        tfPrice = new javax.swing.JTextField();</span>
+<span class="nc" id="L91">        taDescription = new javax.swing.JTextArea();</span>
+<span class="nc" id="L92">        tfCategory = new javax.swing.JTextField();</span>
+<span class="nc" id="L93">        lblPicture = new javax.swing.JLabel();</span>
+<span class="nc" id="L94">        jLabel8 = new javax.swing.JLabel();</span>
+
+<span class="nc" id="L96">        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L97">        setResizable(false);</span>
+
+<span class="nc" id="L99">        jLabel3.setText(&quot;Kategorija:&quot;);</span>
+
+<span class="nc" id="L101">        jLabel7.setText(&quot;Korisnik:&quot;);</span>
+
+<span class="nc" id="L103">        tfPayment.setEditable(false);</span>
+<span class="nc" id="L104">        tfPayment.setText(&quot; &quot;);</span>
+<span class="nc" id="L105">        tfPayment.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));</span>
+<span class="nc" id="L106">        tfPayment.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L108">                tfPaymentActionPerformed(evt);</span>
+<span class="nc" id="L109">            }</span>
+        });
+
+<span class="nc" id="L112">        tfUser.setEditable(false);</span>
+<span class="nc" id="L113">        tfUser.setText(&quot; &quot;);</span>
+<span class="nc" id="L114">        tfUser.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));</span>
+
+<span class="nc" id="L116">        jLabel2.setText(&quot;Vrsta Naplate:&quot;);</span>
+
+<span class="nc" id="L118">        jLabel5.setText(&quot;Naziv:&quot;);</span>
+
+<span class="nc" id="L120">        btnBack.setText(&quot;Zatvori&quot;);</span>
+<span class="nc" id="L121">        btnBack.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L123">                btnBackActionPerformed(evt);</span>
+<span class="nc" id="L124">            }</span>
+        });
+
+<span class="nc" id="L127">        tfName.setEditable(false);</span>
+<span class="nc" id="L128">        tfName.setHorizontalAlignment(javax.swing.JTextField.LEFT);</span>
+<span class="nc" id="L129">        tfName.setText(&quot; &quot;);</span>
+<span class="nc" id="L130">        tfName.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));</span>
+<span class="nc" id="L131">        tfName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));</span>
+
+<span class="nc" id="L133">        btnBuy.setText(&quot;Kupi&quot;);</span>
+<span class="nc" id="L134">        btnBuy.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L136">                btnBuyActionPerformed(evt);</span>
+<span class="nc" id="L137">            }</span>
+        });
+
+<span class="nc" id="L140">        jLabel6.setText(&quot;Cijena:&quot;);</span>
+
+<span class="nc" id="L142">        btnFavourite.setText(&quot;Favorit&quot;);</span>
+<span class="nc" id="L143">        btnFavourite.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L145">                btnFavouriteActionPerformed(evt);</span>
+<span class="nc" id="L146">            }</span>
+        });
+
+<span class="nc" id="L149">        tfPrice.setEditable(false);</span>
+<span class="nc" id="L150">        tfPrice.setText(&quot; &quot;);</span>
+<span class="nc" id="L151">        tfPrice.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));</span>
+
+<span class="nc" id="L153">        taDescription.setEditable(false);</span>
+<span class="nc" id="L154">        taDescription.setColumns(20);</span>
+<span class="nc" id="L155">        taDescription.setRows(5);</span>
+<span class="nc" id="L156">        taDescription.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));</span>
+
+<span class="nc" id="L158">        tfCategory.setEditable(false);</span>
+<span class="nc" id="L159">        tfCategory.setHorizontalAlignment(javax.swing.JTextField.LEFT);</span>
+<span class="nc" id="L160">        tfCategory.setText(&quot; &quot;);</span>
+<span class="nc" id="L161">        tfCategory.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 1, true), javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1)));</span>
+<span class="nc" id="L162">        tfCategory.setMargin(new java.awt.Insets(10, 6, 2, 6));</span>
+
+<span class="nc" id="L164">        lblPicture.setMaximumSize(new java.awt.Dimension(500, 342));</span>
+<span class="nc" id="L165">        lblPicture.setMinimumSize(new java.awt.Dimension(500, 342));</span>
+<span class="nc" id="L166">        lblPicture.setName(&quot;&quot;); // NOI18N</span>
+<span class="nc" id="L167">        lblPicture.setPreferredSize(new java.awt.Dimension(500, 342));</span>
+
+<span class="nc" id="L169">        jLabel8.setText(&quot;€&quot;);</span>
+
+<span class="nc" id="L171">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="nc" id="L172">        getContentPane().setLayout(layout);</span>
+<span class="nc" id="L173">        layout.setHorizontalGroup(</span>
+<span class="nc" id="L174">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L175">            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L176">                .addGap(59, 59, 59)</span>
+<span class="nc" id="L177">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L178">                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L179">                        .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L180">                            .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L181">                            .addGap(18, 18, 18)</span>
+<span class="nc" id="L182">                            .addComponent(btnFavourite, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L183">                            .addGap(246, 246, 246)</span>
+<span class="nc" id="L184">                            .addComponent(btnBack))</span>
+<span class="nc" id="L185">                        .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L186">                            .addComponent(lblPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L187">                            .addGap(6, 6, 6)))</span>
+<span class="nc" id="L188">                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L189">                        .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L190">                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L191">                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L192">                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L193">                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L194">                                    .addComponent(jLabel5)))</span>
+<span class="nc" id="L195">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L196">                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L197">                                .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L198">                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L199">                                        .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L200">                                            .addComponent(tfCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L201">                                            .addGap(13, 13, 13))</span>
+<span class="nc" id="L202">                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
+<span class="nc" id="L203">                                            .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L204">                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))</span>
+<span class="nc" id="L205">                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L206">                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L207">                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L208">                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
+<span class="nc" id="L209">                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L210">                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))</span>
+<span class="nc" id="L211">                                        .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L212">                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L213">                                            .addGap(24, 24, 24)))</span>
+<span class="nc" id="L214">                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)</span>
+<span class="nc" id="L215">                                        .addComponent(tfPayment, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)</span>
+<span class="nc" id="L216">                                        .addComponent(tfUser)))</span>
+<span class="nc" id="L217">                                .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L218">                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</span>
+<span class="nc" id="L219">                        .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L220">                            .addComponent(taDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L221">                            .addGap(0, 58, Short.MAX_VALUE)))))</span>
+        );
+<span class="nc" id="L223">        layout.setVerticalGroup(</span>
+<span class="nc" id="L224">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L225">            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L226">                .addGap(19, 19, 19)</span>
+<span class="nc" id="L227">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L228">                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L229">                    .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L230">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L231">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L232">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L233">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L234">                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L235">                            .addComponent(tfCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L236">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L237">                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L238">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L239">                        .addComponent(lblPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L240">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L241">                        .addComponent(taDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L242">                        .addGap(12, 12, 12)</span>
+<span class="nc" id="L243">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L244">                            .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L245">                            .addComponent(btnFavourite, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L246">                            .addComponent(btnBack)))</span>
+<span class="nc" id="L247">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L248">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L249">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L250">                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L251">                            .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L252">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L253">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L254">                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L255">                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L256">                            .addComponent(tfPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L257">                            .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))</span>
+<span class="nc" id="L258">                .addContainerGap(38, Short.MAX_VALUE))</span>
+        );
+
+<span class="nc" id="L261">        pack();</span>
+<span class="nc" id="L262">        setLocationRelativeTo(null);</span>
+<span class="nc" id="L263">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+<span class="nc" id="L266">        this.dispose();</span>
+        //new HomePage.setVisible(true);
+<span class="nc" id="L268">    }//GEN-LAST:event_btnBackActionPerformed</span>
+
+    private void btnBuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L272">    }//GEN-LAST:event_btnBuyActionPerformed</span>
+
+    private void btnFavouriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavouriteActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L276">    }//GEN-LAST:event_btnFavouriteActionPerformed</span>
+
+    private void tfPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPaymentActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L280">    }//GEN-LAST:event_tfPaymentActionPerformed</span>
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        /* Set the Nimbus look and feel */
+        //&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+
+        try {
+<span class="nc bnc" id="L293" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="nc bnc" id="L294" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="nc" id="L295">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L296">                    break;</span>
+                }
+            }
+<span class="nc" id="L299">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L300">            java.util.logging.Logger.getLogger(AdDetailsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L301">        } catch (InstantiationException ex) {</span>
+<span class="nc" id="L302">            java.util.logging.Logger.getLogger(AdDetailsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L303">        } catch (IllegalAccessException ex) {</span>
+<span class="nc" id="L304">            java.util.logging.Logger.getLogger(AdDetailsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L305">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
+<span class="nc" id="L306">            java.util.logging.Logger.getLogger(AdDetailsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L307">        }</span>
+        //&lt;/editor-fold&gt;
+
+        /* Create and display the form */
+<span class="nc" id="L311">        java.awt.EventQueue.invokeLater(() -&gt; {</span>
+<span class="nc" id="L312">            new AdDetailsForm(21).setVisible(true); // Pass a valid adId (e.g., 1)</span>
+<span class="nc" id="L313">        });</span>
+<span class="nc" id="L314">    }</span>
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBuy;
+    private javax.swing.JButton btnFavourite;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lblPicture;
+    private javax.swing.JTextArea taDescription;
+    private javax.swing.JTextField tfCategory;
+    private javax.swing.JTextField tfName;
+    private javax.swing.JTextField tfPayment;
+    private javax.swing.JTextField tfPrice;
+    private javax.swing.JTextField tfUser;
+    // End of variables declaration//GEN-END:variables
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
