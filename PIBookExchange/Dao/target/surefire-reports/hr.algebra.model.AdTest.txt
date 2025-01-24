@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: hr.algebra.uploads.DropboxFetchTest
+Test set: hr.algebra.model.AdTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.33 s - in hr.algebra.uploads.DropboxFetchTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s - in hr.algebra.model.AdTest

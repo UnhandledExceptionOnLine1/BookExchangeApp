@@ -1,11 +1,14 @@
 hr\algebra\mediator\AdFormMediatorTest.class
+hr\algebra\model\AllAdsBasicTest.class
 hr\algebra\strategy_pattern\ContactServiceTest$DummyStrategy.class
 hr\algebra\uploads\DropboxStorageAdapterTest.class
 hr\algebra\observer\NewAdNotifierTest.class
 hr\algebra\sorting\strategy\PriceSortingStrategyTest.class
 hr\algebra\dal\sql\SqlRepositoryTest.class
+hr\algebra\model\AdTest.class
 hr\algebra\dal\RepositoryFactoryTest.class
 hr\algebra\sorting\strategy\DateSortingStrategyTest.class
+hr\algebra\model\AdDetailsTest.class
 hr\algebra\strategy_pattern\MessageContactStrTest.class
 hr\algebra\builder\AdBuilderTest.class
 hr\algebra\model\UserTest.class
@@ -14,4 +17,5 @@ hr\algebra\strategy_pattern\ContactServiceTest.class
 hr\algebra\model\UserStringifyTest.class
 hr\algebra\sorting\strategy\AdSorterTest.class
 hr\algebra\strategy_pattern\EmailContactStrTest.class
+hr\algebra\model\AdStringifyTest.class
 hr\algebra\uploads\DropboxFetchTest.class

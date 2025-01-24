@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: hr.algebra.strategy_pattern.SmsContactStrTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s - in hr.algebra.strategy_pattern.SmsContactStrTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in hr.algebra.strategy_pattern.SmsContactStrTest

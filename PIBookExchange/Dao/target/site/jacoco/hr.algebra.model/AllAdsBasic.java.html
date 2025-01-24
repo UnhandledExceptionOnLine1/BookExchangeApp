@@ -19,43 +19,43 @@ public class AllAdsBasic {
 
     // Getteri i Setteri
     public int getId() {
-<span class="nc" id="L22">        return id;</span>
+<span class="fc" id="L22">        return id;</span>
     }
 
     public void setId(int id) {
-<span class="nc" id="L26">        this.id = id;</span>
-<span class="nc" id="L27">    }</span>
+<span class="fc" id="L26">        this.id = id;</span>
+<span class="fc" id="L27">    }</span>
 
     public String getName() {
 <span class="fc" id="L30">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L34">        this.name = name;</span>
-<span class="nc" id="L35">    }</span>
+<span class="fc" id="L34">        this.name = name;</span>
+<span class="fc" id="L35">    }</span>
 
     public double getPrice() {
 <span class="fc" id="L38">        return price;</span>
     }
 
     public void setPrice(double price) {
-<span class="nc" id="L42">        this.price = price;</span>
-<span class="nc" id="L43">    }</span>
+<span class="fc" id="L42">        this.price = price;</span>
+<span class="fc" id="L43">    }</span>
 
     public LocalDateTime getPublishTime() {
 <span class="fc" id="L46">        return publishTime;</span>
     }
 
     public void setPublishTime(LocalDateTime publishTime) {
-<span class="nc" id="L50">        this.publishTime = publishTime;</span>
-<span class="nc" id="L51">    }</span>
+<span class="fc" id="L50">        this.publishTime = publishTime;</span>
+<span class="fc" id="L51">    }</span>
 
     @Override
     public String toString() {
-<span class="nc" id="L55">        return String.format(&quot;%s - %.2f Eur - Objavljeno: %s&quot;, </span>
+<span class="fc" id="L55">        return String.format(&quot;%s - %.2f Eur - Objavljeno: %s&quot;, </span>
                 name, 
-<span class="nc" id="L57">                price, </span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">                publishTime != null ? publishTime.toString() : &quot;N/A&quot;);</span>
+<span class="fc" id="L57">                price, </span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">                publishTime != null ? publishTime.toString() : &quot;N/A&quot;);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
