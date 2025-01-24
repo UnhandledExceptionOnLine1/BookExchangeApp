@@ -31,7 +31,7 @@ public class LoginPanel extends javax.swing.JPanel {
         cleanForm();
         hideErrorLabels();
     }
-    
+
     // mora imati default konstruktor zbog inicijalizacije forme!
     public LoginPanel() {
         this(null); // Pozivanje prilagođenog konstruktora s null
@@ -168,10 +168,15 @@ public class LoginPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Molim popunite sva polja", "Greška", JOptionPane.ERROR_MESSAGE);
         }
 
-        try {      
-            Optional<User> user = ((UserRepositoryInterface)RepositoryFactory.getRepository()).loginUser(username, password);
+        try {
+            Optional<User> user = ((UserRepositoryInterface) RepositoryFactory.getRepository()).loginUser(username, password);
             if (user.isPresent()) {
                 JOptionPane.showMessageDialog(this, "Prijava uspješna!", "Prijava", JOptionPane.INFORMATION_MESSAGE);
+                HomePage homePage = new HomePage();
+                homePage.setVisible(true);
+                if(parentFrame!=null){
+                    parentFrame.dispose();
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Pogrešno korisničko ime ili lozinka.", "Greška", JOptionPane.ERROR_MESSAGE);
             }
