@@ -170,7 +170,6 @@ public class LoginPanel extends javax.swing.JPanel {
         try {
             Optional<User> user = ((UserRepositoryInterface) RepositoryFactory.getRepository()).loginUser(username, password);
             if (user.isPresent()) {
-                JOptionPane.showMessageDialog(this, "Prijava uspješna!", "Prijava", JOptionPane.INFORMATION_MESSAGE);
                 HomePage homePage = new HomePage();
                 homePage.setVisible(true);
                 if (parentFrame != null) {

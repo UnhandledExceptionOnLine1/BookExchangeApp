@@ -294,6 +294,7 @@ public class RegisterPanel extends javax.swing.JPanel {
 //        }
 
         try {
+       if (valid) {
             ((UserRepositoryInterface) RepositoryFactory.getRepository()).createUser(new User(
                     username,
                     password,
@@ -303,7 +304,7 @@ public class RegisterPanel extends javax.swing.JPanel {
                     telephone,
                     email,
                     false)); //postavljanje IDRola na Korisnik (boolean isAdmin = false)
-            if (valid) {
+     
                 JOptionPane.showMessageDialog(this, "Korisnik je uspješno registriran!", "Uspjeh", JOptionPane.INFORMATION_MESSAGE);
                 cleanTextFields();
             }
