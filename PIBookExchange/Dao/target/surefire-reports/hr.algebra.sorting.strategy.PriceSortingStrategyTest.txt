@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: hr.algebra.sorting.strategy.PriceSortingStrategyTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s - in hr.algebra.sorting.strategy.PriceSortingStrategyTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s - in hr.algebra.sorting.strategy.PriceSortingStrategyTest

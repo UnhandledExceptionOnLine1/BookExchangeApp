@@ -48,6 +48,10 @@ public class DropboxStorageAdapter implements StorageService {
 
     @Override
     public void uploadFile(String localPath, String remotePath) throws Exception {
+        if (remotePath == null || remotePath.trim().isEmpty()) {
+            throw new IllegalArgumentException("Remote path cannot be empty or null.");
+        }
+
         try (InputStream in = new FileInputStream(localPath)) {
             FileMetadata metadata = client.files().uploadBuilder(remotePath)
                     .uploadAndFinish(in);

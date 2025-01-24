@@ -9,8 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -66,5 +70,44 @@ class DropboxStorageAdapterTest {
 
         // Verifikacija da je getPathDisplay pozvan
         verify(mockMetadata).getPathDisplay();
+    }
+
+    @Test
+    void testUploadFile_FileNotFound() {
+        // Arrange
+        String invalidLocalPath = "nonexistent.jpg"; // Fajl koji ne postoji
+
+        // Act & Assert
+        Exception exception = assertThrows(IOException.class, () -> dropboxStorageAdapter.uploadFile(invalidLocalPath, REMOTE_PATH));
+
+        // Provjera da li poruka izuzetka sadrži informacije o nepostojećem fajlu
+        assertTrue(exception.getMessage().contains("nonexistent.jpg"));
+    }
+
+    @Test
+    void testUploadFile_DropboxApiError() throws Exception {
+        // Arrange
+        doThrow(new RuntimeException("Dropbox API error")).when(mockUploadBuilder).uploadAndFinish(any(InputStream.class));
+
+        // Act & Assert
+        Exception exception = assertThrows(RuntimeException.class, () -> dropboxStorageAdapter.uploadFile(LOCAL_PATH, REMOTE_PATH));
+
+        // Provjera poruke izuzetka
+        assertTrue(exception.getMessage().contains("Dropbox API error"));
+
+        // Verifikacija da je uploadBuilder pozvan
+        verify(mockFiles).uploadBuilder(REMOTE_PATH);
+    }
+
+    @Test
+    void testUploadFile_EmptyRemotePath() {
+        // Arrange
+        String emptyRemotePath = "";
+
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> dropboxStorageAdapter.uploadFile(LOCAL_PATH, emptyRemotePath));
+
+        // Provjera poruke izuzetka
+        assertTrue(exception.getMessage().contains("Remote path cannot be empty"));
     }
 }

@@ -1,10 +1,10 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Dao,hr.algebra.uploads,DropboxStorageAdapter,26,46,1,1,7,15,2,3,1,3
+Dao,hr.algebra.uploads,DropboxStorageAdapter,26,57,2,4,7,17,3,4,1,3
 Dao,hr.algebra.uploads,DropboxFetch,47,44,2,0,11,10,3,3,2,3
 Dao,hr.algebra.mediator,AdFormMediator,0,101,3,13,0,25,3,7,0,2
 Dao,hr.algebra.builder,AdBuilder,0,77,0,0,0,26,0,8,0,8
 Dao,hr.algebra.observer,NewAdNotifier,0,40,0,2,0,11,0,6,0,5
-Dao,hr.algebra.dal.sql,SqlRepository,351,357,26,16,80,87,26,12,9,8
+Dao,hr.algebra.dal.sql,SqlRepository,3,705,11,31,0,167,11,27,0,17
 Dao,hr.algebra.dal.sql,DataSourceSingleton,3,54,1,1,2,17,1,3,0,3
 Dao,hr.algebra.dal,RepositoryFactory,7,30,0,0,4,11,1,3,1,3
 Dao,hr.algebra.sorting.strategy,AdSorter,0,20,0,2,0,6,0,4,0,3

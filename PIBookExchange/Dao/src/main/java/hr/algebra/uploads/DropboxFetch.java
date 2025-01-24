@@ -28,11 +28,11 @@ public class DropboxFetch {
     // Metoda za učitavanje access tokena iz properties datoteke
     private String getAccessToken() {
         Properties properties = new Properties();
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config/dropbox.properties")) {
-            if (input == null) {
+        try (InputStream propertiesInputStream = getClass().getClassLoader().getResourceAsStream("config/dropbox.properties")) {
+            if (propertiesInputStream == null) {
                 throw new RuntimeException("Cannot find dropbox.properties file in config directory");
             }
-            properties.load(input);
+            properties.load(propertiesInputStream);
             return properties.getProperty("DROPBOX_TOKEN").trim(); // Trim spaces
         } catch (Exception e) {
             throw new RuntimeException("Error loading access token from dropbox.properties", e);

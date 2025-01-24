@@ -210,97 +210,97 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
     // AD PROCEDURE CALLING
     @Override
     public int createAd(Ad ad) throws Exception {
-<span class="nc" id="L213">        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(CREATE_AD)) {</span>
-<span class="nc" id="L214">            stmt.setString(AD_NAME, ad.getName());</span>
-<span class="nc" id="L215">            stmt.setInt(AD_CATEGORY, ad.getCategoryId());</span>
-<span class="nc" id="L216">            stmt.setInt(AD_PAYMENT, ad.getPaymentTypeId());</span>
-<span class="nc" id="L217">            stmt.setString(AD_PICTURE_PATH, ad.getImagePath());</span>
-<span class="nc" id="L218">            stmt.setString(AD_DESC, ad.getDescription());</span>
-<span class="nc" id="L219">            stmt.setDouble(AD_PRICE, ad.getPrice());</span>
-<span class="nc" id="L220">            stmt.setInt(AD_USER, ad.getUserId());</span>
-<span class="nc" id="L221">            stmt.registerOutParameter(8, java.sql.Types.INTEGER); // Postavljanje izlaznog parametra</span>
-<span class="nc" id="L222">            stmt.executeUpdate();</span>
-<span class="nc" id="L223">            return stmt.getInt(8);  // Vraćanje generiranog ID-a oglasa</span>
+<span class="fc" id="L213">        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(CREATE_AD)) {</span>
+<span class="fc" id="L214">            stmt.setString(AD_NAME, ad.getName());</span>
+<span class="fc" id="L215">            stmt.setInt(AD_CATEGORY, ad.getCategoryId());</span>
+<span class="fc" id="L216">            stmt.setInt(AD_PAYMENT, ad.getPaymentTypeId());</span>
+<span class="fc" id="L217">            stmt.setString(AD_PICTURE_PATH, ad.getImagePath());</span>
+<span class="fc" id="L218">            stmt.setString(AD_DESC, ad.getDescription());</span>
+<span class="fc" id="L219">            stmt.setDouble(AD_PRICE, ad.getPrice());</span>
+<span class="fc" id="L220">            stmt.setInt(AD_USER, ad.getUserId());</span>
+<span class="fc" id="L221">            stmt.registerOutParameter(8, java.sql.Types.INTEGER); // Postavljanje izlaznog parametra</span>
+<span class="fc" id="L222">            stmt.executeUpdate();</span>
+<span class="fc" id="L223">            return stmt.getInt(8);  // Vraćanje generiranog ID-a oglasa</span>
         }
     }
 
     @Override
     public void updateAd(int id, Ad ad) throws Exception {
-<span class="nc" id="L229">        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(UPDATE_AD)) {</span>
-<span class="nc" id="L230">            stmt.setInt(ID_AD, id);</span>
-<span class="nc" id="L231">            stmt.setString(AD_NAME, ad.getName());</span>
-<span class="nc" id="L232">            stmt.setInt(AD_CATEGORY, ad.getCategoryId());</span>
-<span class="nc" id="L233">            stmt.setInt(AD_PAYMENT, ad.getPaymentTypeId());</span>
-<span class="nc" id="L234">            stmt.setString(AD_PICTURE_PATH, ad.getImagePath());</span>
-<span class="nc" id="L235">            stmt.setString(AD_DESC, ad.getDescription());</span>
-<span class="nc" id="L236">            stmt.setDouble(AD_PRICE, ad.getPrice());</span>
-<span class="nc" id="L237">            stmt.setInt(AD_USER, ad.getUserId());</span>
-<span class="nc" id="L238">            stmt.registerOutParameter(MSG, Types.NVARCHAR);</span>
-<span class="nc" id="L239">            stmt.executeUpdate();</span>
-<span class="nc" id="L240">            stmt.getString(MSG);</span>
+<span class="fc" id="L229">        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(UPDATE_AD)) {</span>
+<span class="fc" id="L230">            stmt.setInt(ID_AD, id);</span>
+<span class="fc" id="L231">            stmt.setString(AD_NAME, ad.getName());</span>
+<span class="fc" id="L232">            stmt.setInt(AD_CATEGORY, ad.getCategoryId());</span>
+<span class="fc" id="L233">            stmt.setInt(AD_PAYMENT, ad.getPaymentTypeId());</span>
+<span class="fc" id="L234">            stmt.setString(AD_PICTURE_PATH, ad.getImagePath());</span>
+<span class="fc" id="L235">            stmt.setString(AD_DESC, ad.getDescription());</span>
+<span class="fc" id="L236">            stmt.setDouble(AD_PRICE, ad.getPrice());</span>
+<span class="fc" id="L237">            stmt.setInt(AD_USER, ad.getUserId());</span>
+<span class="fc" id="L238">            stmt.registerOutParameter(MSG, Types.NVARCHAR);</span>
+<span class="fc" id="L239">            stmt.executeUpdate();</span>
+<span class="fc" id="L240">            stmt.getString(MSG);</span>
         }
-<span class="nc" id="L242">    }</span>
+<span class="fc" id="L242">    }</span>
 
     @Override
     public void deleteAd(int id) throws Exception {
-<span class="nc" id="L246">        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(DELETE_AD)) {</span>
-<span class="nc" id="L247">            stmt.setInt(ID_AD, id);</span>
-<span class="nc" id="L248">            stmt.executeUpdate();</span>
+<span class="fc" id="L246">        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(DELETE_AD)) {</span>
+<span class="fc" id="L247">            stmt.setInt(ID_AD, id);</span>
+<span class="fc" id="L248">            stmt.executeUpdate();</span>
         }
-<span class="nc" id="L250">    }</span>
+<span class="fc" id="L250">    }</span>
 
     @Override
     public Optional&lt;AdDetails&gt; getAd(int id) throws Exception {
-<span class="nc" id="L254">        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_AD)) {</span>
-<span class="nc" id="L255">            stmt.setInt(1, id); // Postavite ID oglasa kao parametar</span>
-<span class="nc" id="L256">            try (ResultSet rs = stmt.executeQuery()) {</span>
-<span class="nc bnc" id="L257" title="All 2 branches missed.">                if (rs.next()) {</span>
+<span class="fc" id="L254">        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_AD)) {</span>
+<span class="fc" id="L255">            stmt.setInt(1, id); // Postavite ID oglasa kao parametar</span>
+<span class="fc" id="L256">            try (ResultSet rs = stmt.executeQuery()) {</span>
+<span class="fc bfc" id="L257" title="All 2 branches covered.">                if (rs.next()) {</span>
                     // Kreirajte i vratite AdDetails objekt s nazivima
-<span class="nc" id="L259">                    return Optional.of(new AdDetails(</span>
-<span class="nc" id="L260">                            rs.getInt(ID_AD), // ID oglasa</span>
-<span class="nc" id="L261">                            rs.getString(AD_NAME), // Naziv oglasa</span>
-<span class="nc" id="L262">                            rs.getString(AD_CATEGORY_NAME), // Naziv kategorije</span>
-<span class="nc" id="L263">                            rs.getString(AD_PAYMENT_NAME), // Naziv vrste naplate</span>
-<span class="nc" id="L264">                            rs.getString(AD_PICTURE_PATH), // Putanja slike</span>
-<span class="nc" id="L265">                            rs.getString(AD_DESC), // Opis oglasa</span>
-<span class="nc" id="L266">                            rs.getDouble(AD_PRICE), // Cijena</span>
-<span class="nc" id="L267">                            rs.getString(AD_USER_NAME) // Ime korisnika</span>
+<span class="fc" id="L259">                    return Optional.of(new AdDetails(</span>
+<span class="fc" id="L260">                            rs.getInt(ID_AD), // ID oglasa</span>
+<span class="fc" id="L261">                            rs.getString(AD_NAME), // Naziv oglasa</span>
+<span class="fc" id="L262">                            rs.getString(AD_CATEGORY_NAME), // Naziv kategorije</span>
+<span class="fc" id="L263">                            rs.getString(AD_PAYMENT_NAME), // Naziv vrste naplate</span>
+<span class="fc" id="L264">                            rs.getString(AD_PICTURE_PATH), // Putanja slike</span>
+<span class="fc" id="L265">                            rs.getString(AD_DESC), // Opis oglasa</span>
+<span class="fc" id="L266">                            rs.getDouble(AD_PRICE), // Cijena</span>
+<span class="fc" id="L267">                            rs.getString(AD_USER_NAME) // Ime korisnika</span>
                     ));
                 }
-<span class="nc bnc" id="L270" title="All 2 branches missed.">            }</span>
-<span class="nc bnc" id="L271" title="All 4 branches missed.">        }</span>
-<span class="nc" id="L272">        return Optional.empty(); // Ako oglas nije pronađen</span>
+<span class="pc bpc" id="L270" title="1 of 2 branches missed.">            }</span>
+<span class="pc bpc" id="L271" title="2 of 4 branches missed.">        }</span>
+<span class="fc" id="L272">        return Optional.empty(); // Ako oglas nije pronađen</span>
     }
 
     @Override
     public List&lt;AllAdsBasic&gt; getAllAdsBasic() throws Exception {
-<span class="nc" id="L277">        List&lt;AllAdsBasic&gt; allAdsBasicList = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L278">        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_ADS_BASIC)) {</span>
-<span class="nc" id="L279">            try (ResultSet rs = stmt.executeQuery()) {</span>
-<span class="nc bnc" id="L280" title="All 2 branches missed.">                while (rs.next()) {</span>
-<span class="nc" id="L281">                    allAdsBasicList.add(new AllAdsBasic(</span>
-<span class="nc" id="L282">                            rs.getInt(ID_AD), // ID oglasa</span>
-<span class="nc" id="L283">                            rs.getString(AD_NAME), // Naziv</span>
-<span class="nc" id="L284">                            rs.getDouble(AD_PRICE), // Cijena</span>
-<span class="nc" id="L285">                            rs.getTimestamp(AD_TIME).toLocalDateTime() // Vrijeme objave</span>
+<span class="fc" id="L277">        List&lt;AllAdsBasic&gt; allAdsBasicList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L278">        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(GET_ADS_BASIC)) {</span>
+<span class="fc" id="L279">            try (ResultSet rs = stmt.executeQuery()) {</span>
+<span class="fc bfc" id="L280" title="All 2 branches covered.">                while (rs.next()) {</span>
+<span class="fc" id="L281">                    allAdsBasicList.add(new AllAdsBasic(</span>
+<span class="fc" id="L282">                            rs.getInt(ID_AD), // ID oglasa</span>
+<span class="fc" id="L283">                            rs.getString(AD_NAME), // Naziv</span>
+<span class="fc" id="L284">                            rs.getDouble(AD_PRICE), // Cijena</span>
+<span class="fc" id="L285">                            rs.getTimestamp(AD_TIME).toLocalDateTime() // Vrijeme objave</span>
                     ));
                 }
             }
         }
-<span class="nc" id="L290">        return allAdsBasicList;</span>
+<span class="fc" id="L290">        return allAdsBasicList;</span>
     }
 
     @Override
 
     public int getCategoryIdByName(String categoryName) throws Exception {
-<span class="nc" id="L296">        try (Connection con = dataSource.getConnection(); PreparedStatement stmt</span>
-<span class="nc" id="L297">                = con.prepareStatement(&quot;SELECT IDKategorija FROM Kategorija WHERE Naziv = ?&quot;)) {</span>
-<span class="nc" id="L298">            stmt.setString(1, categoryName);</span>
-<span class="nc" id="L299">            try (ResultSet rs = stmt.executeQuery()) {</span>
-<span class="nc bnc" id="L300" title="All 2 branches missed.">                if (rs.next()) {</span>
-<span class="nc" id="L301">                    return rs.getInt(&quot;IDKategorija&quot;);</span>
+<span class="fc" id="L296">        try (Connection con = dataSource.getConnection(); PreparedStatement stmt</span>
+<span class="fc" id="L297">                = con.prepareStatement(&quot;SELECT IDKategorija FROM Kategorija WHERE Naziv = ?&quot;)) {</span>
+<span class="fc" id="L298">            stmt.setString(1, categoryName);</span>
+<span class="fc" id="L299">            try (ResultSet rs = stmt.executeQuery()) {</span>
+<span class="fc bfc" id="L300" title="All 2 branches covered.">                if (rs.next()) {</span>
+<span class="fc" id="L301">                    return rs.getInt(&quot;IDKategorija&quot;);</span>
                 } else {
-<span class="nc" id="L303">                    throw new Exception(&quot;Category not found: &quot; + categoryName); // Ako kategorija ne postoji</span>
+<span class="fc" id="L303">                    throw new Exception(&quot;Category not found: &quot; + categoryName); // Ako kategorija ne postoji</span>
                 }
             }
         }
@@ -308,39 +308,42 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
 
     @Override
     public int getPaymentIdByName(String paymentName) throws Exception {
-<span class="nc" id="L311">        try (Connection con = dataSource.getConnection(); PreparedStatement stmt</span>
-<span class="nc" id="L312">                = con.prepareStatement(&quot;SELECT IDNaplata FROM Naplata WHERE Vrsta = ?&quot;)) {</span>
-<span class="nc" id="L313">            stmt.setString(1, paymentName);</span>
-<span class="nc" id="L314">            try (ResultSet rs = stmt.executeQuery()) {</span>
-<span class="nc bnc" id="L315" title="All 2 branches missed.">                if (rs.next()) {</span>
-<span class="nc" id="L316">                    return rs.getInt(&quot;IDNaplata&quot;);</span>
+<span class="fc" id="L311">        try (Connection con = dataSource.getConnection(); PreparedStatement stmt</span>
+<span class="fc" id="L312">                = con.prepareStatement(&quot;SELECT IDNaplata FROM Naplata WHERE Vrsta = ?&quot;)) {</span>
+<span class="fc" id="L313">            stmt.setString(1, paymentName);</span>
+<span class="fc" id="L314">            try (ResultSet rs = stmt.executeQuery()) {</span>
+<span class="fc bfc" id="L315" title="All 2 branches covered.">                if (rs.next()) {</span>
+<span class="fc" id="L316">                    return rs.getInt(&quot;IDNaplata&quot;);</span>
                 } else {
-<span class="nc" id="L318">                    throw new Exception(&quot;Category not found: &quot; + paymentName); // Ako kategorija ne postoji</span>
+<span class="fc" id="L318">                    throw new Exception(&quot;Category not found: &quot; + paymentName); // Ako kategorija ne postoji</span>
                 }
             }
         }
     }
 
     public List&lt;String&gt; getAllCategoryNames() throws Exception {
-<span class="nc" id="L325">        List&lt;String&gt; categoryNames = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L326">        try (Connection con = dataSource.getConnection(); Statement stmt</span>
-<span class="nc" id="L327">                = con.createStatement(); ResultSet rs = stmt.executeQuery(GET_ALL_CATEGORIES)) {</span>
-<span class="nc bnc" id="L328" title="All 2 branches missed.">            while (rs.next()) {</span>
-<span class="nc" id="L329">                categoryNames.add(rs.getString(&quot;Naziv&quot;));</span>
+<span class="fc" id="L325">        List&lt;String&gt; categoryNames = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L326">        try (Connection con = dataSource.getConnection(); Statement stmt</span>
+<span class="fc" id="L327">                = con.createStatement(); ResultSet rs = stmt.executeQuery(GET_ALL_CATEGORIES)) {</span>
+<span class="fc bfc" id="L328" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L329">                categoryNames.add(rs.getString(&quot;Naziv&quot;));</span>
             }
         }
-<span class="nc" id="L332">        return categoryNames;</span>
+<span class="fc" id="L332">        return categoryNames;</span>
     }
 
     public List&lt;String&gt; getAllPaymentNames() throws Exception {
-<span class="nc" id="L336">        List&lt;String&gt; paymentsNames = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L337">        try (Connection con = dataSource.getConnection(); Statement stmt</span>
-<span class="nc" id="L338">                = con.createStatement(); ResultSet rs = stmt.executeQuery(GET_ALL_PAYMENTS)) {</span>
-<span class="nc bnc" id="L339" title="All 2 branches missed.">            while (rs.next()) {</span>
-<span class="nc" id="L340">                paymentsNames.add(rs.getString(&quot;Vrsta&quot;));</span>
+<span class="fc" id="L336">        List&lt;String&gt; paymentsNames = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L337">        try (Connection con = dataSource.getConnection(); Statement stmt</span>
+<span class="fc" id="L338">                = con.createStatement(); ResultSet rs = stmt.executeQuery(GET_ALL_PAYMENTS)) {</span>
+<span class="fc bfc" id="L339" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L340">                paymentsNames.add(rs.getString(&quot;Vrsta&quot;));</span>
             }
         }
-<span class="nc" id="L343">        return paymentsNames;</span>
+<span class="fc" id="L343">        return paymentsNames;</span>
     }
+
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

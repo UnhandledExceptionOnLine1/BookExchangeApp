@@ -342,4 +342,7 @@ public class SqlRepository implements Repository, UserRepositoryInterface, AdRep
         }
         return paymentsNames;
     }
+
+
+
 }
