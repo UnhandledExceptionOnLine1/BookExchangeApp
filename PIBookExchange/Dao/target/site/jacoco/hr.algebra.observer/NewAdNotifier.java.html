@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NewAdNotifier.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dao</a> &gt; <a href="index.source.html" class="el_package">hr.algebra.observer</a> &gt; <span class="el_source">NewAdNotifier.java</span></div><h1>NewAdNotifier.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package hr.algebra.observer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author bruno
+ */
+<span class="fc" id="L14">public class NewAdNotifier { //PUBLISHER / SUBJECT</span>
+
+<span class="fc" id="L16">    private final List&lt;Subscriber&gt; subscribers = new ArrayList();</span>
+
+    public void add(Subscriber subscriber) {
+<span class="fc" id="L19">        subscribers.add(subscriber);</span>
+<span class="fc" id="L20">    }</span>
+
+    public void remove(Subscriber subscriber) {
+<span class="fc" id="L23">        subscribers.remove(subscriber);</span>
+<span class="fc" id="L24">    }</span>
+
+    public void notify(String message) {
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        for (Subscriber s : subscribers) {</span>
+<span class="fc" id="L28">            s.alert(message);</span>
+<span class="fc" id="L29">        }</span>
+<span class="fc" id="L30">    }</span>
+
+    public List&lt;Subscriber&gt; getSubscribers() {
+<span class="fc" id="L33">        return subscribers;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

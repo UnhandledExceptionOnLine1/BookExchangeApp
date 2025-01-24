@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Ad.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dao</a> &gt; <a href="index.source.html" class="el_package">hr.algebra.model</a> &gt; <span class="el_source">Ad.java</span></div><h1>Ad.java</h1><pre class="source lang-java linenums">package hr.algebra.model;
+
+/**
+ * Represents an Advertisement (Ad) in the system.
+ */
+public final class Ad {
+
+    private int id;
+    private String name;
+    private int categoryId;
+    private int paymentTypeId;
+    private String imagePath;
+    private String description;
+    private double price;
+    private int userId;
+
+ 
+<span class="nc" id="L18">    public Ad() {</span>
+<span class="nc" id="L19">    }</span>
+
+   
+<span class="nc" id="L22">    public Ad(String name, int categoryId, int paymentTypeId, String imagePath, String description, double price, int userId) {</span>
+<span class="nc" id="L23">        setName(name);</span>
+<span class="nc" id="L24">        setCategoryId(categoryId);</span>
+<span class="nc" id="L25">        setPaymentTypeId(paymentTypeId);</span>
+<span class="nc" id="L26">        setImagePath(imagePath);</span>
+<span class="nc" id="L27">        setDescription(description);</span>
+<span class="nc" id="L28">        setPrice(price);</span>
+<span class="nc" id="L29">        setUserId(userId);</span>
+<span class="nc" id="L30">    }</span>
+
+ 
+    public Ad(int id, String name, int categoryId, int paymentTypeId, String imagePath, String description, double price, int userId) {
+<span class="nc" id="L34">        this(name, categoryId, paymentTypeId, imagePath, description, price, userId);</span>
+<span class="nc" id="L35">        setId(id);</span>
+<span class="nc" id="L36">    }</span>
+
+  
+    public int getId() {
+<span class="nc" id="L40">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="nc" id="L44">        this.id = id;</span>
+<span class="nc" id="L45">    }</span>
+
+    public String getName() {
+<span class="nc" id="L48">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L52">        this.name = name;</span>
+<span class="nc" id="L53">    }</span>
+
+    public int getCategoryId() {
+<span class="nc" id="L56">        return categoryId;</span>
+    }
+
+    public void setCategoryId(int categoryId) {
+<span class="nc" id="L60">        this.categoryId = categoryId;</span>
+<span class="nc" id="L61">    }</span>
+
+    public int getPaymentTypeId() {
+<span class="nc" id="L64">        return paymentTypeId;</span>
+    }
+
+    public void setPaymentTypeId(int paymentTypeId) {
+<span class="nc" id="L68">        this.paymentTypeId = paymentTypeId;</span>
+<span class="nc" id="L69">    }</span>
+
+    public String getImagePath() {
+<span class="nc" id="L72">        return imagePath;</span>
+    }
+
+    public void setImagePath(String imagePath) {
+<span class="nc" id="L76">        this.imagePath = imagePath;</span>
+<span class="nc" id="L77">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L80">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L84">        this.description = description;</span>
+<span class="nc" id="L85">    }</span>
+
+    public double getPrice() {
+<span class="nc" id="L88">        return price;</span>
+    }
+
+    public void setPrice(double price) {
+<span class="nc" id="L92">        this.price = price;</span>
+<span class="nc" id="L93">    }</span>
+
+    public int getUserId() {
+<span class="nc" id="L96">        return userId;</span>
+    }
+
+    public void setUserId(int userId) {
+<span class="nc" id="L100">        this.userId = userId;</span>
+<span class="nc" id="L101">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L105">        return AdStringify.getString(this); // S</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

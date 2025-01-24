@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataSourceSingleton.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dao</a> &gt; <a href="index.source.html" class="el_package">hr.algebra.dal.sql</a> &gt; <span class="el_source">DataSourceSingleton.java</span></div><h1>DataSourceSingleton.java</h1><pre class="source lang-java linenums">package hr.algebra.dal.sql;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+import javax.sql.DataSource;
+
+/**
+ *
+ * @author dbele
+ */
+public final class DataSourceSingleton {
+
+    private static final String PATH = &quot;/config/db.properties&quot;;
+
+    private static final String SERVER_NAME = &quot;SERVER_NAME&quot;;
+    private static final String DATABASE_NAME = &quot;DATABASE_NAME&quot;;
+    private static final String USER = &quot;USER&quot;;
+    private static final String PASSWORD = &quot;PASSWORD&quot;;
+    
+<span class="nc" id="L28">    private static final Properties PROPERTIES = new Properties();</span>
+    
+    static {
+<span class="nc" id="L31">        try (InputStream is = DataSourceSingleton.class.getResourceAsStream(PATH)){</span>
+<span class="nc" id="L32">            PROPERTIES.load(is);</span>
+<span class="nc" id="L33">        } catch (Exception e) {</span>
+<span class="nc" id="L34">            e.printStackTrace();</span>
+<span class="nc" id="L35">        }</span>
+<span class="nc" id="L36">    }</span>
+
+    private DataSourceSingleton() {
+    }
+
+    private static DataSource instance;
+
+    public static DataSource getInstance() {
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (instance == null) {</span>
+<span class="nc" id="L45">            instance = createInstance();</span>
+        }
+<span class="nc" id="L47">        return instance;</span>
+    }
+
+    private static DataSource createInstance() {
+<span class="nc" id="L51">        SQLServerDataSource dataSource = new SQLServerDataSource();</span>
+<span class="nc" id="L52">        dataSource.setServerName(PROPERTIES.getProperty(SERVER_NAME));</span>
+<span class="nc" id="L53">        dataSource.setDatabaseName(PROPERTIES.getProperty(DATABASE_NAME));</span>
+<span class="nc" id="L54">        dataSource.setUser(PROPERTIES.getProperty(USER));</span>
+<span class="nc" id="L55">        dataSource.setPassword(PROPERTIES.getProperty(PASSWORD));</span>
+        
+<span class="nc" id="L57">        dataSource.setEncrypt(true); // Osigurajte da je veza šifrirana</span>
+<span class="nc" id="L58">        dataSource.setTrustServerCertificate(false); // Ne vjerujte automatski serveru</span>
+<span class="nc" id="L59">        dataSource.setLoginTimeout(30); // Postavite timeout za povezivanje</span>
+    
+<span class="nc" id="L61">        return dataSource;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

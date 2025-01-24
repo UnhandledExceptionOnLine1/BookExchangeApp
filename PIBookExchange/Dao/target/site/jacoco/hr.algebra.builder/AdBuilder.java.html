@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dao</a> &gt; <a href="index.source.html" class="el_package">hr.algebra.builder</a> &gt; <span class="el_source">AdBuilder.java</span></div><h1>AdBuilder.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package hr.algebra.builder;
+import hr.algebra.model.Ad;
+/**
+ *
+ * @author Tin
+ */
+public class AdBuilder {
+    private int id;
+    private String name;
+    private int categoryId;
+    private int paymentTypeId;
+    private String imagePath;
+    private String description;
+    private double price;
+    private int userId;
+
+<span class="nc" id="L21">    public AdBuilder(String name, int userId) { // Obavezni parametri</span>
+<span class="nc" id="L22">        this.name = name;</span>
+<span class="nc" id="L23">        this.userId = userId;</span>
+<span class="nc" id="L24">    }</span>
+
+    public AdBuilder id(int id) {
+<span class="nc" id="L27">        this.id = id;</span>
+<span class="nc" id="L28">        return this;</span>
+    }
+
+    public AdBuilder categoryId(int categoryId) {
+<span class="nc" id="L32">        this.categoryId = categoryId;</span>
+<span class="nc" id="L33">        return this;</span>
+    }
+
+    public AdBuilder paymentTypeId(int paymentTypeId) {
+<span class="nc" id="L37">        this.paymentTypeId = paymentTypeId;</span>
+<span class="nc" id="L38">        return this;</span>
+    }
+
+    public AdBuilder imagePath(String imagePath) {
+<span class="nc" id="L42">        this.imagePath = imagePath;</span>
+<span class="nc" id="L43">        return this;</span>
+    }
+
+    public AdBuilder description(String description) {
+<span class="nc" id="L47">        this.description = description;</span>
+<span class="nc" id="L48">        return this;</span>
+    }
+
+    public AdBuilder price(double price) {
+<span class="nc" id="L52">        this.price = price;</span>
+<span class="nc" id="L53">        return this;</span>
+    }
+
+    public Ad build() {
+<span class="nc" id="L57">        Ad ad = new Ad();</span>
+<span class="nc" id="L58">        ad.setId(this.id);</span>
+<span class="nc" id="L59">        ad.setName(this.name);</span>
+<span class="nc" id="L60">        ad.setCategoryId(this.categoryId);</span>
+<span class="nc" id="L61">        ad.setPaymentTypeId(this.paymentTypeId);</span>
+<span class="nc" id="L62">        ad.setImagePath(this.imagePath);</span>
+<span class="nc" id="L63">        ad.setDescription(this.description);</span>
+<span class="nc" id="L64">        ad.setPrice(this.price);</span>
+<span class="nc" id="L65">        ad.setUserId(this.userId);</span>
+<span class="nc" id="L66">        return ad;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
