@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import hr.algebra.dal.UserRepositoryInterface;
+import javax.swing.JButton;
 
 /**
  *
@@ -22,6 +23,10 @@ public class RegisterPanel extends javax.swing.JPanel {
 
     private List<JTextField> textFields;
     private List<JLabel> errorLabels;
+
+    public List<JLabel> getErrorLabels() {
+        return errorLabels;
+    }
     private MainFrame parentFrame;
 
     /**
@@ -277,16 +282,16 @@ public class RegisterPanel extends javax.swing.JPanel {
         if (username.isEmpty() || username.length() < 3) {
             lbUsernameError.setVisible(true);
             JOptionPane.showMessageDialog(this, "Korisničko ime mora sadržavati najmanje 3 znaka.", "Greška", JOptionPane.ERROR_MESSAGE);
-            valid = false;
+//            valid = false;
         }
         if (password.isEmpty() || password.length() < 5) {
             lbPasswordError.setVisible(true);
             JOptionPane.showMessageDialog(this, "Lozinka mora sadržavati najmanje 5 znakova.", "Greška", JOptionPane.ERROR_MESSAGE);
-            valid = false;
+//            valid = false;
         }
-        if (!valid) {
-            JOptionPane.showMessageDialog(this, "Molim popunite sva polja", "Greška", JOptionPane.ERROR_MESSAGE);
-        }
+//        if (!valid) {
+//            JOptionPane.showMessageDialog(this, "Molim popunite sva polja", "Greška", JOptionPane.ERROR_MESSAGE);
+//        }
 
         try {
             ((UserRepositoryInterface)RepositoryFactory.getRepository()).createUser(new User(
@@ -373,4 +378,112 @@ public class RegisterPanel extends javax.swing.JPanel {
         }
     }
 
+    //test getters
+    public javax.swing.JButton getBtnRegister(){
+        return btnRegister;
+    }
+
+    public List<JTextField> getTextFields() {
+        return textFields;
+    }
+
+    public MainFrame getParentFrame() {
+        return parentFrame;
+    }
+
+    public JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    public JLabel getLbAddress() {
+        return lbAddress;
+    }
+
+    public JLabel getLbAddressError() {
+        return lbAddressError;
+    }
+
+    public JLabel getLbEmail() {
+        return lbEmail;
+    }
+
+    public JLabel getLbEmailError() {
+        return lbEmailError;
+    }
+
+    public JLabel getLbName() {
+        return lbName;
+    }
+
+    public JLabel getLbNameError() {
+        return lbNameError;
+    }
+
+    public JLabel getLbPassword() {
+        return lbPassword;
+    }
+
+    public JLabel getLbPasswordError() {
+        return lbPasswordError;
+    }
+
+    public JLabel getLbSurname() {
+        return lbSurname;
+    }
+
+    public JLabel getLbSurnameError() {
+        return lbSurnameError;
+    }
+
+    public JLabel getLbTelephone() {
+        return lbTelephone;
+    }
+
+    public JLabel getLbTelephoneError() {
+        return lbTelephoneError;
+    }
+
+    public JLabel getLbUsername() {
+        return lbUsername;
+    }
+
+    public JLabel getLbUsernameError() {
+        return lbUsernameError;
+    }
+
+    public JLabel getLblUserRegistration() {
+        return lblUserRegistration;
+    }
+
+    public JLabel getLblUserRegistration1() {
+        return lblUserRegistration1;
+    }
+
+    public JTextField getTfAddress() {
+        return tfAddress;
+    }
+
+    public JTextField getTfEmail() {
+        return tfEmail;
+    }
+
+    public JTextField getTfName() {
+        return tfName;
+    }
+
+    public JTextField getTfPassword() {
+        return tfPassword;
+    }
+
+    public JTextField getTfSurname() {
+        return tfSurname;
+    }
+
+    public JTextField getTfTelephone() {
+        return tfTelephone;
+    }
+
+    public JTextField getTfUsername() {
+        return tfUsername;
+    }    
 }

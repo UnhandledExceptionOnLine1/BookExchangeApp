@@ -1,6 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-BookExchange,hr.pibookexchange.view,RegisterPanel.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
-BookExchange,hr.pibookexchange.view,RegisterPanel.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+BookExchange,hr.pibookexchange.view,RegisterPanel.new ActionListener() {...},0,11,0,0,0,3,0,2,0,2
+BookExchange,hr.pibookexchange.view,RegisterPanel.new ActionListener() {...},5,6,0,0,2,1,1,1,1,1
 BookExchange,hr.pibookexchange.view,AdDetailsForm.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
 BookExchange,hr.pibookexchange.view,AdDetailsForm.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
 BookExchange,hr.pibookexchange.view,AdDetailsForm.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
@@ -17,7 +17,7 @@ BookExchange,hr.pibookexchange.view,HomePage.new ActionListener() {...},5,6,0,0,
 BookExchange,hr.pibookexchange.view,HomePage.new ActionListener() {...},5,6,0,0,2,1,1,1,1,1
 BookExchange,hr.pibookexchange.view,HomePage.new Runnable() {...},9,0,0,0,3,0,2,0,2,0
 BookExchange,hr.pibookexchange.view,MainFrame.new Runnable() {...},9,0,0,0,3,0,2,0,2,0
-BookExchange,hr.pibookexchange.view,RegisterPanel,954,0,20,0,227,0,19,0,9,0
+BookExchange,hr.pibookexchange.view,RegisterPanel,41,986,2,16,14,237,15,31,13,24
 BookExchange,hr.pibookexchange,CreateAdForm.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
 BookExchange,hr.pibookexchange,CreateAdForm.new Runnable() {...},9,0,0,0,3,0,2,0,2,0
 BookExchange,hr.pibookexchange,CreateAdForm.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0

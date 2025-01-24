@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import hr.algebra.dal.UserRepositoryInterface;
+import javax.swing.JButton;
 
 /**
  *
@@ -22,24 +23,28 @@ public class RegisterPanel extends javax.swing.JPanel {
 
     private List&lt;JTextField&gt; textFields;
     private List&lt;JLabel&gt; errorLabels;
+
+    public List&lt;JLabel&gt; getErrorLabels() {
+<span class="fc" id="L28">        return errorLabels;</span>
+    }
     private MainFrame parentFrame;
 
     /**
      * Creates new form RegisterPanel
      */
-<span class="nc" id="L30">    public RegisterPanel(MainFrame parentFrame) {</span>
-<span class="nc" id="L31">        this.parentFrame = parentFrame;</span>
-<span class="nc" id="L32">        initComponents();</span>
-<span class="nc" id="L33">        initTextFields();</span>
-<span class="nc" id="L34">        initErrorLabels();</span>
-<span class="nc" id="L35">        cleanTextFields();</span>
-<span class="nc" id="L36">        hideErrorLabels();</span>
-<span class="nc" id="L37">    }</span>
+<span class="fc" id="L35">    public RegisterPanel(MainFrame parentFrame) {</span>
+<span class="fc" id="L36">        this.parentFrame = parentFrame;</span>
+<span class="fc" id="L37">        initComponents();</span>
+<span class="fc" id="L38">        initTextFields();</span>
+<span class="fc" id="L39">        initErrorLabels();</span>
+<span class="fc" id="L40">        cleanTextFields();</span>
+<span class="fc" id="L41">        hideErrorLabels();</span>
+<span class="fc" id="L42">    }</span>
 
     // mora imati default konstruktor zbog inicijalizacije forme!
     public RegisterPanel() {
-<span class="nc" id="L41">        this(null); // Pozivanje prilagođenog konstruktora s null</span>
-<span class="nc" id="L42">    }</span>
+<span class="fc" id="L46">        this(null); // Pozivanje prilagođenog konstruktora s null</span>
+<span class="fc" id="L47">    }</span>
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,246 +55,246 @@ public class RegisterPanel extends javax.swing.JPanel {
     // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<span class="nc" id="L53">        lblUserRegistration = new javax.swing.JLabel();</span>
-<span class="nc" id="L54">        lbUsername = new javax.swing.JLabel();</span>
-<span class="nc" id="L55">        tfUsername = new javax.swing.JTextField();</span>
-<span class="nc" id="L56">        lbUsernameError = new javax.swing.JLabel();</span>
-<span class="nc" id="L57">        lbPassword = new javax.swing.JLabel();</span>
-<span class="nc" id="L58">        tfPassword = new javax.swing.JTextField();</span>
-<span class="nc" id="L59">        lbPasswordError = new javax.swing.JLabel();</span>
-<span class="nc" id="L60">        lbName = new javax.swing.JLabel();</span>
-<span class="nc" id="L61">        tfName = new javax.swing.JTextField();</span>
-<span class="nc" id="L62">        lbNameError = new javax.swing.JLabel();</span>
-<span class="nc" id="L63">        lbSurname = new javax.swing.JLabel();</span>
-<span class="nc" id="L64">        tfSurname = new javax.swing.JTextField();</span>
-<span class="nc" id="L65">        lbSurnameError = new javax.swing.JLabel();</span>
-<span class="nc" id="L66">        lbAddress = new javax.swing.JLabel();</span>
-<span class="nc" id="L67">        tfAddress = new javax.swing.JTextField();</span>
-<span class="nc" id="L68">        lbAddressError = new javax.swing.JLabel();</span>
-<span class="nc" id="L69">        lbTelephone = new javax.swing.JLabel();</span>
-<span class="nc" id="L70">        tfTelephone = new javax.swing.JTextField();</span>
-<span class="nc" id="L71">        lbTelephoneError = new javax.swing.JLabel();</span>
-<span class="nc" id="L72">        lbEmail = new javax.swing.JLabel();</span>
-<span class="nc" id="L73">        tfEmail = new javax.swing.JTextField();</span>
-<span class="nc" id="L74">        lbEmailError = new javax.swing.JLabel();</span>
-<span class="nc" id="L75">        btnLogin = new javax.swing.JButton();</span>
-<span class="nc" id="L76">        btnRegister = new javax.swing.JButton();</span>
-<span class="nc" id="L77">        lblUserRegistration1 = new javax.swing.JLabel();</span>
+<span class="fc" id="L58">        lblUserRegistration = new javax.swing.JLabel();</span>
+<span class="fc" id="L59">        lbUsername = new javax.swing.JLabel();</span>
+<span class="fc" id="L60">        tfUsername = new javax.swing.JTextField();</span>
+<span class="fc" id="L61">        lbUsernameError = new javax.swing.JLabel();</span>
+<span class="fc" id="L62">        lbPassword = new javax.swing.JLabel();</span>
+<span class="fc" id="L63">        tfPassword = new javax.swing.JTextField();</span>
+<span class="fc" id="L64">        lbPasswordError = new javax.swing.JLabel();</span>
+<span class="fc" id="L65">        lbName = new javax.swing.JLabel();</span>
+<span class="fc" id="L66">        tfName = new javax.swing.JTextField();</span>
+<span class="fc" id="L67">        lbNameError = new javax.swing.JLabel();</span>
+<span class="fc" id="L68">        lbSurname = new javax.swing.JLabel();</span>
+<span class="fc" id="L69">        tfSurname = new javax.swing.JTextField();</span>
+<span class="fc" id="L70">        lbSurnameError = new javax.swing.JLabel();</span>
+<span class="fc" id="L71">        lbAddress = new javax.swing.JLabel();</span>
+<span class="fc" id="L72">        tfAddress = new javax.swing.JTextField();</span>
+<span class="fc" id="L73">        lbAddressError = new javax.swing.JLabel();</span>
+<span class="fc" id="L74">        lbTelephone = new javax.swing.JLabel();</span>
+<span class="fc" id="L75">        tfTelephone = new javax.swing.JTextField();</span>
+<span class="fc" id="L76">        lbTelephoneError = new javax.swing.JLabel();</span>
+<span class="fc" id="L77">        lbEmail = new javax.swing.JLabel();</span>
+<span class="fc" id="L78">        tfEmail = new javax.swing.JTextField();</span>
+<span class="fc" id="L79">        lbEmailError = new javax.swing.JLabel();</span>
+<span class="fc" id="L80">        btnLogin = new javax.swing.JButton();</span>
+<span class="fc" id="L81">        btnRegister = new javax.swing.JButton();</span>
+<span class="fc" id="L82">        lblUserRegistration1 = new javax.swing.JLabel();</span>
 
-<span class="nc" id="L79">        setMaximumSize(new java.awt.Dimension(400, 320));</span>
-<span class="nc" id="L80">        setMinimumSize(new java.awt.Dimension(400, 320));</span>
-<span class="nc" id="L81">        setPreferredSize(new java.awt.Dimension(400, 320));</span>
+<span class="fc" id="L84">        setMaximumSize(new java.awt.Dimension(400, 320));</span>
+<span class="fc" id="L85">        setMinimumSize(new java.awt.Dimension(400, 320));</span>
+<span class="fc" id="L86">        setPreferredSize(new java.awt.Dimension(400, 320));</span>
 
-<span class="nc" id="L83">        lblUserRegistration.setText(&quot;BOOK EXCHANGE PLATFORM&quot;);</span>
-<span class="nc" id="L84">        lblUserRegistration.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);</span>
+<span class="fc" id="L88">        lblUserRegistration.setText(&quot;BOOK EXCHANGE PLATFORM&quot;);</span>
+<span class="fc" id="L89">        lblUserRegistration.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);</span>
 
-<span class="nc" id="L86">        lbUsername.setText(&quot;Username&quot;);</span>
+<span class="fc" id="L91">        lbUsername.setText(&quot;Username&quot;);</span>
 
-<span class="nc" id="L88">        lbUsernameError.setForeground(new java.awt.Color(255, 51, 51));</span>
-<span class="nc" id="L89">        lbUsernameError.setText(&quot;X&quot;);</span>
+<span class="fc" id="L93">        lbUsernameError.setForeground(new java.awt.Color(255, 51, 51));</span>
+<span class="fc" id="L94">        lbUsernameError.setText(&quot;X&quot;);</span>
 
-<span class="nc" id="L91">        lbPassword.setText(&quot;Password&quot;);</span>
+<span class="fc" id="L96">        lbPassword.setText(&quot;Password&quot;);</span>
 
-<span class="nc" id="L93">        lbPasswordError.setForeground(new java.awt.Color(255, 51, 51));</span>
-<span class="nc" id="L94">        lbPasswordError.setText(&quot;X&quot;);</span>
+<span class="fc" id="L98">        lbPasswordError.setForeground(new java.awt.Color(255, 51, 51));</span>
+<span class="fc" id="L99">        lbPasswordError.setText(&quot;X&quot;);</span>
 
-<span class="nc" id="L96">        lbName.setText(&quot;Name&quot;);</span>
+<span class="fc" id="L101">        lbName.setText(&quot;Name&quot;);</span>
 
-<span class="nc" id="L98">        lbNameError.setForeground(new java.awt.Color(255, 51, 51));</span>
-<span class="nc" id="L99">        lbNameError.setText(&quot;X&quot;);</span>
+<span class="fc" id="L103">        lbNameError.setForeground(new java.awt.Color(255, 51, 51));</span>
+<span class="fc" id="L104">        lbNameError.setText(&quot;X&quot;);</span>
 
-<span class="nc" id="L101">        lbSurname.setText(&quot;Surname&quot;);</span>
+<span class="fc" id="L106">        lbSurname.setText(&quot;Surname&quot;);</span>
 
-<span class="nc" id="L103">        lbSurnameError.setForeground(new java.awt.Color(255, 51, 51));</span>
-<span class="nc" id="L104">        lbSurnameError.setText(&quot;X&quot;);</span>
+<span class="fc" id="L108">        lbSurnameError.setForeground(new java.awt.Color(255, 51, 51));</span>
+<span class="fc" id="L109">        lbSurnameError.setText(&quot;X&quot;);</span>
 
-<span class="nc" id="L106">        lbAddress.setText(&quot;Address&quot;);</span>
+<span class="fc" id="L111">        lbAddress.setText(&quot;Address&quot;);</span>
 
-<span class="nc" id="L108">        lbAddressError.setForeground(new java.awt.Color(255, 51, 51));</span>
-<span class="nc" id="L109">        lbAddressError.setText(&quot;X&quot;);</span>
+<span class="fc" id="L113">        lbAddressError.setForeground(new java.awt.Color(255, 51, 51));</span>
+<span class="fc" id="L114">        lbAddressError.setText(&quot;X&quot;);</span>
 
-<span class="nc" id="L111">        lbTelephone.setText(&quot;Telephone&quot;);</span>
+<span class="fc" id="L116">        lbTelephone.setText(&quot;Telephone&quot;);</span>
 
-<span class="nc" id="L113">        lbTelephoneError.setForeground(new java.awt.Color(255, 51, 51));</span>
-<span class="nc" id="L114">        lbTelephoneError.setText(&quot;X&quot;);</span>
+<span class="fc" id="L118">        lbTelephoneError.setForeground(new java.awt.Color(255, 51, 51));</span>
+<span class="fc" id="L119">        lbTelephoneError.setText(&quot;X&quot;);</span>
 
-<span class="nc" id="L116">        lbEmail.setText(&quot;Email&quot;);</span>
+<span class="fc" id="L121">        lbEmail.setText(&quot;Email&quot;);</span>
 
-<span class="nc" id="L118">        lbEmailError.setForeground(new java.awt.Color(255, 51, 51));</span>
-<span class="nc" id="L119">        lbEmailError.setText(&quot;X&quot;);</span>
+<span class="fc" id="L123">        lbEmailError.setForeground(new java.awt.Color(255, 51, 51));</span>
+<span class="fc" id="L124">        lbEmailError.setText(&quot;X&quot;);</span>
 
-<span class="nc" id="L121">        btnLogin.setText(&quot;Login&quot;);</span>
-<span class="nc" id="L122">        btnLogin.addActionListener(new java.awt.event.ActionListener() {</span>
+<span class="fc" id="L126">        btnLogin.setText(&quot;Login&quot;);</span>
+<span class="fc" id="L127">        btnLogin.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="nc" id="L124">                btnLoginActionPerformed(evt);</span>
-<span class="nc" id="L125">            }</span>
+<span class="nc" id="L129">                btnLoginActionPerformed(evt);</span>
+<span class="nc" id="L130">            }</span>
         });
 
-<span class="nc" id="L128">        btnRegister.setText(&quot;Register&quot;);</span>
-<span class="nc" id="L129">        btnRegister.addActionListener(new java.awt.event.ActionListener() {</span>
+<span class="fc" id="L133">        btnRegister.setText(&quot;Register&quot;);</span>
+<span class="fc" id="L134">        btnRegister.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="nc" id="L131">                btnRegisterActionPerformed(evt);</span>
-<span class="nc" id="L132">            }</span>
+<span class="fc" id="L136">                btnRegisterActionPerformed(evt);</span>
+<span class="fc" id="L137">            }</span>
         });
 
-<span class="nc" id="L135">        lblUserRegistration1.setText(&quot;User Registration&quot;);</span>
-<span class="nc" id="L136">        lblUserRegistration1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);</span>
+<span class="fc" id="L140">        lblUserRegistration1.setText(&quot;User Registration&quot;);</span>
+<span class="fc" id="L141">        lblUserRegistration1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);</span>
 
-<span class="nc" id="L138">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);</span>
-<span class="nc" id="L139">        this.setLayout(layout);</span>
-<span class="nc" id="L140">        layout.setHorizontalGroup(</span>
-<span class="nc" id="L141">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L142">            .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L143">                .addContainerGap(61, Short.MAX_VALUE)</span>
-<span class="nc" id="L144">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
-<span class="nc" id="L145">                    .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L146">                        .addComponent(lbAddress)</span>
-<span class="nc" id="L147">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L148">                        .addComponent(tfAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L149">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L150">                        .addComponent(lbAddressError))</span>
-<span class="nc" id="L151">                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L152">                        .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L153">                            .addComponent(lbPassword)</span>
-<span class="nc" id="L154">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L155">                            .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L156">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L157">                            .addComponent(lbPasswordError))</span>
-<span class="nc" id="L158">                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
-<span class="nc" id="L159">                            .addComponent(lbName)</span>
-<span class="nc" id="L160">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L161">                            .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L162">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L163">                            .addComponent(lbNameError))</span>
-<span class="nc" id="L164">                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
-<span class="nc" id="L165">                            .addComponent(lbSurname)</span>
-<span class="nc" id="L166">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L167">                            .addComponent(tfSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L168">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L169">                            .addComponent(lbSurnameError)))</span>
-<span class="nc" id="L170">                    .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L171">                        .addComponent(lbTelephone)</span>
-<span class="nc" id="L172">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L173">                        .addComponent(tfTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L174">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L175">                        .addComponent(lbTelephoneError))</span>
-<span class="nc" id="L176">                    .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L177">                        .addComponent(lbEmail)</span>
-<span class="nc" id="L178">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L179">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)</span>
-<span class="nc" id="L180">                            .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L181">                                .addComponent(btnLogin)</span>
-<span class="nc" id="L182">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L183">                                .addComponent(btnRegister))</span>
-<span class="nc" id="L184">                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
-<span class="nc" id="L185">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L186">                        .addComponent(lbEmailError))</span>
-<span class="nc" id="L187">                    .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L188">                        .addComponent(lbUsername)</span>
-<span class="nc" id="L189">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L190">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L191">                            .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L192">                            .addComponent(lblUserRegistration))</span>
-<span class="nc" id="L193">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L194">                        .addComponent(lbUsernameError)))</span>
-<span class="nc" id="L195">                .addContainerGap(89, Short.MAX_VALUE))</span>
-<span class="nc" id="L196">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
-<span class="nc" id="L197">                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L198">                .addComponent(lblUserRegistration1)</span>
-<span class="nc" id="L199">                .addGap(151, 151, 151))</span>
+<span class="fc" id="L143">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);</span>
+<span class="fc" id="L144">        this.setLayout(layout);</span>
+<span class="fc" id="L145">        layout.setHorizontalGroup(</span>
+<span class="fc" id="L146">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L147">            .addGroup(layout.createSequentialGroup()</span>
+<span class="fc" id="L148">                .addContainerGap(61, Short.MAX_VALUE)</span>
+<span class="fc" id="L149">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="fc" id="L150">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="fc" id="L151">                        .addComponent(lbAddress)</span>
+<span class="fc" id="L152">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L153">                        .addComponent(tfAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L154">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L155">                        .addComponent(lbAddressError))</span>
+<span class="fc" id="L156">                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L157">                        .addGroup(layout.createSequentialGroup()</span>
+<span class="fc" id="L158">                            .addComponent(lbPassword)</span>
+<span class="fc" id="L159">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L160">                            .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L161">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L162">                            .addComponent(lbPasswordError))</span>
+<span class="fc" id="L163">                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
+<span class="fc" id="L164">                            .addComponent(lbName)</span>
+<span class="fc" id="L165">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L166">                            .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L167">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L168">                            .addComponent(lbNameError))</span>
+<span class="fc" id="L169">                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
+<span class="fc" id="L170">                            .addComponent(lbSurname)</span>
+<span class="fc" id="L171">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L172">                            .addComponent(tfSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L173">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L174">                            .addComponent(lbSurnameError)))</span>
+<span class="fc" id="L175">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="fc" id="L176">                        .addComponent(lbTelephone)</span>
+<span class="fc" id="L177">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L178">                        .addComponent(tfTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L179">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L180">                        .addComponent(lbTelephoneError))</span>
+<span class="fc" id="L181">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="fc" id="L182">                        .addComponent(lbEmail)</span>
+<span class="fc" id="L183">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L184">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)</span>
+<span class="fc" id="L185">                            .addGroup(layout.createSequentialGroup()</span>
+<span class="fc" id="L186">                                .addComponent(btnLogin)</span>
+<span class="fc" id="L187">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L188">                                .addComponent(btnRegister))</span>
+<span class="fc" id="L189">                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="fc" id="L190">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L191">                        .addComponent(lbEmailError))</span>
+<span class="fc" id="L192">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="fc" id="L193">                        .addComponent(lbUsername)</span>
+<span class="fc" id="L194">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L195">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L196">                            .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L197">                            .addComponent(lblUserRegistration))</span>
+<span class="fc" id="L198">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L199">                        .addComponent(lbUsernameError)))</span>
+<span class="fc" id="L200">                .addContainerGap(89, Short.MAX_VALUE))</span>
+<span class="fc" id="L201">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
+<span class="fc" id="L202">                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L203">                .addComponent(lblUserRegistration1)</span>
+<span class="fc" id="L204">                .addGap(151, 151, 151))</span>
         );
-<span class="nc" id="L201">        layout.setVerticalGroup(</span>
-<span class="nc" id="L202">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L203">            .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L204">                .addContainerGap()</span>
-<span class="nc" id="L205">                .addComponent(lblUserRegistration)</span>
-<span class="nc" id="L206">                .addGap(4, 4, 4)</span>
-<span class="nc" id="L207">                .addComponent(lblUserRegistration1)</span>
-<span class="nc" id="L208">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L209">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
-<span class="nc" id="L210">                    .addComponent(lbUsername)</span>
-<span class="nc" id="L211">                    .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L212">                    .addComponent(lbUsernameError))</span>
-<span class="nc" id="L213">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L214">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
-<span class="nc" id="L215">                    .addComponent(lbPassword)</span>
-<span class="nc" id="L216">                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L217">                    .addComponent(lbPasswordError))</span>
-<span class="nc" id="L218">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L219">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
-<span class="nc" id="L220">                    .addComponent(lbName)</span>
-<span class="nc" id="L221">                    .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L222">                    .addComponent(lbNameError))</span>
-<span class="nc" id="L223">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L224">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
-<span class="nc" id="L225">                    .addComponent(lbSurname)</span>
-<span class="nc" id="L226">                    .addComponent(tfSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L227">                    .addComponent(lbSurnameError))</span>
-<span class="nc" id="L228">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L229">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
-<span class="nc" id="L230">                    .addComponent(lbAddress)</span>
-<span class="nc" id="L231">                    .addComponent(tfAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L232">                    .addComponent(lbAddressError))</span>
-<span class="nc" id="L233">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L234">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
-<span class="nc" id="L235">                    .addComponent(lbTelephone)</span>
-<span class="nc" id="L236">                    .addComponent(tfTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L237">                    .addComponent(lbTelephoneError))</span>
-<span class="nc" id="L238">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
-<span class="nc" id="L239">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
-<span class="nc" id="L240">                    .addComponent(lbEmail)</span>
-<span class="nc" id="L241">                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L242">                    .addComponent(lbEmailError))</span>
-<span class="nc" id="L243">                .addGap(18, 18, 18)</span>
-<span class="nc" id="L244">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
-<span class="nc" id="L245">                    .addComponent(btnLogin)</span>
-<span class="nc" id="L246">                    .addComponent(btnRegister))</span>
-<span class="nc" id="L247">                .addContainerGap(41, Short.MAX_VALUE))</span>
+<span class="fc" id="L206">        layout.setVerticalGroup(</span>
+<span class="fc" id="L207">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L208">            .addGroup(layout.createSequentialGroup()</span>
+<span class="fc" id="L209">                .addContainerGap()</span>
+<span class="fc" id="L210">                .addComponent(lblUserRegistration)</span>
+<span class="fc" id="L211">                .addGap(4, 4, 4)</span>
+<span class="fc" id="L212">                .addComponent(lblUserRegistration1)</span>
+<span class="fc" id="L213">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L214">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L215">                    .addComponent(lbUsername)</span>
+<span class="fc" id="L216">                    .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L217">                    .addComponent(lbUsernameError))</span>
+<span class="fc" id="L218">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L219">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L220">                    .addComponent(lbPassword)</span>
+<span class="fc" id="L221">                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L222">                    .addComponent(lbPasswordError))</span>
+<span class="fc" id="L223">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L224">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L225">                    .addComponent(lbName)</span>
+<span class="fc" id="L226">                    .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L227">                    .addComponent(lbNameError))</span>
+<span class="fc" id="L228">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L229">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L230">                    .addComponent(lbSurname)</span>
+<span class="fc" id="L231">                    .addComponent(tfSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L232">                    .addComponent(lbSurnameError))</span>
+<span class="fc" id="L233">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L234">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L235">                    .addComponent(lbAddress)</span>
+<span class="fc" id="L236">                    .addComponent(tfAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L237">                    .addComponent(lbAddressError))</span>
+<span class="fc" id="L238">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L239">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L240">                    .addComponent(lbTelephone)</span>
+<span class="fc" id="L241">                    .addComponent(tfTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L242">                    .addComponent(lbTelephoneError))</span>
+<span class="fc" id="L243">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L244">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L245">                    .addComponent(lbEmail)</span>
+<span class="fc" id="L246">                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L247">                    .addComponent(lbEmailError))</span>
+<span class="fc" id="L248">                .addGap(18, 18, 18)</span>
+<span class="fc" id="L249">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L250">                    .addComponent(btnLogin)</span>
+<span class="fc" id="L251">                    .addComponent(btnRegister))</span>
+<span class="fc" id="L252">                .addContainerGap(41, Short.MAX_VALUE))</span>
         );
-<span class="nc" id="L249">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+<span class="fc" id="L254">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
-<span class="nc" id="L253">        hideErrorLabels();</span>
-<span class="nc" id="L254">        boolean valid = true;</span>
+<span class="fc" id="L258">        hideErrorLabels();</span>
+<span class="fc" id="L259">        boolean valid = true;</span>
         // Provjera ispunjenosti svih tekstualnih polja
-<span class="nc bnc" id="L256" title="All 2 branches missed.">        for (int i = 0; i &lt; textFields.size(); i++) {</span>
-<span class="nc" id="L257">            JTextField textField = textFields.get(i);</span>
-<span class="nc" id="L258">            JLabel errorLabel = errorLabels.get(i);</span>
-<span class="nc bnc" id="L259" title="All 2 branches missed.">            if (textField.getText().isEmpty()) {</span>
-<span class="nc" id="L260">                errorLabel.setVisible(true);</span>
-<span class="nc" id="L261">                valid = false;</span>
+<span class="fc bfc" id="L261" title="All 2 branches covered.">        for (int i = 0; i &lt; textFields.size(); i++) {</span>
+<span class="fc" id="L262">            JTextField textField = textFields.get(i);</span>
+<span class="fc" id="L263">            JLabel errorLabel = errorLabels.get(i);</span>
+<span class="fc bfc" id="L264" title="All 2 branches covered.">            if (textField.getText().isEmpty()) {</span>
+<span class="fc" id="L265">                errorLabel.setVisible(true);</span>
+<span class="fc" id="L266">                valid = false;</span>
             }
         }
 
-<span class="nc bnc" id="L265" title="All 2 branches missed.">        if (!valid) {</span>
-<span class="nc" id="L266">            JOptionPane.showMessageDialog(this, &quot;Molim popunite sva polja.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
-<span class="nc" id="L267">            return;</span>
+<span class="fc bfc" id="L270" title="All 2 branches covered.">        if (!valid) {</span>
+<span class="fc" id="L271">            JOptionPane.showMessageDialog(this, &quot;Molim popunite sva polja.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="fc" id="L272">            return;</span>
         }
-<span class="nc" id="L269">        String username = tfUsername.getText();</span>
-<span class="nc" id="L270">        String password = tfPassword.getText();</span>
-<span class="nc" id="L271">        String name = tfName.getText();</span>
-<span class="nc" id="L272">        String surname = tfSurname.getText();</span>
-<span class="nc" id="L273">        String address = tfAddress.getText();</span>
-<span class="nc" id="L274">        String telephone = tfTelephone.getText();</span>
-<span class="nc" id="L275">        String email = tfEmail.getText();</span>
+<span class="fc" id="L274">        String username = tfUsername.getText();</span>
+<span class="fc" id="L275">        String password = tfPassword.getText();</span>
+<span class="fc" id="L276">        String name = tfName.getText();</span>
+<span class="fc" id="L277">        String surname = tfSurname.getText();</span>
+<span class="fc" id="L278">        String address = tfAddress.getText();</span>
+<span class="fc" id="L279">        String telephone = tfTelephone.getText();</span>
+<span class="fc" id="L280">        String email = tfEmail.getText();</span>
 
-<span class="nc bnc" id="L277" title="All 4 branches missed.">        if (username.isEmpty() || username.length() &lt; 3) {</span>
-<span class="nc" id="L278">            lbUsernameError.setVisible(true);</span>
-<span class="nc" id="L279">            JOptionPane.showMessageDialog(this, &quot;Korisničko ime mora sadržavati najmanje 3 znaka.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
-<span class="nc" id="L280">            valid = false;</span>
+<span class="pc bpc" id="L282" title="1 of 4 branches missed.">        if (username.isEmpty() || username.length() &lt; 3) {</span>
+<span class="fc" id="L283">            lbUsernameError.setVisible(true);</span>
+<span class="fc" id="L284">            JOptionPane.showMessageDialog(this, &quot;Korisničko ime mora sadržavati najmanje 3 znaka.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
+//            valid = false;
         }
-<span class="nc bnc" id="L282" title="All 4 branches missed.">        if (password.isEmpty() || password.length() &lt; 5) {</span>
-<span class="nc" id="L283">            lbPasswordError.setVisible(true);</span>
-<span class="nc" id="L284">            JOptionPane.showMessageDialog(this, &quot;Lozinka mora sadržavati najmanje 5 znakova.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
-<span class="nc" id="L285">            valid = false;</span>
+<span class="pc bpc" id="L287" title="1 of 4 branches missed.">        if (password.isEmpty() || password.length() &lt; 5) {</span>
+<span class="fc" id="L288">            lbPasswordError.setVisible(true);</span>
+<span class="fc" id="L289">            JOptionPane.showMessageDialog(this, &quot;Lozinka mora sadržavati najmanje 5 znakova.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
+//            valid = false;
         }
-<span class="nc bnc" id="L287" title="All 2 branches missed.">        if (!valid) {</span>
-<span class="nc" id="L288">            JOptionPane.showMessageDialog(this, &quot;Molim popunite sva polja&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
-        }
+//        if (!valid) {
+//            JOptionPane.showMessageDialog(this, &quot;Molim popunite sva polja&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);
+//        }
 
         try {
-<span class="nc" id="L292">            ((UserRepositoryInterface)RepositoryFactory.getRepository()).createUser(new User(</span>
+<span class="fc" id="L297">            ((UserRepositoryInterface)RepositoryFactory.getRepository()).createUser(new User(</span>
                     username,
                     password,
                     name,
@@ -298,17 +303,17 @@ public class RegisterPanel extends javax.swing.JPanel {
                     telephone,
                     email,
                     false)); //postavljanje IDRola na Korisnik (boolean isAdmin = false)
-<span class="nc" id="L301">            JOptionPane.showMessageDialog(this, &quot;Korisnik je uspješno registriran!&quot;, &quot;Uspjeh&quot;, JOptionPane.INFORMATION_MESSAGE);</span>
-<span class="nc" id="L302">            cleanTextFields();</span>
-<span class="nc" id="L303">        } catch (Exception e) {</span>
-<span class="nc" id="L304">            e.printStackTrace();</span>
-<span class="nc" id="L305">            JOptionPane.showMessageDialog(this, &quot;Dogodila se greška prilikom registracije. Pokušajte ponovo.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
-<span class="nc" id="L306">        }</span>
-<span class="nc" id="L307">    }//GEN-LAST:event_btnRegisterActionPerformed</span>
+<span class="fc" id="L306">            JOptionPane.showMessageDialog(this, &quot;Korisnik je uspješno registriran!&quot;, &quot;Uspjeh&quot;, JOptionPane.INFORMATION_MESSAGE);</span>
+<span class="fc" id="L307">            cleanTextFields();</span>
+<span class="fc" id="L308">        } catch (Exception e) {</span>
+<span class="fc" id="L309">            e.printStackTrace();</span>
+<span class="fc" id="L310">            JOptionPane.showMessageDialog(this, &quot;Dogodila se greška prilikom registracije. Pokušajte ponovo.&quot;, &quot;Greška&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="fc" id="L311">        }</span>
+<span class="fc" id="L312">    }//GEN-LAST:event_btnRegisterActionPerformed</span>
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-<span class="nc" id="L310">        parentFrame.showPanel(&quot;LoginPanel&quot;);</span>
-<span class="nc" id="L311">    }//GEN-LAST:event_btnLoginActionPerformed</span>
+<span class="nc" id="L315">        parentFrame.showPanel(&quot;LoginPanel&quot;);</span>
+<span class="nc" id="L316">    }//GEN-LAST:event_btnLoginActionPerformed</span>
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -340,7 +345,7 @@ public class RegisterPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void initTextFields() {
-<span class="nc" id="L343">        textFields = Arrays.asList(</span>
+<span class="fc" id="L348">        textFields = Arrays.asList(</span>
                 tfUsername,
                 tfPassword,
                 tfName,
@@ -348,16 +353,16 @@ public class RegisterPanel extends javax.swing.JPanel {
                 tfAddress,
                 tfTelephone,
                 tfEmail);
-<span class="nc" id="L351">    }</span>
+<span class="fc" id="L356">    }</span>
 
     private void cleanTextFields() {
-<span class="nc bnc" id="L354" title="All 2 branches missed.">        for (JTextField textField : textFields) {</span>
-<span class="nc" id="L355">            textField.setText(&quot;&quot;);</span>
-<span class="nc" id="L356">        }</span>
-<span class="nc" id="L357">    }</span>
+<span class="fc bfc" id="L359" title="All 2 branches covered.">        for (JTextField textField : textFields) {</span>
+<span class="fc" id="L360">            textField.setText(&quot;&quot;);</span>
+<span class="fc" id="L361">        }</span>
+<span class="fc" id="L362">    }</span>
 
     private void initErrorLabels() {
-<span class="nc" id="L360">        errorLabels = Arrays.asList(</span>
+<span class="fc" id="L365">        errorLabels = Arrays.asList(</span>
                 lbUsernameError,
                 lbPasswordError,
                 lbNameError,
@@ -365,13 +370,121 @@ public class RegisterPanel extends javax.swing.JPanel {
                 lbAddressError,
                 lbTelephoneError,
                 lbEmailError);
-<span class="nc" id="L368">    }</span>
+<span class="fc" id="L373">    }</span>
 
     private void hideErrorLabels() {
-<span class="nc bnc" id="L371" title="All 2 branches missed.">        for (JLabel label : errorLabels) {</span>
-<span class="nc" id="L372">            label.setVisible(false);</span>
-<span class="nc" id="L373">        }</span>
-<span class="nc" id="L374">    }</span>
+<span class="fc bfc" id="L376" title="All 2 branches covered.">        for (JLabel label : errorLabels) {</span>
+<span class="fc" id="L377">            label.setVisible(false);</span>
+<span class="fc" id="L378">        }</span>
+<span class="fc" id="L379">    }</span>
 
+    //test getters
+    public javax.swing.JButton getBtnRegister(){
+<span class="fc" id="L383">        return btnRegister;</span>
+    }
+
+    public List&lt;JTextField&gt; getTextFields() {
+<span class="nc" id="L387">        return textFields;</span>
+    }
+
+    public MainFrame getParentFrame() {
+<span class="nc" id="L391">        return parentFrame;</span>
+    }
+
+    public JButton getBtnLogin() {
+<span class="nc" id="L395">        return btnLogin;</span>
+    }
+
+    public JLabel getLbAddress() {
+<span class="nc" id="L399">        return lbAddress;</span>
+    }
+
+    public JLabel getLbAddressError() {
+<span class="fc" id="L403">        return lbAddressError;</span>
+    }
+
+    public JLabel getLbEmail() {
+<span class="nc" id="L407">        return lbEmail;</span>
+    }
+
+    public JLabel getLbEmailError() {
+<span class="fc" id="L411">        return lbEmailError;</span>
+    }
+
+    public JLabel getLbName() {
+<span class="nc" id="L415">        return lbName;</span>
+    }
+
+    public JLabel getLbNameError() {
+<span class="fc" id="L419">        return lbNameError;</span>
+    }
+
+    public JLabel getLbPassword() {
+<span class="nc" id="L423">        return lbPassword;</span>
+    }
+
+    public JLabel getLbPasswordError() {
+<span class="fc" id="L427">        return lbPasswordError;</span>
+    }
+
+    public JLabel getLbSurname() {
+<span class="nc" id="L431">        return lbSurname;</span>
+    }
+
+    public JLabel getLbSurnameError() {
+<span class="fc" id="L435">        return lbSurnameError;</span>
+    }
+
+    public JLabel getLbTelephone() {
+<span class="nc" id="L439">        return lbTelephone;</span>
+    }
+
+    public JLabel getLbTelephoneError() {
+<span class="fc" id="L443">        return lbTelephoneError;</span>
+    }
+
+    public JLabel getLbUsername() {
+<span class="nc" id="L447">        return lbUsername;</span>
+    }
+
+    public JLabel getLbUsernameError() {
+<span class="fc" id="L451">        return lbUsernameError;</span>
+    }
+
+    public JLabel getLblUserRegistration() {
+<span class="nc" id="L455">        return lblUserRegistration;</span>
+    }
+
+    public JLabel getLblUserRegistration1() {
+<span class="nc" id="L459">        return lblUserRegistration1;</span>
+    }
+
+    public JTextField getTfAddress() {
+<span class="fc" id="L463">        return tfAddress;</span>
+    }
+
+    public JTextField getTfEmail() {
+<span class="fc" id="L467">        return tfEmail;</span>
+    }
+
+    public JTextField getTfName() {
+<span class="fc" id="L471">        return tfName;</span>
+    }
+
+    public JTextField getTfPassword() {
+<span class="fc" id="L475">        return tfPassword;</span>
+    }
+
+    public JTextField getTfSurname() {
+<span class="fc" id="L479">        return tfSurname;</span>
+    }
+
+    public JTextField getTfTelephone() {
+<span class="fc" id="L483">        return tfTelephone;</span>
+    }
+
+    public JTextField getTfUsername() {
+<span class="fc" id="L487">        return tfUsername;</span>
+    }    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
